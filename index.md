@@ -13,18 +13,21 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
   - インストール方法は以下の[事前準備](#事前準備)をご参考ください
   - ノート PC は USB ポートが2ポート以上あるもの、もしくは USB ハブをご用意ください
 - マニピュレータ
-  - RT Robot Shopが提供している[ロボットアーム CRANE+](http://www.rt-shop.jp/index.php?main_page=product_info&cPath=1348_1&products_id=2441)を利用します
+  - RT Robot Shopが提供している[ロボットアーム CRANE+](https://www.rt-shop.jp/index.php?main_page=product_info&cPath=1324&products_id=3626)を利用します
   - _注意_{: style="color: red"}：CRANE+ の電源は別売りです。[12Vおよび５Aが可能な電源](http://www.rt-shop.jp/index.php?main_page=product_info&cPath=1000_1012_1131&products_id=595)が必要です
 - マニピュレータとPCをつなげる[USB延長ケーブル](https://www.amazon.co.jp/gp/product/B007STDLM0/ref=oh_aui_detailpage_o02_s00)
 - カメラ
-  - [こちら](https://www.amazon.co.jp/gp/product/B00UZNLIBW/ref=oh_aui_detailpage_o03_s00)で販売されているような USB カメラをご用意ください。PC が認識できれば基本的に利用可能です
-- カメラをマウントできる三脚
+  - 一般的な USB 接続の Web カメラをご用意ください
+  - 接続して PC が認識できれば基本的に利用可能です
+  - 例：[エレコム Web カメラ](https://www.amazon.co.jp/gp/product/B00UZNLIBW/ref=oh_aui_detailpage_o03_s00)
+- カメラ用三脚
   - 卓上であれば、６０ｃｍ以上の高さ調節が可能な三脚
-  - ウェブカメラを利用する場合、三脚の上部にウェブカメラが付けられること（ネジ、テープ等で）を確認してください
+  - ウェブカメラを利用する場合、三脚の上部にウェブカメラが取り付けられること（ネジ、テープ等で）を確認してください
   - 例：[Velbon EX-Macro](https://www.amazon.co.jp/gp/product/B00DL5RP5Y/ref=oh_aui_detailpage_o03_s00)
 - マニピュレータが持つ物品
-  - [激落ちのスポンジ](https://www.amazon.co.jp/gp/product/B005ZETITK/ref=oh_aui_detailpage_o00_s00)のような柔らかい物がおすすめです
   - カメラ認識のために単純な明るい色がおすすめです
+  - 把持時にハンドの損傷等を防ぐために、柔らかい物体が望ましいです
+  - 例：[激落ちのスポンジ](https://www.amazon.co.jp/gp/product/B005ZETITK/ref=oh_aui_detailpage_o00_s00)
 
 ## 事前準備
 
