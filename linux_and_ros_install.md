@@ -1,27 +1,25 @@
 ---
 title: Ubuntu LinuxとROSのインストール
-date: 2017-06-16
 ---
 
 - Table of contents
 {:toc}
 
-セミナー中に開発環境としてUbuntu Linuxを利用します。そして、Ubuntu
-Linux上でROSを利用します。本ページではUbuntu
-LinuxとROSのインストール方法を示します。
+セミナー中に使用する開発環境として Ubuntu Linux とその上で動作する ROS を利用します。
+本ページでは Ubuntu Linux と ROS のインストール方法を紹介します。
 
 ## 用意するもの
 
 - ノート型パソコン
--- *本手順によりパソコンの既存のOS（Windows等）及び保存されているデータやソフトウェアは完全にが削除される。予めにバックアップを行ってください。*{: style="color: red"}
-- 容量４GB以上の空のUSBメモリ
+-- *本手順によりパソコンの既存のOS（Windows等）及び保存されているデータやソフトウェアは完全に削除されます。予めにバックアップを行ってください。*{: style="color: red"}
+- 容量 4GB 以上の空 USB メモリ
 - インターネット接続
 
 ## 手順
 
-### Ubuntu Linuxのダウンロード
+### Ubuntu Linux のダウンロード
 
-1. 下記URLからUbuntu Linux 16.04のインストールイメージをダウンロードする
+1. 下記URLから Ubuntu Linux 18.04 のインストールイメージをダウンロードする
 
    [Ubuntu ダウンロード](https://www.ubuntu.com/download/desktop)
 
@@ -35,12 +33,12 @@ LinuxとROSのインストール方法を示します。
 
    ![Ubuntu ダウンロード](/images/ubuntu_download_3.png)
 
-### Live USBの作成
+### Live USB の作成
 
-1. 下記URLから、Live USB作成ソフトをダウンロードします。
+1. 下記 URL から、Live USB 作成ソフトをダウンロードします。
    - Windows、Mac OS Xの場合：<https://unetbootin.github.io/>
 
-     ページ中の、Live USB作成に使用しているPCのOSを選択してください。
+     ページ中の、Live USB 作成に使用しているPCのOSを選択してください。
 
      ![UNetbootinダウンロード](/images/unetbootin_download.png)
 
@@ -50,13 +48,13 @@ LinuxとROSのインストール方法を示します。
      $ sudo apt-get install unetbootin
      ```
 
-1. 事故防止のため、使用しないUSBメモリや、メモリーカードを取り外し、使用するUSBメモリのみを接続します。使用するUSBメモリは、ファイルが入っていない、空の状態にして下さい。
+1. 誤って必要なデータを削除してしまうのを防ぐため、使用しない USB メモリや、メモリーカードを取り外し、使用する USB メモリのみを接続します。使用する USB メモリは、ファイルが入っていない空の状態にして下さい。
 
-1. Live USBを作成するPCとUbuntuをインストールするPCが別でも構いません。
+1. Live USB を作成する PC と Ubuntu をインストール する PC はそれぞれ別でも構いません。
 
-1. ダウンロードした unetbootin-windows-???.exe（Windowsの場合）を実行します。
+1. ダウンロードした unetbootin-windows-???.exe（Windows の場合）を実行します。
 
-   下記、「WindowsによってPCが保護されました」画面が現れた場合は、「実行」ボタンをクリックしてください。
+   下記、「Windows によって PC が保護されました」画面が現れた場合は、「実行」ボタンをクリックしてください。
 
    ![Windows UAC](/images/windows_idiot_screen.png)
 
@@ -64,11 +62,11 @@ LinuxとROSのインストール方法を示します。
 
    ![Windows UAC](/images/windows_uac.png)
 
-1. UNetbootinの画面で、「ディスクイメージ」を選択し、「…」ボタンをクリックして先ほどダウンロードした、`ubuntu-16.04.2-desktop-amd64.iso` ファイルを選択します。また、「スペースは、リブートしてもファイルを維持するために使用」欄に「4096」と入力し、「ドライブ」欄で、使用するUSBメモリのドライブ名を選択します。内容を確認後、「OK」をクリックしてください。
+1. UNetbootin の画面で、「ディスクイメージ」を選択し、「…」ボタンをクリックして先ほどダウンロードした、`ubuntu-16.04.2-desktop-amd64.iso` ファイルを選択します。また、「スペースは、リブートしてもファイルを維持するために使用」欄に「4096」と入力し、「ドライブ」欄で、使用する USB メモリのドライブ名を選択します。内容を確認後、「OK」をクリックしてください。
 
    ![UNetbootin process 1](/images/unetbootin_setting.png)
 
-   完了まで、しばらく待機します。（USB2.0の場合10分以上、書き込み速度の遅いメモリだと30分程度かかる場合があります。）
+   完了まで、しばらく待機します。（USB2.0 の場合10分以上、書き込み速度の遅いメモリだと30分程度かかる場合があります。）
    下記の「永続性を設定する」画面で、応答なしと表示される場合がありますが、正常に動作していますので、そのまま待機してください。
 
    ![UNetbootin process 2](/images/unetbootin_freeze.png)
@@ -79,11 +77,11 @@ LinuxとROSのインストール方法を示します。
 
 1. Live USBから起動するためのBIOSの設定を行います。
 
-   セミナーで使用するPCの電源を切り、下記の手順で作成したLive USBを接続した状態で起動します。起動時に、BIOS設定画面に入ります。*PCのメーカー毎に入り方が異なります*{: style="color: red"}ので、マニュアル等で確認してください。図はAcerの例です。
+   セミナーで使用する PC の電源を切り、下記の手順で作成した Live USB を接続した状態で起動します。起動時に、BIOS 設定画面に入ります。*PC のメーカー毎に BIOS への入り方が異なります*{: style="color: red"}ので、マニュアル等で確認してください。図は Acer の例です。
 
    ![BIOS 1](/images/acer_boot.png)
 
-   BIOS設定画面に入ったら、起動順（Boot order, Boot priority）の設定で、USBメモリが最優先になるように設定します。 （表示は使用しているPCおよびUSBメモリのメーカーによって異なります。）
+   BIOS 設定画面に入ったら、起動順（Boot order, Boot priority）の設定で、USB メモリが最優先になるように設定します。 （表示は使用している PC および USB メモリのメーカーによって異なります。）
 
    ![BIOS 2](/images/acer_boot_order1.png)
 
@@ -93,23 +91,23 @@ LinuxとROSのインストール方法を示します。
 
    ![BIOS 4](/images/acer_boot_save.png)
 
-### Ubuntu Linuxのインストール
+### Ubuntu Linux のインストール
 
-1. Live USBをパソコンに接続し、パソコンの電源を入れます。
+1. Live USB をパソコンに接続し、パソコンの電源を入れます。
 
 1. 以下の画面が表示されます。言語を選択してください。
 
    ![Ubuntu install 1](/images/ubuntu_install_1.png)
 
-1. 「Ubuntuをインストール」を選択しインストール手順を開始します。画面に出る説明に従ってインストール手順を続いてください。
+1. 「Ubuntu をインストール」を選択しインストール手順を開始します。画面に出る説明に従ってインストール手順を続いてください。
 
    ![Ubuntu install 2](/images/ubuntu_install_2.png)
 
-1. 以下の画面に届いたら、「ディスクを削除してUbuntuをインストールする」を選択してください。
+1. 以下の画面に届いたら、「ディスクを削除して Ubuntu をインストールする」を選択してください。
 
    ![Ubuntu install 3](/images/ubuntu_install_3.png)
 
-1. インストール後、LiveUSBを外してパソコンを再起動すると以下の画面が現れます。これでUbuntu Linuxのインストールが完了です。
+1. インストール後、LiveUSB を外してパソコンを再起動すると以下の画面が現れます。これで Ubuntu Linux のインストールが完了です。
 
    ![Ubuntu install 4](/images/ubuntu_install_4.png)
 
@@ -118,7 +116,8 @@ LinuxとROSのインストール方法を示します。
 
 1. *ROS Kinetic Kame*{: style="color: blue"}をインストールします。
 
-   ROSをインストールするために、以下のURLで書いてある手順に従ってください。すべてのデスクトップ環境のインストールを行ってください。
+   以下の URL で書いてある手順に従って ROS をインストールしてください。
+   すべてのデスクトップ環境のインストールを行ってください。
 
    [ROS KineticのUbuntuへのインストール](http://wiki.ros.org/ja/kinetic/Installation/Ubuntu)
 
@@ -163,4 +162,4 @@ sudo apt-get install ros-kinetic-dynamixel-motor
 sudo apt-get install ros-kinetic-usb-cam
 ```
 
-以上、開発環境の構築が完了しました。
+以上で、開発環境の構築が完了しました。
