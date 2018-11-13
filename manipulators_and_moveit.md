@@ -72,7 +72,7 @@ $
 ワークスペース内のパッケージが利用できるようにワークスペースをソースします。
 
 ```shell
-$ cd ~/crane_plus_ws/src/
+$ cd ~/crane_plus_ws/
 $ source devel/setup.bash
 ```
 
@@ -95,7 +95,7 @@ crane_plus_description         crane_plus_ikfast_arm_plugin      crane_plus_move
 crane_plus_gripper             crane_plus_joint_state_publisher  crane_plus_simulation
 ```
 
-`README.md`と`LICENSE`以外はすべてパッケージです。パッケージづつの機能を説明します。
+`README.md`と`LICENSE`以外はすべてパッケージです。パッケージごとの機能を説明します。
 
 `crane_plus_camera_calibration`
 : CRANE+とカメラの位置関係を計算する
@@ -124,13 +124,13 @@ crane_plus_gripper             crane_plus_joint_state_publisher  crane_plus_simu
 `crane_plus_simulation`
 : `crane_plus_hardware`と類似なパッケージで、ハードウェアではなくてシミュレータ上でマニピュレータを操作するためのパラメータやlaunchファイル
 
-基本的に`crane_plus_hardware`または`crane_plus_simulator`のlaunchファイルを利用してハードウェアかシミュレータのロボットを起動して、`crane_plus_moveit_config`のlaunchファイルでMoveIt!を起動したからロボットを制御します。次のセクションからこの手順を実習します。
+基本的に`crane_plus_hardware`または`crane_plus_simulator`のlaunchファイルを利用してハードウェアかシミュレータのロボットを起動した後に、`crane_plus_moveit_config`のlaunchファイルでMoveIt!を起動してロボットを制御します。次のセクションで本手順を実習します。
 
 ## ハードウェアのロボットを制御
 
 CRANE+を制御するために、まずはROSとハードウェアのインターフェースになるノードを起動します。
 
-CRANE+の電源を入れたから、以下を実行します。
+CRANE+の電源を入れてから、以下を実行します。
 
 ```shell
 $ cd ~/crane_plus_ws/src/
@@ -138,7 +138,7 @@ $ source devel/setup.bash
 $ roslaunch crane_plus_hardware start_arm_standalone.launch
 ```
 
-エラー（赤い文字で表示される）がなければ、マニピュレータは起動しました。
+エラー（赤い文字で表示される）がなければ、マニピュレータは起動しています。
 
 次にMoveIt!を起動します。新しい端末で以下を実行します。
 
@@ -162,7 +162,7 @@ You can start planning now!
 
 最後に「You can start planning now!」が出力されたら、マニピュレータは利用可能な状態になりました。
 
-MoveIt!は、ROSノードでMoveIt!のAPIを利用することが基本の利用方法です。しかし、試すだけのためにノードを作成することは重い作業です。ノード作成の代わりにROSの基本の可視化ツール[RViz](http://wiki.ros.org/rviz)も利用できます。
+MoveIt!は、ROSノードでMoveIt!のAPIを利用することが基本的な利用方法です。しかし、簡単な試行のためにわざわざノードを作成することは非効率的です。そこで、ノード作成の代わりにROSの可視化ツール[RViz](http://wiki.ros.org/rviz)を利用できます。
 
 MoveIt!はRViz上でマニピュレータ制御ユーザインターフェースをプラグインとして提供します。MoveIt!と同時にインストールされて、CRANE+のMoveIt!パッケージから起動します。新しい端末で以下を実行してRVizのMoveIt!ユーザインターフェースを起動します。
 
@@ -178,10 +178,10 @@ __注意：コマンドの最後に`config:=true`を忘れると、上記画像�
 
 RVizでカメラの制御は以下で行います。
 
-マウスをクリックとドラッグ
+マウスをクリック、ドラッグ
 : 青い点を中心にしてカメラの回転
 
-__Shift__{: style="border: 1px solid black" } を押しながらマウスをクリックとドラッグ　または　マウスをミドルクリックとドラッグ
+__Shift__{: style="border: 1px solid black" } を押しながらマウスをクリック、ドラッグ　または　マウスをミドルクリック、ドラッグ
 : 青い点を中心にしてカメラをXYで移動する
 
 マウスウィール　または　マウス右クリックとドラッグ
@@ -222,11 +222,11 @@ __注意：本物のロボットを制御します。ランダムで選択され
 
 ### シミュレータで試す
 
-シミュレータの利用により上記の手続きはハードウェアなしで行うことができます。ハードウェアの起動するステップの代わりにシミュレータ上のマニピュレータを起動し、残りの手続きはは変わりません。詳しい説明は[「ROSの便利機能」の「シミュレータ」セクション](ros_useful_stuff.html#シミュレータ)に参照してください。
+シミュレータの利用により上記の手続きはハードウェアなしで行うことができます。ハードウェアの起動するステップの代わりにシミュレータ上のマニピュレータを起動し、残りの手続きは変わりません。詳しい説明は[「ROSの便利機能」の「シミュレータ」セクション](ros_useful_stuff.html#シミュレータ)を参照してください。
 
 ## ノードからマニピュレータを制御
 
-MoveIt!を利用するために、主にノードからアプリケーションやタスクに沿ったようにマニピュレータを制御したいでしょう。ここで簡単なノードの作成によりグリッパーの位置と角度を制御します。
+MoveIt!を利用するために、主にノードからアプリケーションやタスクに従ってマニピュレータを制御したい場合があります。ここでは、簡単なノードの作成によりグリッパーの位置と角度を制御します。
 
 ### ノードを作成
 
@@ -244,7 +244,7 @@ Successfully created files in /home/username/crane_plus_ws/src/rsj_2017_pick_and
     Please adjust the values in package.xml.
 ```
 
-パッケージ内の`CMakeLists.txt`にある`find_package`コマンドを見つけて（10行目ぐらいにあります。）、そのしたに下記を追加します。
+パッケージ内の`CMakeLists.txt`にある`find_package`コマンドを見つけて（10行目ぐらいにあります）、下記を追加します。
 
 ```cmake
 find_package(Boost REQUIRED
@@ -255,7 +255,7 @@ find_package(Boost REQUIRED
 )
 ```
 
-`CMakeLists.txt`の`catkin_package`コマンド（120行目ぐらいにあります。）にある`CATKIN_DEPENDS`行をアンコメントします。編集後は下記のようになります。
+`CMakeLists.txt`の`catkin_package`コマンド（120行目ぐらいにあります）にある`CATKIN_DEPENDS`行をコメントアウトします。編集後は下記のようになります。
 
 ```cmake
 catkin_package(
@@ -315,9 +315,9 @@ target_link_libraries(${PROJECT_NAME}_pick_and_placer
 )
 ```
 
-なお、__必ず__{: style="color: red" } ファイルトップに`add_compile_options(-std=c++11)`の行をアンコメントしてください。
+なお、__必ず__{: style="color: red" } ファイル先頭の`add_compile_options(-std=c++11)`の行をコメントアウトしてください。
 
-`rsj_2017_pick_and_placer`パッケージ内の`src/`ディレクトリに`pick_and_placer.cpp`というファイルを作成します。そしてエディターで開き、以下のソースを入力します。
+`rsj_2017_pick_and_placer`パッケージ内の`src/`ディレクトリに`pick_and_placer.cpp`というファイルを作成します。そしてエディターで開き、以下のコードを入力します。
 
 ```cpp
 #include <ros/ros.h>
@@ -335,7 +335,7 @@ int main(int argc, char **argv) {
 
 ### マニピュレータを保存された姿勢に移動
 
-最初は、ファイルの上に以下のヘッダーをインクルードします。（「ここから追加」と「ここまで追加」の行の間のソースを自分のソースファイルに追加してください。）
+最初は、ファイル先頭に以下のヘッダーをインクルードします。（「ここから追加」と「ここまで追加」の行の間のソースを自分のソースファイルに追加してください。）
 
 ```c++
 #include <ros/ros.h>
@@ -346,7 +346,7 @@ int main(int argc, char **argv) {
 int main(int argc, char **argv) {
 ```
 
-７行目（`ros::NodeHandle nh;`）の後に以下を追加します。MoveIt!はアシンクロナスな計算をしないといけないので、このコードによりROSのアシンクロナスな機能を初期化します。
+７行目（`ros::NodeHandle nh;`）の後に以下を追加します。MoveIt!はアシンクロナスな計算をしないといけないので、このコードによりROSの非同期実行機能を初期化します。
 
 ```c++
   ros::init(argc, argv, "pickandplacer");
@@ -361,7 +361,7 @@ int main(int argc, char **argv) {
   return 0;
 ```
 
-次はMoveIt!のAPIの初期化です。そして`main`関数に以下の変数を追加します。
+次はMoveIt!のAPIの初期化です。main`関数に以下の変数を追加します。
 
 ```c++
   ros::AsyncSpinner spinner(2);
@@ -374,7 +374,7 @@ int main(int argc, char **argv) {
   ros::shutdown();
 ```
 
-MoveIt!は「MoveGroup」という存在を制御します。「MoveGroup」とは、ロボット内の複数のジョイントのグループです。CRANE+には２つのMoveGroupがあります。「arm」は手首の部分までのジョイントを制御し、「gripper」は指のジョイントのみを制御します。以下は「arm」のMoveGroupです。
+MoveIt!は「MoveGroup」という単位を制御します。「MoveGroup」とは、ロボット内の複数のジョイントのグループです。CRANE+には２つのMoveGroupがあります。「arm」は手首の部分までのジョイントを制御し、「gripper」は指のジョイントのみを制御します。以下は「arm」のMoveGroupです。
 
 ![CRANE+ "arm" MoveGroup](images/crane_plus_move_group_arm.png)
 
@@ -393,7 +393,7 @@ MoveIt!はどの座標系で制御するかを指定することが必要です�
 
 これでマニピュレータは制御できるようになりました。
 
-最初の動きとして、マニピュレータを立てましょう。MoveIt!は「Named pose」（名付きポーズ）というコンセプトを持ちます。CRANE+のMoveIt!コンフィグレーション（`crane_plus_moveit_config`パッケージにある）は２つの名付きポーズを指定します。
+最初の動きとして、マニピュレータを立ててみましょう。MoveIt!は「Named pose」（名前付きポーズ）というコンセプトを持ちます。CRANE+のMoveIt!コンフィグレーション（`crane_plus_moveit_config`パッケージにある）は２つの名前付きポーズを指定します。
 
 `vertical`
 : マニピュレータが真上を指す
