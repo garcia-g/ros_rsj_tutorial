@@ -157,9 +157,7 @@ title: Ubuntu LinuxとROSのインストール
 最後に、本セミナーに必要なパッケージをインストールします。以下のコマンドの実行によってインストールを行ってください。
 
 ```shell
-sudo apt-get install ros-kinetic-moveit-*
-sudo apt-get install ros-kinetic-dynamixel-motor
-sudo apt-get install ros-kinetic-usb-cam
+sudo apt-get install ros-kinetic-moveit-* ros-kinetic-dynamixel-motor ros-kinetic-usb-cam ros-kinetic-joint-trajectory-controller ros-kinetic-effort-controllers
 ```
 
 以上で、開発環境の構築が完了しました。
