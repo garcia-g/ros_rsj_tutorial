@@ -20,10 +20,13 @@ title: Ubuntu LinuxとROSのインストール
 ### Ubuntu Linux のダウンロード
 
 1. 下記URLから Ubuntu Linux のインストールイメージをダウンロードします
+
    長期サポート(LTS) 64bit Desktop 版を推奨しますが、お使いの環境に合わせて変更ください
 
    [最新バージョン](https://www.ubuntu.com/download/desktopo)
+
    [Ubuntu 18.04 Bionic](http://releases.ubuntu.com/bionic/)
+
    [Ubuntu 16.04 Xenial](http://releases.ubuntu.com/xenial/)
 
    ![Ubuntu ダウンロード](/images/ubuntu_download_1.png)
@@ -65,12 +68,14 @@ title: Ubuntu LinuxとROSのインストール
 
    ![Windows UAC](/images/windows_uac.png)
 
-1. UNetbootin の画面で、「ディスクイメージ」を選択し、「…」ボタンをクリックして先ほどダウンロードした、`ubuntu-16.04.2-desktop-amd64.iso` ファイルを選択します。また、「スペースは、リブートしてもファイルを維持するために使用」欄に「4096」と入力し、「ドライブ」欄で、使用する USB メモリのドライブ名を選択します。内容を確認後、「OK」をクリックしてください。
+1. UNetbootin の画面で、「ディスクイメージ」を選択し、「…」ボタンをクリックして先ほどダウンロードした、`ubuntu-xxxx.iso` ファイルを選択します(xxxx はダウンロードしたファイル名に合わせて変更ください)。
+
+  また、「スペースは、リブートしてもファイルを維持するために使用」欄に「4096」と入力し、「ドライブ」欄で、使用する USB メモリのドライブ名を選択します。内容を確認後、「OK」をクリックしてください。
 
    ![UNetbootin process 1](/images/unetbootin_setting.png)
 
-   完了まで、しばらく待機します。（USB2.0 の場合10分以上、書き込み速度の遅いメモリだと30分程度かかる場合があります。）
-   下記の「永続性を設定する」画面で、応答なしと表示される場合がありますが、正常に動作していますので、そのまま待機してください。
+   書き込み完了までしばらく待機します。（USB2.0 の場合10分以上、書き込み速度の遅いメモリだと30分程度かかる場合があります。）
+   下記の「永続性を設定する」画面で「応答なし」と表示される場合がありますが、正常に動作していますので、そのまま待機してください。
 
    ![UNetbootin process 2](/images/unetbootin_freeze.png)
 
@@ -84,7 +89,7 @@ title: Ubuntu LinuxとROSのインストール
 
    ![BIOS 1](/images/acer_boot.png)
 
-   BIOS 設定画面に入ったら、起動順（Boot order, Boot priority）の設定で、USB メモリが最優先になるように設定します。 （表示は使用している PC および USB メモリのメーカーによって異なります。）
+   BIOS 設定画面に入ったら、起動順（Boot order, Boot priority）の設定で、USB メモリが最優先になるように設定します。 （表示は使用している PC および USB メモリのメーカーによって異なります）
 
    ![BIOS 2](/images/acer_boot_order1.png)
 
