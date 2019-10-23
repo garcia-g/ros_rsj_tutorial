@@ -16,16 +16,16 @@ RUN env && \
     apt-key del F42ED6FBAB17C654 && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 && \
     apt update && \
-    apt install -y ros-$(ROS_DISTRO)-desktop-full \
-                   ros-$(ROS_DISTRO)-moveit-* \
-                   ros-$(ROS_DISTRO)-dynamixel-motor \
-                   ros-$(ROS_DISTRO)-usb-cam \
-                   ros-$(ROS_DISTRO)-joint-trajectory-controller \
-                   ros-$(ROS_DISTRO)-effort-controllers \
+    apt install -y ros-${ROS_DISTRO}-desktop-full \
+                   ros-${ROS_DISTRO}-moveit-* \
+                   ros-${ROS_DISTRO}-dynamixel-motor \
+                   ros-${ROS_DISTRO}-usb-cam \
+                   ros-${ROS_DISTRO}-joint-trajectory-controller \
+                   ros-${ROS_DISTRO}-effort-controllers \
                    python-rosinstall && \
     rosdep init && \
     rosdep update && \
-    echo "source /opt/ros/$(ROS_DISTRO)/setup.bash" >> ~/.bashrc
+    echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 
 COPY ./ros_entrypoint.sh /
 ENTRYPOINT ["/ros_entrypoint.sh"]
