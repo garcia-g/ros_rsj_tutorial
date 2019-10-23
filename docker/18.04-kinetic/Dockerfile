@@ -1,9 +1,10 @@
 FROM ubuntu:bionic
 
+ARG ROS_DISTRO kinetic
 ENV ROS_DISTRO kinetic
 
-ENV http_proxy $http_proxy
-ENV https_proxy $https_proxy
+ARG http_proxy $http_proxy
+ARG https_proxy $https_proxy
 
 RUN env && \
     apt clean && \
