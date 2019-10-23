@@ -19,17 +19,20 @@ title: Ubuntu LinuxとROSのインストール
 
 ### Ubuntu Linux のダウンロード
 
-1. 下記URLから Ubuntu Linux 18.04 のインストールイメージをダウンロードする
+1. 下記URLから Ubuntu Linux のインストールイメージをダウンロードします
+   長期サポート(LTS) 64bit Desktop 版を推奨しますが、お使いの環境に合わせて変更ください
 
-   [Ubuntu ダウンロード](https://www.ubuntu.com/download/desktop)
+   [最新バージョン](https://www.ubuntu.com/download/desktopo)
+   [Ubuntu 18.04 Bionic](http://releases.ubuntu.com/bionic/)
+   [Ubuntu 16.04 Xenial](http://releases.ubuntu.com/xenial/)
 
    ![Ubuntu ダウンロード](/images/ubuntu_download_1.png)
 
-1. 寄付することは可能だが、必須ではない。
+1. Ubuntu をメンテナンスしている Canonical に寄付することも可能ですが、必須ではありません
 
    ![Ubuntu ダウンロード](/images/ubuntu_download_2.png)
 
-1. 以下の画面になったら、ダウンロードが自動的に始まる。
+1. 以下の画面になったら、ダウンロードが自動的に始まります
 
    ![Ubuntu ダウンロード](/images/ubuntu_download_3.png)
 
