@@ -10,7 +10,7 @@ RUN env && \
     apt-get update && \
     apt-get install -y apt-utils \
                        ca-certificates \
-                       python-rosinstall && \
+                       python-rosinstall \
                        ros-melodic-moveit-* \
                        ros-melodic-dynamixel-motor \
                        ros-melodic-usb-cam \

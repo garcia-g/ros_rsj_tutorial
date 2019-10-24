@@ -10,7 +10,7 @@ RUN env && \
     apt-get update && \
     apt-get install -y apt-utils \
                        ca-certificates \
-                       python-rosinstall && \
+                       python-rosinstall \
                        ros-kinetic-desktop-full \
                        ros-kinetic-moveit-* \
                        ros-kinetic-dynamixel-motor \
