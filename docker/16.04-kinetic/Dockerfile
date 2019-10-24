@@ -8,15 +8,15 @@ ARG https_proxy="$https_proxy"
 RUN env && \
     apt-get clean && \
     apt-get update && \
-    apt-get install -y ros-kinetic-desktop-full \
+    apt-get install -y apt-utils \
+                       ca-certificates \
+                       python-rosinstall && \
+                       ros-kinetic-desktop-full \
                        ros-kinetic-moveit-* \
                        ros-kinetic-dynamixel-motor \
                        ros-kinetic-usb-cam \
                        ros-kinetic-joint-trajectory-controller \
-                       ros-kinetic-effort-controllers \
-                       apt-utils \
-                       ca-certificates \
-                       python-rosinstall && \
+                       ros-kinetic-effort-controllers && \
     rosdep init && \
     rosdep update && \
     echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc

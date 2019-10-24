@@ -8,14 +8,14 @@ ARG https_proxy="$https_proxy"
 RUN env && \
     apt-get clean && \
     apt-get update && \
-    apt-get install -y ros-melodic-moveit-* \
+    apt-get install -y apt-utils \
+                       ca-certificates \
+                       python-rosinstall && \
+                       ros-melodic-moveit-* \
                        ros-melodic-dynamixel-motor \
                        ros-melodic-usb-cam \
                        ros-melodic-joint-trajectory-controller \
-                       ros-melodic-effort-controllers \
-                       apt-utils \
-                       ca-certificates \
-                       python-rosinstall && \
+                       ros-melodic-effort-controllers && \
     rosdep init && \
     rosdep update && \
     echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
