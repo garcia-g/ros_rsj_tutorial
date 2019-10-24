@@ -8,9 +8,11 @@ ARG https_proxy="$https_proxy"
 RUN env && \
     apt-get clean && \
     apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y apt-utils \
                        ca-certificates \
                        python-rosinstall \
+                       python-rosdep \
                        ros-kinetic-desktop-full \
                        ros-kinetic-moveit-* \
                        ros-kinetic-dynamixel-motor \

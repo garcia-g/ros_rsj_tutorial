@@ -8,9 +8,11 @@ ARG https_proxy="$https_proxy"
 RUN env && \
     apt-get clean && \
     apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y apt-utils \
                        ca-certificates \
                        python-rosinstall \
+                       python-rosdep \
                        ros-melodic-moveit-* \
                        ros-melodic-dynamixel-motor \
                        ros-melodic-usb-cam \
