@@ -1,4 +1,4 @@
-FROM ros:kinetic-ros-base-xenial
+FROM osrf/ros:kinetic-desktop-full
 
 ENV ROS_DISTRO kinetic
 
@@ -14,6 +14,7 @@ RUN env && \
                    ros-kinetic-usb-cam \
                    ros-kinetic-joint-trajectory-controller \
                    ros-kinetic-effort-controllers \
+                   ca-certificates \
                    python-rosinstall && \
     rosdep init && \
     rosdep update && \
