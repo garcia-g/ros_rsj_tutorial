@@ -1,27 +1,25 @@
 FROM osrf/ros:melodic-desktop-full
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV ROS_DISTRO melodic
 
-ARG http_proxy="$http_proxy"
-ARG https_proxy="$https_proxy"
+ # Install basic packages
+RUN apt-get update && apt-get install -y \
+    apt-utils \
+    ca-certificates
 
-RUN env && \
-    apt-get clean && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y apt-utils \
-                       ca-certificates \
-                       python-rosinstall \
-                       python-rosdep \
-                       ros-melodic-moveit-* \
-                       ros-melodic-dynamixel-motor \
-                       ros-melodic-usb-cam \
-                       ros-melodic-joint-trajectory-controller \
-                       ros-melodic-effort-controllers && \
-    rosdep init && \
-    rosdep update && \
-    echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+# Install ROS packages
+RUN apt-get update && apt-get install -y \
+    ros-melodic-moveit-* \
+    ros-melodic-usb-cam \
+    ros-melodic-joint-trajectory-controller \
+    ros-melodic-effort-controllers
 
-COPY ./ros_entrypoint.sh /
+RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+
+RUN cd catkin_ws/src && \
+    git clone https://github.com/arebgun/dynamixel_motor.git && \
+    cd .. && catkin_make
+
 ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["bash"]

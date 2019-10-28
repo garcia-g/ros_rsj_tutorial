@@ -1,5 +1,6 @@
 FROM osrf/ros:kinetic-desktop-full
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV ROS_DISTRO kinetic
 
 # Install basic packages
