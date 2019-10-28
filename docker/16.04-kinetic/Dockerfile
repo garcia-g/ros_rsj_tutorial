@@ -6,7 +6,8 @@ ENV ROS_DISTRO kinetic
 # Install basic packages
 RUN apt-get update && apt-get install -y \
     apt-utils \
-    ca-certificates
+    ca-certificates \ &&
+    rm -rf /var/lib/apt/lists/*
 
 # Install ROS packages
 RUN apt-get update && apt-get install -y \
@@ -14,7 +15,8 @@ RUN apt-get update && apt-get install -y \
     ros-kinetic-dynamixel-motor \
     ros-kinetic-usb-cam \
     ros-kinetic-joint-trajectory-controller \
-    ros-kinetic-effort-controllers
+    ros-kinetic-effort-controllers \ &&
+    rm -rf /var/lib/apt/lists/*
 
 RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 
