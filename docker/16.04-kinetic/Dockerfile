@@ -9,18 +9,13 @@ RUN apt-get update && apt-get install -y \
 
 # Install ROS packages
 RUN apt-get update && apt-get install -y \
-    python-rosinstall \
-    python-rosdep \
     ros-kinetic-moveit-* \
     ros-kinetic-dynamixel-motor \
     ros-kinetic-usb-cam \
     ros-kinetic-joint-trajectory-controller \
     ros-kinetic-effort-controllers
 
-RUN rosdep init && \
-    rosdep update && \
-    echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 
-COPY ./ros_entrypoint.sh /
 ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["bash"]
