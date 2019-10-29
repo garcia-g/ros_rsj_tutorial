@@ -52,8 +52,8 @@ RUN cd ~/catkin_ws/src \
     && git clone https://github.com/gbiggs/crane_plus_arm.git \
     && git clone https://github.com/gbiggs/rsj_2017_pick_and_placer.git \
     && git checkout moveit_pick_place_plugin \
-    && cd rsj_2017_pick_and_placer
-    && git checkout full_application_version
+    && cd rsj_2017_pick_and_placer \
+    && git checkout full_application_version \
     && cd ~/catkin_ws/src \
     && git clone https://github.com/Suzuki1984/rsj_2017_block_finder.git \
     && cd ~/catkin_ws/ \
