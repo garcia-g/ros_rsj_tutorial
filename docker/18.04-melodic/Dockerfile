@@ -27,7 +27,7 @@ RUN apt-get update \
 
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 
-RUN mkdir ~/catkin_ws/src \
+RUN mkdir -p ~/catkin_ws/src \
     && cd ~/catkin_ws/src \
     && catkin_init_workspace
 
@@ -46,7 +46,7 @@ RUN cd ~ \
     && cd dynamixel_servo_check \
     && cp -r ~/DynamixelSDK/c/include/dynamixel_sdk/ . \
     && cp ~/DynamixelSDK/c/build/linux64/libdxl_x64_c.so . \
-    && mkdir build \
+    && mkdir -p build \
     && cd build \
     && cmake ../ \
     && make
