@@ -22,11 +22,14 @@ RUN apt-get update \
         ros-kinetic-cv-camera \
         ros-kinetic-camera-calibration \
         ros-kinetic-opencv-apps \
+        ros-kinetic-catkin \
+        python-catkin-tools \
         python-opencv \
         libopencv-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc \
+    && source /opt/ros/kinetic/setup.bash
 
 RUN mkdir -p ~/catkin_ws/src \
     && cd ~/catkin_ws/src \

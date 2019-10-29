@@ -21,11 +21,14 @@ RUN apt-get update \
         ros-melodic-cv-camera \
         ros-melodic-camera-calibration \
         ros-melodic-opencv-apps \
+        ros-melodic-catkin \ 
+        python-catkin-tools \
         python-opencv \
         libopencv-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc \
+    && source /opt/ros/melodic/setup.bash
 
 RUN mkdir -p ~/catkin_ws/src \
     && cd ~/catkin_ws/src \
