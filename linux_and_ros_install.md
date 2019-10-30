@@ -5,7 +5,7 @@ title: Ubuntu LinuxとROSのインストール
 - Table of contents
 {:toc}
 
-セミナー中に使用する開発環境として Ubuntu Linux とその上で動作する ROS を利用します。
+本セミナーで使用する開発環境として Ubuntu Linux とその上で動作する ROS を利用します。
 本ページでは Ubuntu Linux と ROS のインストール方法を紹介します。
 
 ## 用意するもの
@@ -21,7 +21,7 @@ title: Ubuntu LinuxとROSのインストール
 
 1. 下記URLから Ubuntu Linux のインストールイメージをダウンロードします
 
-   長期サポート(LTS) 64bit Desktop 版を推奨しますが、お使いの環境に合わせて変更ください
+   本セミナーでは Ubuntu 16.04 Xenial 64bit Desktop 版を推奨します。
 
    [最新バージョン](https://www.ubuntu.com/download/desktopo)
 
@@ -120,16 +120,16 @@ title: Ubuntu LinuxとROSのインストール
    ![Ubuntu install 4](/images/ubuntu_install_4.png)
 
 
-### ROSのインストール
+### ROS ベースパッケージのインストール
 
 1. *ROS Kinetic Kame*{: style="color: blue"}をインストールします。
 
-   以下の URL で書いてある手順に従って ROS をインストールしてください。
-   すべてのデスクトップ環境のインストールを行ってください。
+   以下の URL に記載された手順に従って ROS のベースパッケージをインストールしてください。
+   インストールパッケージの種別については「すべてのデスクトップ環境（推奨）」に従ってください。
 
    [ROS KineticのUbuntuへのインストール](http://wiki.ros.org/ja/kinetic/Installation/Ubuntu)
 
-   以下はインストールコマンドの概要だけです。上記のページにご参照してください。
+   以下はインストールするためのコマンドを抜き出したものです。詳細については上記ページを参照ください。
 
    ```shell
    $ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -143,13 +143,13 @@ title: Ubuntu LinuxとROSのインストール
    $ sudo apt-get install python-rosinstall
    ```
 
-1. 確認のため、新しい端末を起動して、下記を実行してください。
+1. インストールの確認のため、新しい端末（ターミナル）を起動して、下記を実行してください。
 
    ```shell
    $ printenv | grep ROS
    ```
 
-   下記が出力されたら、ROSのインストールが完了しました。
+   下記が出力されたら、ROSのインストールが完了しています。
 
    ```shell
    ROS_ROOT=/opt/ros/kinetic/share/ros
@@ -160,9 +160,9 @@ title: Ubuntu LinuxとROSのインストール
    ROS_ETC_DIR=/opt/ros/kinetic/etc/ros
    ```
 
-### 必要なパッケージのインストール
+### 本セミナーに必要なパッケージのインストール
 
-最後に、本セミナーに必要なパッケージをインストールします。以下のコマンドの実行によってインストールを行ってください。
+最後に、本セミナーに必要なパッケージをインストールします。以下のコマンドの実行し、インストールを行ってください。
 
 ```shell
 sudo apt-get install ros-kinetic-moveit-* ros-kinetic-dynamixel-motor ros-kinetic-usb-cam ros-kinetic-joint-trajectory-controller ros-kinetic-effort-controllers
