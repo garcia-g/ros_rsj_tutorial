@@ -29,7 +29,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc \
-    && source /opt/ros/kinetic/setup.bash
+    && . /opt/ros/kinetic/setup.bash
 
 RUN mkdir -p ~/catkin_ws/src \
     && cd ~/catkin_ws/src \

@@ -28,7 +28,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc \
-    && source /opt/ros/melodic/setup.bash
+    && . /opt/ros/melodic/setup.bash
 
 RUN mkdir -p ~/catkin_ws/src \
     && cd ~/catkin_ws/src \
