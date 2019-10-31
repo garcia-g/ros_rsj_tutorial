@@ -53,7 +53,8 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 
 ## 参考情報
 
-- [RSJロボット工学セミナー第106回の実施時のトップページ](index_20170617.html)
+- [(過去開催)2017年度 RSJロボット工学セミナー第106回@中央大 実施時のトップページ](index_20171021.html)
+- [(過去開催)2017年度 RSJロボット工学セミナー第106回＠つくば 実施時のトップページ](index_20170617.html)
 - [ROS Japan UG （日本ユーザ会）](https://rosjp.connpass.com/)
 - [ROS メッセージボード](https://discourse.ros.org/)
 - [ROS Answers](http://answers.ros.org/)（日本語でも大丈夫です）
