@@ -14,7 +14,7 @@ https://www.rsj.or.jp/event/seminar/news/2019/s121.html
   - Ubuntu Linux と ROS を事前にインストールしてください
   - インストール方法は以下を参考にしてください
   - [Ubuntu LinuxとROSのインストール](linux_and_ros_install.html)
-  - ノート PC は USB ポートが2ポート以上あるもの、もしくは USB ハブをご用意ください
+  - ノート PC は USB type A ポートが2ポート以上あるもの、もしくは USB ハブをご用意ください
 
 下記は*必要な方のみ*{: style="color: red"}ご用意ください。マニピュレータに関しては、セミナー申込時にロボット購入希望としていただいた方に関しては主催者側で準備します。
 
