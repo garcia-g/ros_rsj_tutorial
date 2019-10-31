@@ -12,9 +12,19 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
   - Ubuntu Linux と ROS を事前にインストールしてください
   - インストール方法は以下の[事前準備](#事前準備)をご参考ください
   - ノート PC は USB ポートが2ポート以上あるもの、もしくは USB ハブをご用意ください
+
+
+下記は*必要な方のみ*{: style="color: red"}ご用意ください。マニピュレータに関しては、セミナー申込時にロボット購入希望としていただいた方に関しては主催者側で準備します。
+
 - マニピュレータ
   - RT Robot Shopが提供している[ロボットアーム CRANE+](https://www.rt-shop.jp/index.php?main_page=product_info&cPath=1324&products_id=3626)を利用します
   - _注意_{: style="color: red"}：CRANE+ の電源は別売りです。[12Vおよび５Aが可能な電源](http://www.rt-shop.jp/index.php?main_page=product_info&cPath=1000_1012_1131&products_id=595)が必要です
+
+- USBハブ
+  - 本セミナーでは USB type-A のポートを2系統（マニピュレータ、カメラ）使用する予定です。使用予定のノート PC のポートが空いていないもしくは付いていない場合は USB ハブをご持参ください。
+
+下記は*主催者側で準備*{: style="color: red"}しますので、事前準備は不要です。セミナー受講料に含まれますので、セミナー後は各自お持ち帰りしていただく予定です。
+
 - マニピュレータとPCをつなげる[USB延長ケーブル](https://www.amazon.co.jp/gp/product/B007STDLM0/ref=oh_aui_detailpage_o02_s00)
 - カメラ
   - 一般的な USB 接続の Web カメラをご用意ください
