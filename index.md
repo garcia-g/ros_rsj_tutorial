@@ -10,9 +10,9 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 
 - 実習に利用するノート PC
   - Ubuntu Linux と ROS を事前にインストールしてください
-  - インストール方法は以下の[事前準備](#事前準備)をご参考ください
+  - インストール方法は以下を参考にしてください
+  - [Ubuntu LinuxとROSのインストール](linux_and_ros_install.html)
   - ノート PC は USB ポートが2ポート以上あるもの、もしくは USB ハブをご用意ください
-
 
 下記は*必要な方のみ*{: style="color: red"}ご用意ください。マニピュレータに関しては、セミナー申込時にロボット購入希望としていただいた方に関しては主催者側で準備します。
 
@@ -35,14 +35,44 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
   - 卓上であれば、60cm以上の高さ調節が可能な三脚
   - ウェブカメラを利用する場合、三脚の上部にウェブカメラが取り付けられること（ネジ、テープ等で）を確認してください
   - 例：[Velbon EX-Macro](https://www.amazon.co.jp/gp/product/B00DL5RP5Y/ref=oh_aui_detailpage_o03_s00)
-- マニピュレータが持つ物品
-  - カメラ認識のために単純な明るい色がおすすめです
+- マニピュレータの把持対象物
+  - カメラ認識のために単純な形状の明るい色の物体がおすすめです
   - 把持時にハンドの損傷等を防ぐために、柔らかい物体が望ましいです
   - 例：[激落ちのスポンジ](https://www.amazon.co.jp/gp/product/B005ZETITK/ref=oh_aui_detailpage_o00_s00)
 
-## PC 環境の構築
+不明な点や、事前準備がうまく行かない点については、オーガナイザまでお問い合わせ下さい。
 
-- [Ubuntu LinuxとROSのインストール](linux_and_ros_install.html)
+## スケジュール
+
+### １日目（11/16）
+
+|10:00-11:00|講義１ 「ROS概論」　講師：Geoffrey BIGGS （TierⅣ）|
+|11:00-11:30|[Linuxの基本操作](linux_basics.html)|
+|11:30-12:00|[講習環境の整備とマニピュレータの動作確認](manipulator_check.html)|
+|12:00-13:00|昼休み|
+|13:00-14:00|講義２ 「MoveIt構造とアプリケーションの例」　講師：Felix von Drigalski (OMRON SINIC X)|
+|14:00-15:00|[ROSの基本操作](ros_basics.html)|
+|15:00-17:30|[マニピュレータ制御](manipulators_and_moveit.html)|
+
+### ２日目（11/17）
+
+|10:00-10:15|[カメラの動作確認](camera_check.html)|
+|10:15-12:00|[画像処理](image_processing_and_opencv.html)|
+|12:00-13:00|昼休み|
+|13:00-13:30|[ROSの便利機能](ros_useful_stuff.html)|
+|13:30-16:30|[画像処理とマニピュレーションの組み合わせ](full_application.html)|
+|16:30-17:00|課題と質疑|
+
+スケジュールは、演習の進行に応じて多少変更する場合があります。
+
+## 交通案内
+
+- [アクセスマップ](/files/access.pdf)
+
+## 昼食案内
+
+- [ランチマップ](/files/lunch.pdf)
+
 
 ## セミナーテキスト
 
