@@ -19,9 +19,10 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 - マニピュレータ
   - RT Robot Shopが提供している[ロボットアーム CRANE+](https://www.rt-shop.jp/index.php?main_page=product_info&cPath=1324&products_id=3626)を利用します
   - _注意_{: style="color: red"}：CRANE+ の電源は別売りです。[12Vおよび５Aが可能な電源](http://www.rt-shop.jp/index.php?main_page=product_info&cPath=1000_1012_1131&products_id=595)が必要です
-
 - USBハブ
   - 本セミナーでは USB type-A のポートを2系統（マニピュレータ、カメラ）使用する予定です。使用予定のノート PC のポートが空いていないもしくは付いていない場合は USB ハブをご持参ください。
+- モバイルルーターなどのインターネット接続機器
+  - 会場でもインターネット接続環境を用意しますが、同時接続時は速度が遅くなる可能性があるため、可能であれば持参をお願いします。
 
 下記は*主催者側で準備*{: style="color: red"}しますので、事前準備は不要です。セミナー受講料に含まれますので、セミナー後は各自お持ち帰りしていただく予定です。
 
