@@ -4,6 +4,8 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 
 # ロボットの作り方 ～ROSを使用した画像処理とマニピュレータ制御～
 
+https://www.rsj.or.jp/event/seminar/news/2019/s121.html
+
 ## 事前準備
 
 下記を*必ず*{: style="color: red"}ご用意ください。
@@ -30,7 +32,7 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 - カメラ
   - 一般的な USB 接続の Web カメラをご用意ください
   - 接続して PC が認識できれば基本的に利用可能です
-  - 例：[エレコム Web カメラ](https://www.amazon.co.jp/gp/product/B00UZNLIBW)
+  - 例：[サンワサプライ Web カメラ](https://www.sanwa.co.jp/product/syohin.asp?code=CMS-V41BK&cate=1)
 - カメラ用三脚
   - 卓上であれば、60cm以上の高さ調節が可能な三脚
   - ウェブカメラを利用する場合、三脚の上部にウェブカメラが取り付けられること（ネジ、テープ等で）を確認してください
@@ -95,6 +97,7 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 
 ## 参考情報
 
+- [日本ロボット学会 第121回 ロボットの作り方 申し込みページ](https://www.rsj.or.jp/event/seminar/news/2019/s121.html)
 - [(過去開催)2017年度 RSJロボット工学セミナー第106回@中央大 実施時のトップページ](index_20171021.html)
 - [(過去開催)2017年度 RSJロボット工学セミナー第106回＠つくば 実施時のトップページ](index_20170617.html)
 - [ROS Japan UG （日本ユーザ会）](https://rosjp.connpass.com/)
