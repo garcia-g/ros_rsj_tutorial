@@ -3,6 +3,8 @@ FROM osrf/ros:melodic-desktop-full
 ENV DEBIAN_FRONTEND noninteractive
 ENV ROS_DISTRO melodic
 
+SHELL ["/bin/bash", "-c"]
+
  # Install basic packages
 RUN apt-get update \
     && apt-get install -y \
@@ -27,8 +29,7 @@ RUN apt-get update \
         libopencv-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc \
-    && . /opt/ros/melodic/setup.bash
+RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 
 RUN mkdir -p ~/catkin_ws/src \
     && cd ~/catkin_ws/src \
