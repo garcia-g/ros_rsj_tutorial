@@ -23,6 +23,8 @@ title: Ubuntu LinuxとROSのインストール
 
    本セミナーでは Ubuntu 16.04 Xenial 64bit Desktop 版を推奨します。
 
+   中級者以上であれば、Ubuntu 18.04 Bionic を使用することもできますが、セミナーの内容を適宜読み替えて進めて頂く必要があります。
+
    [最新バージョン](https://www.ubuntu.com/download/desktopo)
 
    [Ubuntu 18.04 Bionic](http://releases.ubuntu.com/bionic/)
