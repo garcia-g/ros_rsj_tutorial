@@ -28,13 +28,6 @@ RUN apt-get update && apt-get install -y \
         libopencv-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc && \
-    source ~/.bashrc && \
-    mkdir -p ~/catkin_ws/src && \
-    cd ~/catkin_ws/src && \
-    catkin_init_workspace && \
-    source ~/catkin_ws/devel/setup.bash
-
 RUN cd ~ && \
     git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git && \
     cd DynamixelSDK/c/build/linux64/ && make
@@ -46,11 +39,16 @@ RUN cd ~ && \
     cp ~/DynamixelSDK/c/build/linux64/libdxl_x64_c.so . && \
     mkdir -p build && cd build && cmake ../ && make
 
-RUN cd ~/catkin_ws/src && \
+RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc && \
+    source /opt/ros/kinetic/setup.bash && \
+    mkdir -p ~/catkin_ws/src && \
+    cd ~/catkin_ws/src && catkin_init_workspace && \
+    cd ~/catkin_ws && catkin_make && \
+    source ~/catkin_ws/devel/setup.bash && \
+    cd ~/catkin_ws/src && \
     git clone https://github.com/gbiggs/rsj_tutorial_2017_ros_intro.git && \
     git clone https://github.com/gbiggs/crane_plus_arm.git && \
     git clone https://github.com/gbiggs/rsj_2017_pick_and_placer.git && \
-    git checkout moveit_pick_place_plugin && \
     git clone https://github.com/Suzuki1984/rsj_2017_block_finder.git && \
     cd rsj_2017_pick_and_placer && \
     git checkout full_application_version && \
