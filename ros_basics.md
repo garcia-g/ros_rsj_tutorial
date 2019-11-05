@@ -1,6 +1,6 @@
 ---
 title: ROSの基本操作
-date: 2017-06-16
+date: 2019-11-05
 ---
 
 - Table of contents
@@ -484,7 +484,7 @@ Successfully created files in /home/geoff/catkin_ws/src/rsj_2017_servo_control. 
 ２番目と３番目は依存パッケージの定義です。<br>
 今回はC++で記述するため、`roscpp`に依存します。<br>
 そしてDynamixelのサーボを利用するのでハードウェアとインターフェースする`dynamixel-controllers`に依存します。<br>
-最後に、サーボコントローラにコマンドを送るためにDynamixel用のメッセージタイプの利用が必要ので、`dynamixel-msgs`に依存します。
+また、サーボコントローラにコマンドを送るためにDynamixel用のメッセージタイプの利用が必要なので`dynamixel-msgs`にも依存します。
 
 生成されたパッケージの中身を確認します。
 
@@ -526,7 +526,10 @@ CMakeLists.txt  include  package.xml  src
 
 #### CMakeLists.txtにノードを追加
 
-`rsj_2017_servo_control`パッケージにある`CMakeLists.txt`（`~/catkin_ws/src/rsj_2017_servo_control/CMakeLists.txt`）をエディターで開き、以下の通りになるようにソースを編集します。（5行目、12行目、17行目および20行目を追加しました。ファイル内の133行目ぐらいから始まります。catkinのバージョンにより編集する具体的な行目の変更があります。）
+`rsj_2017_servo_control`パッケージにある`CMakeLists.txt`（`~/catkin_ws/src/rsj_2017_servo_control/CMakeLists.txt`）をエディタで開き、以下のようにソースを編集します。<br>
+5行目、12行目、17行目および20行目を追加しました。<br>
+ファイル内の133行目ぐらいから始まります。<br>
+インストールされたcatkinのバージョンにより、編集する具体的な行番号が変化する可能性があります。
 
 ```cmake
 ## Declare a C++ executable
@@ -551,13 +554,14 @@ add_dependencies(${PROJECT_NAME}_set_servo_pos ${${PROJECT_NAME}_EXPORTED_TARGET
 target_link_libraries(${PROJECT_NAME}_set_servo_pos ${catkin_LIBRARIES})
 ```
 
-なお、__必ず__{: style="color: red" } ファイルトップにある`add_compile_options(-std=c++11)`の行をアンコメントしてください。
+なお、__必ず__{: style="color: red" } ファイルトップにある`add_compile_options(-std=c++11)`の行をコメントアウトしてください。
 
-これでcatkinに`set_servo_pos`というノードのコンパイルを指定しました。
+これでcatkinに`set_servo_pos`というノードのコンパイルを指定できました。
 
 #### ノードのソースの作成
 
-`rsj_2017_servo_control`パッケージ内の`src/`ディレクトリに`set_servo_pos.cpp`というファイル（`~/catkin_ws/src/rsj_2017_servo_control/src/set_servo_pos.cpp`）を作成します。そしてエディターで開き、以下のソースを入力します。
+`rsj_2017_servo_control`パッケージ内の`src/`ディレクトリに`set_servo_pos.cpp`というファイル（`~/catkin_ws/src/rsj_2017_servo_control/src/set_servo_pos.cpp`）を作成します。<br>
+そしてエディタで`set_servo_pos.cpp`を開き、以下のソースを入力します。
 
 ```c++
 #include <ros/ros.h>
@@ -600,13 +604,19 @@ int main(int argc, char **argv) {
 }
 ```
 
-このソースはコマンドラインから希望のサーボの位置を読み、パラメータで指定されたトピック（ディフォルトは`/finger_servo_controller/command`）にパブリッシュします。このトピックはサーボのコントローラがサブスクライブしています。
+このソースはコマンドラインから指定のサーボモータの位置を読み、パラメータで指定されたトピック（デフォルトでは`/finger_servo_controller/command`）にパブリッシュします。<br>
+このトピックはサーボコントローラがサブスクライブしています。
 
-なぜサーボの位置はパラメータとしてノードに渡さなかったでしょうか。パラメータはいわゆる「configuration」です。ノードの振る舞いを制御するためのことです。サーボのトピックははノードの振る舞えだが、サーボの位置はコマンドです。このノードはコマンドラインで利用するべきなツールなので普通のコマンドラインパラメータを利用しました。
+なぜサーボの位置はパラメータとしてノードに渡さなかったでしょうか。<br>
+パラメータはいわゆる「configuration」です。<br>
+ノードの振る舞いを制御するためのことです。<br>
+サーボのトピックはノードの振る舞いですが、サーボの位置はコマンドです。<br>
+このノードはコマンドラインで利用するべきなツールなので普通のコマンドラインパラメータを利用しました。<br>
 
 ### ビルド＆実行
 
-パッケージ内のソースを変更・追加した後、必ず再ビルドが必要です。端末でcatkin_makeコマンドを実行して再ビルドします。
+パッケージ内のソースを変更・追加した後、必ず再ビルドが必要です。<br>
+端末でcatkin_makeコマンドを実行して再ビルドします。
 
 1つ目の端末：
 
@@ -615,9 +625,11 @@ $ cd ~/catkin_ws/
 $ catkin_make
 ```
 
-この際、_ビルドエラーが出ていないか、良く確認して下さい_{: style="color: red" }。エラーが出ている場合は、ソースコードの該当箇所を確認・修正して下さい。
+この際、_ビルドエラーが出力されていないかよく確認して下さい_{: style="color: red" }。<br>
+エラーが出ている場合は、ソースコードの該当箇所を確認・修正して下さい。
 
-実行する前にまずはマニピュレータが壊れないようにします。マニピュレータのグリッパーが動くので、__電源を入れる前にマニピュレータのグリッパーは何にもぶつからないような姿勢にしましょう__{: style="color: red" } 。
+実行する前にまずはマニピュレータが壊れないようにします。<br>
+マニピュレータのグリッパーが動くので、__電源を入れる前にマニピュレータのグリッパーは何にもぶつからないような姿勢にしましょう__{: style="color: red" } 。
 
 マニピュレータのサーボコントローラを起動することが必要です。
 
@@ -672,7 +684,7 @@ finger_servo_controller:
 </launch>
 ```
 
-1つ目の端末に以下を実行してマニピュレータのグリッパーサーボコントローラを起動します。
+1つ目の端末で以下を実行し、マニピュレータのグリッパーサーボコントローラを起動します。
 
 ```shell
 $ roslaunch rsj_2017_servo_control dynamixel_test.launch
@@ -688,7 +700,7 @@ SUMMARY
 （省略）
 ```
 
-2つ目の端末に以下を実行します。
+2つ目の端末で以下のコマンドを実行します。
 
 ```shell
 $ rosrun rsj_2017_servo_control set_servo_pos 0
@@ -699,7 +711,7 @@ $ rosrun rsj_2017_servo_control set_servo_pos -0.5
 [Ctrl+cで止める]
 ```
 
-サーボが動けば、サーボ制御は成功しました。
+サーボモータが動けば、サーボモータ制御は成功しています。
 
 _このソースは以下のURLでダウンロード可能です。_
 
@@ -707,13 +719,15 @@ _このソースは以下のURLでダウンロード可能です。_
 
 ## サーボの状態を確認
 
-もう一つのノードを作成し、サーボの現在状況を端末で表示します。上記と同じ手順で`servo_status`というノードを`rsj_2017_servo_control`パッケージに追加します。
+もう一つのノードを作成し、サーボモータの現在状況を端末で表示します。<br>
+上記と同じ手順で`servo_status`というノードを`rsj_2017_servo_control`パッケージに追加します。
 
 ### ノードを作成
 
 #### CMakeLists.txtにノードを追加
 
-`~/catkin_ws/src/rsj_2017_servo_control/CMakeLists.txt`を編集して、新しいノードのコンパイル方法をしていします。ファイルをエディターで開き以下の通りになるように編集します。
+`~/catkin_ws/src/rsj_2017_servo_control/CMakeLists.txt`を編集して、新しいノードのコンパイル方法を指定します。<br>
+ファイルをエディターで開き以下の通りになるように編集します。<br>
 （6行目、14行目、20行目および24行目を追加しました。）
 
 ```cmake
@@ -745,7 +759,8 @@ target_link_libraries(${PROJECT_NAME}_servo_status ${catkin_LIBRARIES})
 
 #### ノードのソースの作成
 
-`rsj_2017_servo_control`パッケージ内の`src/`ディレクトリに`servo_status.cpp`というファイルを作成します。エディターで`~/catkin_ws/src/rsj_2017_servo_control/src/servo_status.cpp`を開き（作成）、以下のソースを入力します。
+`rsj_2017_servo_control`パッケージ内の`src/`ディレクトリに`servo_status.cpp`というファイルを作成します。<br>
+エディター`~/catkin_ws/src/rsj_2017_servo_control/src/servo_status.cpp`を新規作成し、以下のソースを入力します。
 
 ```c++
 #include <ros/ros.h>
@@ -788,7 +803,8 @@ int main(int argc, char **argv) {
 }
 ```
 
-コールバックの中に`dynamixel_msgs::JointState`というメッセージタイプを利用します。このメッセージタイプは`dynamixel_msgs`パッケージに定義され、内容は以下のようです。
+コールバックの中に`dynamixel_msgs::JointState`というメッセージタイプを利用します。<br>
+このメッセージタイプは`dynamixel_msgs`パッケージに定義され、内容は以下のようになっています。
 
 ```
 std_msgs/Header header
@@ -808,14 +824,16 @@ bool is_moving
 
 ### ビルド＆実行
 
-コンパイルして実行します。1つ目の端末で`catkin_make`を実行します。
+コンパイルして実行します。<br>
+1つ目の端末で`catkin_make`を実行します。
 
 ```shell
 $ cd ~/catkin_ws/
 $ catkin_make
 ```
 
-実行する前にマニピュレータのサーボコントローラを起動することが必要です。1つ目の端末に下記を実行してマニピュレータのグリッパーサーボコントローラを起動します。
+実行する前にマニピュレータのサーボコントローラを起動することが必要です。<br>
+1つ目の端末に下記を実行してマニピュレータのグリッパーサーボコントローラを起動します。
 
 ```shell
 $ source devel/setup.bash
@@ -853,9 +871,9 @@ $ rosrun rsj_2017_servo_control servo_status
 （省略）
 ```
 
-（サーボの現在状況により数字の変わることがあります。）
+（サーボモータの動作状況により上記数値が変化することがあります。）
 
-3つ目の端末に下記を実行すると、`servo_status`の端末で数字の変更が見えます。
+3つ目の端末に下記を実行すると、`servo_status`の端末で数値の変更が確認できます。
 
 ```shell
 $ cd ~/catkin_ws/
@@ -872,8 +890,9 @@ _このソースは以下のURLでダウンロード可能です。_
 
 <https://github.com/gbiggs/rsj_2017_servo_control>
 
-## 小課題
+## 課題
 
-サーボステータスに`error`と`load`と`is_moving`という値があります。これらの利用により、サーボはストールしたかどうか判断できます。
+サーボステータスに`error`と`load`と`is_moving`という値があります。<br>
+これらの利用により、サーボモータがストール(外力が加わり期待通りの回転ができない状態など)したかどうか判断できます。
 
-サーボがストールしたら警告を端末で表示するノードを作成してみましょう。
+サーボモータがストールし場合に警告を端末で表示するノードを作成してみましょう。
