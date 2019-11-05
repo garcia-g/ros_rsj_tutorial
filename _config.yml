@@ -18,5 +18,3 @@ kramdown:
 exclude:
   - README.md
   - Gemfile
-
-google_analytics: UA-99994866-1

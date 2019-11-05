@@ -1,6 +1,6 @@
 ---
 title: マニピュレータの制御とMoveIt!の利用
-date: 2017-06-26
+date: 2019-11-05
 ---
 
 - Table of contents
@@ -1488,7 +1488,7 @@ class PickNPlacer {
 パラメータの設定は「ROSの基本操作」で学んだようにノードの起動時に行います。
 
 ```shell
-$ cd ~/crane_plus_ws/src/
+$ cd ~/crane_plus_ws/
 $ source devel/setup.bash
 $ rosrun rsj_2017_pick_and_placer pick_and_placer _place_x:='0.1' _place_y:='-0.2'
 ```
