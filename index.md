@@ -22,7 +22,8 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
   - RT Robot Shopが提供している[ロボットアーム CRANE+](https://www.rt-shop.jp/index.php?main_page=product_info&cPath=1324&products_id=3626)を利用します
   - _注意_{: style="color: red"}：CRANE+ の電源は別売りです。[12Vおよび５Aが可能な電源](http://www.rt-shop.jp/index.php?main_page=product_info&cPath=1000_1012_1131&products_id=595)が必要です
 - USBハブ
-  - 本セミナーでは USB type-A のポートを2系統（マニピュレータ、カメラ）使用する予定です。使用予定のノート PC のポートが空いていないもしくは付いていない場合は USB ハブをご持参ください。
+  - 本セミナーでは USB type-A のポートを2系統（マニピュレータ、カメラ）使用する予定です。<br>
+  使用予定のノート PC のポートが空いていないもしくは付いていない場合は USB ハブをご持参ください。
 - モバイルルーターなどのインターネット接続機器
   - 会場でもインターネット接続環境を用意しますが、同時接続時は速度が遅くなる可能性があるため、可能であれば持参をお願いします。
 
@@ -49,11 +50,11 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 ### １日目（11/16(土) 10:00-17:30）
 
 |09:30-|開場・受付開始|
-|10:00-11:00|講義１ 「ROS概論」　講師：Geoffrey BIGGS （TierⅣ）|
+|10:00-11:00|講義１ 「ROS概論」<br>講師：Geoffrey BIGGS （TierⅣ）|
 |11:00-11:30|[Linuxの基本操作](linux_basics.html)|
 |11:30-12:00|[講習環境の整備とマニピュレータの動作確認](manipulator_check.html)|
 |12:00-13:00|昼休み|
-|13:00-14:00|講義２ 「MoveIt構造とアプリケーションの例」　講師：Felix von Drigalski (OMRON SINIC X)|
+|13:00-14:00|講義２ 「MoveIt構造とアプリケーションの例」<br>講師：Felix von Drigalski (OMRON SINIC X)|
 |14:00-15:00|[ROSの基本操作](ros_basics.html)|
 |15:00-17:30|[マニピュレータ制御](manipulators_and_moveit.html)|
 

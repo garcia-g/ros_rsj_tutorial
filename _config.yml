@@ -1,6 +1,6 @@
 title: ROSを使用した画像処理とマニピュレータ制御
 description: 日本ロボット学会　第121回 ロボットの作り方セミナー
-theme: jekyll-theme-architect
+theme: jekyll-theme-minimal
 
 repo: "https://github.com/takahasi/ros_moveit_rsj_tutorial"
 
