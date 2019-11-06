@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ue
+
 function set_date() {
   TGT="${1}"
   DATE=$(git log -1 --format="%ad" --date=format:"%Y-%m-%d" -- ${TGT})
@@ -10,3 +12,5 @@ function set_date() {
 for ii in $(ls *.md); do
   set_date "${ii}"
 done
+
+exit 0
