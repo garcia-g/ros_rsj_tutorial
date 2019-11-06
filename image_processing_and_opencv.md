@@ -1,9 +1,11 @@
 ---
 title: 画像処理とOpenCVの利用
-date: 2017-06-21
+date: 2019-11-06
 ---
 
-本セクションでは、前セクションで取得した画像を処理する方法について説明します。特にOpenCVを用いて処理する方法について説明します。その後、ブロックを検出し、ブロックの位置を出力する一連の処理について説明します。
+本セクションでは、前セクションで取得した画像を処理する方法について説明します。<br>
+特にOpenCVを用いて処理する方法について詳しく説明します。<br>
+その後、ブロックを検出し、ブロックの位置を出力する一連の処理について説明します。
 
 - Table of contents
 {:toc}
@@ -11,9 +13,14 @@ date: 2017-06-21
 
 ## OpenCVの概要
 
-OpenCV（Open Source Computer Vision Library）は無料の画像処理ライブラリーです。Linuxの他、WindowsやMacOSでも利用することができ、現在、多くの画像処理研究で利用されています。例えば、OpenCVを利用することで、従来手法との精度比較を簡単に行うことができます。
+OpenCV（Open Source Computer Vision Library）は無料の画像処理ライブラリです。<br>
+Linuxの他、WindowsやMacOSでも利用することができ、現在、多くの画像処理研究で利用されています。<br>
+例えば、OpenCVを利用することで、従来手法との精度比較を簡単に行うことができます。
 
-ROSでOpenCVを利用するときの注意点としては、バージョン管理があります。基本的に、使用中のROSがリリースされたときの最新バージョンのOpenCVを使用することになります。ROSのバージョンとOpenCVのバージョンの対応を下表にまとめておきます。本セミナーではROS 16.04を使用しているため、OpenCV 3.1を利用することになります。
+ROSでOpenCVを利用するときの注意点としては、バージョンの整合性があります。<br>
+基本的に、使用中のROSがリリースされたときの最新バージョンのOpenCVを使用することになります。<br>
+ROSのバージョンとOpenCVのバージョンの対応を下表にまとめてあります。<br>
+本セミナーではROS 16.04を使用しているため、OpenCV 3.1を利用することになります。
 
 |ROSのバージョン|OpenCVのバージョン|
 |17.04 (Lunar Loggerhead)|3.2.0|
@@ -32,13 +39,17 @@ ROSでOpenCVを利用するときの注意点としては、バージョン管�
    sudo apt-get install libopencv-dev
    ```
 
-1. 上記に加えて、本セミナーではROSパッケージ「`cv_bridge`」を利用します。このパッケージを用いることで、ROSの画像データ（Image Message）とOpenCVの画像データ（IplImage）を相互に変換することができます。つまり、Image MessageをIplImageへ変換し、OpenCVを用いて処理を施し、Image Messageへ戻すという一連の処理を記述することができます。（※IplはIntel Image Processing Libraryの略で、OpenCV 1.xで使用されている型になります。そのため、本セミナーではIplImageをOpenCV 2.x以降で使用されている型「`cv::Mat`」へ更に変換し、画像処理を行います。）
+1. 上記に加えて、本セミナーではROSパッケージ「`cv_bridge`」を利用します。<br>
+このパッケージを用いることで、ROSの画像データ（Image Message）とOpenCVの画像データ（IplImage）を相互に変換することができます。<br>
+つまり、Image MessageをIplImageへ変換し、OpenCVを用いて処理を施し、Image Messageへ戻すという一連の処理を記述することができます。<br>
+（※IplはIntel Image Processing Libraryの略で、OpenCV 1.xで使用されている型になります。そのため、本セミナーではIplImageをOpenCV 2.x以降で使用されている型「`cv::Mat`」へ更に変換し、画像処理を行います。）
 
    ```shell
    sudo apt-get install ros-kinetic-cv-camera
    ```
 
-本セミナーの実施に必要となる準備は以上となりますが、実際には下記のとおり設定を変更する必要もあります。（※本セミナーでは事前に設定してあります。）
+本セミナーの実施に必要となる準備は以上となりますが、実際には下記のとおり設定を変更する必要もあります。<br>
+（※本セミナーでは事前に設定してあります。）
 
 1. OpenCVと正しくコンパイルできるよう、OpenCVを利用するROSパッケージでは下記のとおりCMakeLists.txtを修正します。
 
@@ -48,7 +59,8 @@ ROSでOpenCVを利用するときの注意点としては、バージョン管�
    target_link_libraries(dfollow ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
    ```
 
-1. ROSパッケージを管理するためのpackage.xmlも修正します。通常、Ubuntu 16.04ではOpenCV 3.xを使用しますが、互換性を保つために敢えて`opencv2`と指定します。
+1. ROSパッケージを管理するためのpackage.xmlも修正します。<br>
+通常、Ubuntu 16.04ではOpenCV 3.xを使用しますが、互換性を保つために敢えて`opencv2`と指定します。
 
    ```xml
    <build_depend>opencv2</build_depend>
