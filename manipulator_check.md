@@ -49,7 +49,7 @@ date: 2019-11-05
 
    ```shell
    $ cd ~/Downloads/
-   $ git clone https://github.com/gbiggs/dynamixel_servo_check.git
+   $ git clone https://github.com/takahasi/dynamixel_servo_check.git
    $ cd dynamixel_servo_check
    ```
 
@@ -107,11 +107,14 @@ date: 2019-11-05
 
 1. サーボモータ確認プログラムを実行し、サーボモータの動作を確認します。<br>
 プログラムにサーボIDを指定します。CRANE+のサーボIDは１~５です。<br>
+また、サーボモータの目標位置を設定します。<br>
+CRANE+で利用しているサーボモータは1024段階（0~1023）で目標位置を指定できますので、下記の例では中央値である 512 を指定します。<br>
+すべてのモータに512 を指定すると、CRANE+は直立した姿勢となります。<br>
 _注意：プログラムを実行すると指定したサーボモータは高速で指定位置に移動します。電源を入れる前にマニピュレータをまっすぐ上向きに近い姿勢にしてください。_{:style="color: red"}
 
    ```shell
    $ cd ~/Downloads/dynamixel_servo_check/build/
-   $ ./servo_check 1
+   $ ./servo_check 1 512
    Opened port
    Changed buadrate
    Dynamixel has been successfully connected
@@ -135,4 +138,6 @@ _注意：プログラムを実行すると指定したサーボモータは高�
 
 ## 課題
 
-１から５まで、全サーボモータの動作を確認してみましょう。
+1. サーボID１から５まで、全サーボモータの動作を確認してみましょう。
+
+1. 上記プログラムの指令値を変更することでロボットアームをの手先を任意の姿勢に到達させてみましょう（例えば、机の上にある物体を掴む姿勢など）。
