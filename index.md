@@ -18,6 +18,12 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
   - インストール方法は以下を参考にしてください
     - [Ubuntu LinuxとROSのインストール](linux_and_ros_install.html)
   - ノート PC は USB type A ポートが2ポート以上あるもの、もしくは USB ハブをご用意ください
+- プログラムの事前ダウンロード
+  - 下記のスクリプトをお使いいただければ、お使いの PC 環境にセミナーで作成するプログラム一式がダウンロードされます
+  - ネットワーク接続ができない場合に備えて、下記手順で事前にダウンロードしておいてください
+    1. wget https://raw.githubusercontent.com/takahasi/ros_moveit_rsj_tutorial/gh-pages/download_contents.sh
+    1. chmod +x download_contents.sh
+    1. ./download.sh
 
 下記は*必要な方のみ*{: style="color: red"}ご用意ください。マニピュレータに関しては、セミナー申込時にロボット購入希望としていただいた方に関しては主催者側で準備します。
 
@@ -60,7 +66,7 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 |09:30-|開場・受付開始|
 |10:00-11:00|講義１ 「ROS概論」<br>講師：Geoffrey BIGGS （TierⅣ）|
 |11:00-11:30|[Linuxの基本操作](linux_basics.html)|
-|11:30-12:00|[講習環境の整備とマニピュレータの動作確認](manipulator_check.html)|
+|11:30-12:00|[マニピュレータの動作確認](manipulator_check.html)|
 |12:00-13:00|昼休み|
 |13:00-14:00|講義２ 「MoveIt構造とアプリケーションの例」<br>講師：Felix von Drigalski (OMRON SINIC X)|
 |14:00-15:00|[ROSの基本操作](ros_basics.html)|
