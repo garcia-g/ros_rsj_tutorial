@@ -1,6 +1,6 @@
 ---
 title: 画像処理とマニピュレータの組み合わせ
-date: 2017-10-22
+date: 2019-11-12
 ---
 
 - Table of contents
