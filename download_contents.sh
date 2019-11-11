@@ -30,11 +30,12 @@ git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
 
 git clone https://github.com/takahasi/dynamixel_servo_check.git
 (cd dynamixel_servo_check && \
-    cp -r ~/DynamixelSDK/c/include/dynamixel_sdk/ . && \
-    cp ~/DynamixelSDK/c/build/linux64/libdxl_x64_c.so . && \
+    cp -r ../DynamixelSDK/c/include/dynamixel_sdk/ . && \
+    cp ../DynamixelSDK/c/build/linux64/libdxl_x64_c.so . && \
     mkdir -p build && cd build && cmake ../ && make)
 
 source /opt/ros/kinetic/setup.bash
+
 (mkdir -p catkin_ws/src && \
     cd catkin_ws/src && rm -rf CMakeLists.txt && catkin_init_workspace && \
     cd .. && catkin_make && \
@@ -42,6 +43,7 @@ source /opt/ros/kinetic/setup.bash
     cd src && \
     git clone https://github.com/gbiggs/rsj_tutorial_2017_ros_intro.git && \
     cd .. && catkin_make)
+
 (mkdir -p crane_plus_ws/src && \
     cd clane_plus_ws/src && rm -rf CMakeLists.txt && catkin_init_workspace && \
     cd .. && catkin_make && \
@@ -50,6 +52,7 @@ source /opt/ros/kinetic/setup.bash
     git clone https://github.com/gbiggs/crane_plus_arm.git && \
     git clone https://github.com/gbiggs/rsj_2017_pick_and_placer.git && \
     cd .. && catkin_make)
+
 (mkdir -p block_finder_ws/src && \
     cd block_finder_ws/src && rm -rf CMakeLists.txt && catkin_init_workspace && \
     cd .. && catkin_make && \
@@ -57,6 +60,7 @@ source /opt/ros/kinetic/setup.bash
     cd src && \
     git clone https://github.com/Suzuki1984/rsj_2017_block_finder.git && \
     cd .. && catkin_make)
+
 (mkdir -p rsj_2017_application_ws/src && \
     cd rsj_2017_application_ws/src && rm -rf CMakeLists.txt && catkin_init_workspace && \
     cd .. && catkin_make && \
