@@ -46,6 +46,10 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
   - カメラ認識のために単純な形状の明るい色の物体がおすすめです
   - 把持時にハンドの損傷等を防ぐために、柔らかい物体が望ましいです
   - 例：[激落ちくんスポンジ](https://www.amazon.co.jp/dp/B07J6534TN)
+- カメラキャリブレーション用のチェッカーボード
+  - カメラキャリブレーション用の白黒チェッカーボード
+  - 下記の URL を印刷したものが利用できます（8x6、1マス2.45cm）
+  - http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration?action=AttachFile&do=get&target=check-108.pdf
 
 不明な点や、事前準備がうまく行かない点については、オーガナイザまでお問い合わせ下さい。
 

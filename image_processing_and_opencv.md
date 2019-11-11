@@ -335,7 +335,7 @@ pMOG2 = cv::createBackgroundSubtractorMOG2(1000, 8);
 ```
 
 
-## 参考情報
+## 課題
 
 OpenCVには多くのサンプルプログラムが用意されており、研究開発の初期段階において、様々な手法を試すことができます。<br>
 そして、同サンプルプログラムをROSノード化したROSパッケージ「opencv_apps」があります。<br>
@@ -347,14 +347,26 @@ OpenCVには多くのサンプルプログラムが用意されており、研�
 $ sudo apt-get install ros-kinetic-opencv-apps
 ```
 
-例えば、画像内から円形を抽出するサンプルプログラムは下記のとおり実行できます。
+1. 画像内から円形を抽出するサンプルプログラムを実行してみましょう。（下記参照）
 
+カメラ画像を表示するノードを立ち上げる。
+```shell
+$ rosrun usb_cam usb_cam_node
+```
+
+別の端末でサンプルプログラムを立ち上げる。
 ```shell
 $ roslaunch opencv_apps hough_circles.launch image:=/usb_cam_node/image_raw
 ```
 
-また、画像内から人間の顔を抽出するサンプルプログラムは下記のとおり実行できます。
+1. 画像内から人間の顔を抽出するサンプルプログラムを実行してみましょう。（下記参照）
 
+カメラ画像を表示するノードを立ち上げる。
+```shell
+$ rosrun usb_cam usb_cam_node
+```
+
+別の端末でサンプルプログラムを立ち上げる。
 ```shell
 $ roslaunch opencv_apps face_detection.launch image:=/usb_cam_node/image_raw
 ```
