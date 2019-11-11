@@ -94,7 +94,7 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 
 1. [Linux の基本操作](linux_basics.html)|
 
-1. [講習環境の整備とマニピュレータの動作確認](manipulator_check.html)|
+1. [マニピュレータの動作確認](manipulator_check.html)|
 
 1. [ROS の基本操作](ros_basics.html)|
 

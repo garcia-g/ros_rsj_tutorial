@@ -413,11 +413,13 @@ Planningタブ内の「Select Goal State」で「`<random valid>`」が選択さ
 
 ![MoveIt! RViz random pose](images/crane_plus_moveit_rviz_random_pose_sim.png)
 
-「Plan」をクリックします。MoveIt!が移動プランを計算します。RVizでロボットが追う経路は表示されます。
+「Plan」をクリックします。MoveIt!が移動プランを計算します。<br>
+RVizでロボットが追う経路は表示されます。
 
 ![MoveIt! RViz random pose plan](images/crane_plus_moveit_rviz_random_pose_plan_sim.png)
 
-プランを実行します。「Execute」をクリックするとシミュレータ上のマニピュレータが指定した姿勢に移動します。<br>
+プランを実行します。<br>
+「Execute」をクリックするとシミュレータ上のマニピュレータが指定した姿勢に移動します。<br>
 RViz上でロボットの現在の姿勢が表示され、これも指定したポーズ（すなわちシミュレータ上のロボットのポーズ）に移動します。
 
 ![MoveIt! RViz random pose execution](images/crane_plus_moveit_rviz_random_pose_executed_sim.png)
@@ -436,7 +438,7 @@ RViz上でロボットの現在の姿勢が表示され、これも指定した�
 矢印をドラッグ
 : グリッパーの位置を一つの軸だけで移動する。
 
-基本的にMoveIt!のユーザーインターフェースは可能か姿勢しか許さないので、時々マニピュレータは移動してくれないことや飛ぶことがあります。
+基本的にMoveIt!のユーザーインターフェースは制御可能な姿勢しか許さないので、時々マニピュレータが移動してくれないことや位置が飛ぶことがあります。
 
 お好みの姿勢にグリッパーを移動して、「Plan」と「Execute」ボタンでマニピュレータを移動しましょう。<br>
 シミュレータ上のロボットはグリッパーが指定した位置と角度になるように動きます。
