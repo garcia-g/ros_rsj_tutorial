@@ -98,13 +98,13 @@ Install space: /home/rsj/rsj_2017_application_ws/install
 キャリブレーションボードの上に何も置かないにしてください。
 
 カメラノードを起動する前に`roscore`を起動します。<br>
-端末で下記を実行してください。
+ターミナルで下記を実行してください。
 
 ```shell
 $ roscore
 ```
 
-別の端末で下記を実行してカメラを起動します。
+別のターミナルで下記を実行してカメラを起動します。
 
 ```shell
 $ cd ~/rsj_2017_application_ws
@@ -121,7 +121,7 @@ _注意：お使いの環境のカメラデバイス番号が０ではない場�
 カメラを正しい方向に向けたら、 __Ctrl+c__{: style="border: 1px solid black" } で終了します。
 
 次にマニピュレータのハードウェアを起動します。<br>
-端末で下記を実行します。
+ターミナルで下記を実行します。
 
 ```shell
 $ cd ~/rsj_2017_application_ws
@@ -152,7 +152,7 @@ done
 _エラーが出る場合もあります。エラーが出なくなる、または前舳が手で動かせるようになるまでに最後のコマンドを繰り返して実行してください。_
 
 カメラも起動することが必要です。<br>
-新しい端末で下記を実行します。
+新しいターミナルで下記を実行します。
 
 ```shell
 $ cd ~/rsj_2017_application_ws
@@ -167,7 +167,7 @@ _注意：カメラのデバイス番号は０ではない場合は、上記の�
 カメラは`world`座標系に対してキャリブレーションします。<br>
 しかし、`crane_plus_hardware`の`start_arm_standalone.launch`はマニピュレータを`base_link`座標系に置きます。<br>
 一時的に`world`と`base_link`の関係を示すことが必要です。<br>
-新しい端末で下記を実行すると、`world`と`base_link`の差を`tf`に送信します。<tf>
+新しいターミナルで下記を実行すると、`world`と`base_link`の差を`tf`に送信します。<tf>
 （ゼロにした場合、`world`と`base_link`の中央点は同地点であることを示しています）
 
 ```shell
@@ -194,7 +194,7 @@ Move edge of gripper to point 1 in image and press Enter.
 
 _画面に出る画像をよく確認してください。１〜４で示されたポイントの順番が大事です。_{:style="color: red"}
 
-そして端末で下記の指示が表示されます。
+そしてターミナルで下記の指示が表示されます。
 
 ```shell
 Move edge of gripper to point 1 in image and press Enter.
@@ -255,7 +255,7 @@ URDF output:
 
 _必ずこの情報を保存してください。これからの手順に必要です。_{:style="color: red"}
 
-全端末で __Ctrl+c__{: style="border: 1px solid black" } を押して終了します。
+全ターミナルで __Ctrl+c__{: style="border: 1px solid black" } を押して終了します。
 
 ## アプリケーション用のパッケージを作成
 
@@ -476,7 +476,7 @@ _パッケージ全体は下記のURLでダウンロード可能です。_
 実行の前に、まずはハードウェアをつなげて電源を入れます。
 
 アプリケーションの起動は`roslaunch`で行います。<br>
-新しい端末で下記を実行します。
+新しいターミナルで下記を実行します。
 
 ```shell
 $ cd ~/rsj_2017_application_ws
