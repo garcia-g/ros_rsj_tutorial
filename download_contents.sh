@@ -81,7 +81,7 @@ source /opt/ros/kinetic/setup.bash
     cd src && \
     rm -rf rsj_2017_pick_and_placer && \
     git clone https://github.com/gbiggs/rsj_2017_pick_and_placer.git && \
-    cd rsj_2017_pick_and_placer && git checkout full_application_version && cd ..\
+    cd rsj_2017_pick_and_placer && git checkout full_application_version && cd .. && \
     rm -rf rsj_2017_block_finder && \
     git clone https://github.com/Suzuki1984/rsj_2017_block_finder && \
     rm -rf crane_plus_arm && \
