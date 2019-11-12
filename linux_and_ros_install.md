@@ -1,6 +1,6 @@
 ---
 title: Ubuntu LinuxとROSのインストール
-date: 2019-11-06
+date: 2019-11-12
 ---
 
 - Table of contents
