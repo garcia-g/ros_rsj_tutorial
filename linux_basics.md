@@ -12,7 +12,7 @@ date: 2017-06-16
 
 ![Terminal](images/terminal-icon.png)
 
-入れたばかりのUbuntuであれば、画面左のランチャーに端末が表示されません。<br>
+新規インストールしたばかりのUbuntuであれば、画面左のランチャーに端末が表示されません。<br>
 画面左のランチャーにある「コンピュータを検索」をクリックして、「terminal」または「端末」を入力してください。
 
 ![Computer search](images/ubuntu_computer_search_icon.png)
