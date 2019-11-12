@@ -21,9 +21,9 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 - プログラムの事前ダウンロード
   - 下記のスクリプトをお使いいただければ、お使いの PC 環境にセミナーで作成するプログラム一式がダウンロードされます
   - ネットワーク接続ができない場合に備えて、下記手順で事前にダウンロードしておいてください
-    1. wget https://raw.githubusercontent.com/takahasi/ros_moveit_rsj_tutorial/gh-pages/download_contents.sh
-    1. chmod +x download_contents.sh
-    1. ./download.sh
+    1. `$ wget https://raw.githubusercontent.com/takahasi/ros_moveit_rsj_tutorial/gh-pages/download_contents.sh`
+    1. `$ chmod +x download_contents.sh`
+    1. `$ ./download_contents.sh`
 
 下記は*必要な方のみ*{: style="color: red"}ご用意ください。マニピュレータに関しては、セミナー申込時にロボット購入希望としていただいた方に関しては主催者側で準備します。
 
@@ -55,7 +55,7 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 - カメラキャリブレーション用のチェッカーボード
   - カメラキャリブレーション用の白黒チェッカーボード
   - 下記の URL を印刷したものが利用できます（8x6、1マス2.45cm）
-  - http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration?action=AttachFile&do=get&target=check-108.pdf
+  - <http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration?action=AttachFile&do=get&target=check-108.pdf>
 
 不明な点や、事前準備がうまく行かない点については、オーガナイザまでお問い合わせ下さい。
 
