@@ -100,7 +100,7 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 
 ## セミナーテキスト
 
-1. [Ubuntu LinuxとROSのインストール](linux_and_ros_install.html)
+1. [Ubuntu LinuxとROSのインストール](linux_and_ros_install.html)|
 
 1. [Linux の基本操作](linux_basics.html)|
 
