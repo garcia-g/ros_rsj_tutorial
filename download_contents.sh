@@ -46,6 +46,8 @@ source /opt/ros/kinetic/setup.bash
     cd src && \
     rm -rf rsj_tutorial_2017_ros_intro && \
     git clone https://github.com/gbiggs/rsj_tutorial_2017_ros_intro.git && \
+    rm -rf rsj_2017_servo_control && \
+    git clone https://github.com/gbiggs/rsj_2017_servo_control.git && \
     cd .. && catkin_make)
 
 # Download & install for section-5
