@@ -1,6 +1,6 @@
 ---
 title: マニピュレータの動作確認
-date: 2019-11-12
+date: 2019-11-13
 ---
 
 - Table of contents
