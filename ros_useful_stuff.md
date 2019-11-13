@@ -56,7 +56,9 @@ launchファイルはXMLフォーマットであり、いくつかのタグが�
 下記のようにYAMLファイルから複雑なパラメータをロードするために便利です。
 
 ```xml
-<rosparam file="$(find crane_plus_hardware)/config/servo_controller_manager.yaml" command="load"/>
+<rosparam file=
+  "$(find crane_plus_hardware)/config/servo_controller_manager.yaml"
+ command="load"/>
 ```
 
 ### `remap`タグ
@@ -360,7 +362,8 @@ __Shift__{: style="border: 1px solid black" } を押しながらマウスをク�
 $ cd ~/crane_plus_ws/
 $ source devel/setup.bash
 $ roslaunch crane_plus_moveit_config move_group.launch
-... logging to /home/username/.ros/log/7b527712-3aa3-11e7-b868-d8cb8ae35bff/roslaunch-alnilam-3483.log
+... logging to /home/username/.ros/log/7b527712-3aa3-11e7-b868-d8cb8ae35bff/
+roslaunch-alnilam-3483.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
@@ -381,7 +384,8 @@ MoveIt!は、ROSノードでMoveIt!のAPIを利用することが基本の利用
 ノードを作成の代わりにROSの基本の可視化ツール[RViz](http://wiki.ros.org/rviz)も利用できます。
 
 MoveIt!はRViz上でマニピュレータ制御ユーザーインターフェースをプラグインとして提供します。<br>
-MoveIt!と同時にインストールされて、CRANE+のMoveIt!パッケージから起動します。新しいターミナルで以下を実行してRVizのMoveIt!ユーザーインターフェースを起動します。
+MoveIt!と同時にインストールされて、CRANE+のMoveIt!パッケージから起動します。<br>
+新しいターミナルで以下を実行してRVizのMoveIt!ユーザーインターフェースを起動します。
 
 ```shell
 $ cd ~/crane_plus_ws/

@@ -44,7 +44,8 @@ ubuntu@ubuntu:~$
 
 ```shell
 ubuntu@ubuntu:~$ ls
-examples.desktop Desktop  Documents  Downloads  Music  Pictures Public Templates Videos
+examples.desktop Desktop  Documents  Downloads  Music  Pictures Public Templates
+Videos
 ubuntu@ubuntu:~$
 ```
 
@@ -77,7 +78,8 @@ ubuntu@ubuntu:~$
 
 ```shell
 $ ls
-examples.desktop Desktop  Documents  Downloads  Music  Pictures Public Templates Videos
+examples.desktop Desktop  Documents  Downloads  Music  Pictures Public Templates
+Videos
 $
 ```
 
@@ -131,7 +133,8 @@ $
 ```shell
 $ cd
 $ ls
-examples.desktop _Desktop_  Documents  Downloads  Music  Pictures Public Templates Videos
+examples.desktop _Desktop_  Documents  Downloads  Music  Pictures Public Templates
+Videos
 [選択して Ctrl+Shift+c]
 $ cd [Ctrl+Shift+v]
 $ cd Desktop
@@ -144,7 +147,8 @@ $ cd Desktop
 ```shell
 $ cd
 $ ls
-examples.desktop _Desktop_  Documents  Downloads  Music  Pictures Public Templates Videos
+examples.desktop _Desktop_  Documents  Downloads  Music  Pictures Public Templates
+Videos
 $ cd [選択して中クリック]
 $ cd Desktop
 ```

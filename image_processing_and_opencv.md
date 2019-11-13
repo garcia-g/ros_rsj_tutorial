@@ -55,8 +55,12 @@ ROSのバージョンとOpenCVのバージョンの対応を下表にまとめ�
 
    ```cmake
    find_package(OpenCV REQUIRED)
-   include_directories(/usr/local/include ${catkin_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
-   target_link_libraries(dfollow ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+   include_directories(/usr/local/include
+                       ${catkin_INCLUDE_DIRS}
+                       ${OpenCV_INCLUDE_DIRS})
+   target_link_libraries(dfollow
+                       ${catkin_LIBRARIES}
+                       ${OpenCV_LIBRARIES})
    ```
 
 1. ROSパッケージを管理するためのpackage.xmlも修正します。<br>
@@ -125,7 +129,8 @@ ROSのバージョンとOpenCVのバージョンの対応を下表にまとめ�
    # ２つ目のターミナル
    $ cd ~/block_finder_ws/
    $ source devel/setup.bash
-   $ rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.0285 image:=/camera/image_raw camera:=/camera
+   $ rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.0285 \
+     image:=/camera/image_raw camera:=/camera
    ```
 
 1. カメラを手で持ち、位置や姿勢を動かします。XやYは左右や前後に動かすことで、Sizeは上下に動かすことで、Skewは斜めから撮影することで、少しずつバーが伸びていきます。
@@ -172,12 +177,20 @@ ROSのバージョンとOpenCVのバージョンの対応を下表にまとめ�
        <param name="pixel_format" value="yuyv"/>
        <param name="io_method" value="mmap"/>
      </node>
-     <node pkg="tf" type="static_transform_publisher" name="camera_transform_publisher" args="0 0 -0.2 0 0 0 1 /world /camera_link 1"/>
-     <node pkg="rsj_2017_block_finder" type="block_finder" name="block_finder" args="$(arg method)" output="screen">
+     <node pkg="tf"
+       type="static_transform_publisher"
+       name="camera_transform_publisher"
+       args="0 0 -0.2 0 0 0 1 /world /camera_link 1"/>
+     <node pkg="rsj_2017_block_finder"
+       type="block_finder"
+       name="block_finder"
+       args="$(arg method)"
+       output="screen">
        <param name="block_area_min" value="1000"/>
        <param name="block_area_max" value="2000"/>
      </node>
-     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find rsj_2017_block_finder)/config/rsj_2017_block_finder.rviz"/>
+     <node pkg="rviz" type="rviz" name="rviz"
+       args="-d $(find rsj_2017_block_finder)/config/rsj_2017_block_finder.rviz"/>
    </launch>
    ```
 
@@ -316,7 +329,10 @@ OpenCVはバージョンが変わると、記述方法や機能が大幅に変�
 混合正規分布法の関数「createBackgroundSubtractorMOG2」では、下記のとおり３つの引数を指定することができます。
 
 ```c++
-Ptr<BackgroundSubtractorMOG2> cv::createBackgroundSubtractorMOG2(int history=500, double varThreshold=16, bool detectShadows=true)
+Ptr<BackgroundSubtractorMOG2> cv::createBackgroundSubtractorMOG2(
+                                                             int history=500,
+                                                             double varThreshold=16,
+                                                             bool detectShadows=true)
 ```
 
 第1引数では、過去何フレームまでを分布推定（モデル推定）に利用するかを指定することができます。

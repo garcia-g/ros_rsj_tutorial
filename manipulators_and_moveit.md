@@ -96,9 +96,12 @@ $ ls
 CMakeLists.txt  crane_plus_arm
 $ cd crane_plus_arm/
 $ ls
-crane_plus_camera_calibration  crane_plus_hardware               crane_plus_moveit_config  README.md
-crane_plus_description         crane_plus_ikfast_arm_plugin      crane_plus_move_to_pose   LICENSE
-crane_plus_gripper             crane_plus_joint_state_publisher  crane_plus_simulation
+crane_plus_camera_calibration     crane_plus_moveit_config
+crane_plus_description            crane_plus_move_to_pose
+crane_plus_gripper                crane_plus_simulation
+crane_plus_hardware               LICENSE
+crane_plus_ikfast_arm_plugin      README.md
+crane_plus_joint_state_publisher
 ```
 
 `README.md`と`LICENSE`以外はすべてパッケージです。<br>
@@ -153,7 +156,8 @@ $ roslaunch crane_plus_hardware start_arm_standalone.launch
 $ cd ~/crane_plus_ws/
 $ source devel/setup.bash
 $ roslaunch crane_plus_moveit_config move_group.launch
-... logging to /home/username/.ros/log/7b527712-3aa3-11e7-b868-d8cb8ae35bff/roslaunch-alnilam-3483.log
+... logging to /home/username/.ros/log/7b527712-3aa3-11e7-b868-d8cb8ae35bff/
+roslaunch-alnilam-3483.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
@@ -162,7 +166,8 @@ started roslaunch server http://alnilam:33499/
 
 SUMMARY
 （省略）
-[ INFO] [1494986092.617635076, 141.869000000]: MoveGroup context initialization complete
+[ INFO] [1494986092.617635076, 141.869000000]: MoveGroup context initialization
+complete
 
 You can start planning now!
 ```
@@ -252,13 +257,16 @@ MoveIt!を利用するために、主にノードからアプリケーション�
 
 ```shell
 $ cd ~/crane_plus_ws/src/
-$ catkin_create_pkg rsj_2017_pick_and_placer roscpp moveit_core moveit_ros_planning_interface moveit_visual_tools \
-    moveit_msgs moveit_commander tf actionlib control_msgs geometry_msgs shape_msgs trajectory_msgs
+$ catkin_create_pkg rsj_2017_pick_and_placer roscpp moveit_core \
+    moveit_ros_planning_interface moveit_visual_tools \
+    moveit_msgs moveit_commander tf actionlib control_msgs geometry_msgs \
+    shape_msgs trajectory_msgs
 Created file rsj_2017_pick_and_placer/CMakeLists.txt
 Created file rsj_2017_pick_and_placer/package.xml
 Created folder rsj_2017_pick_and_placer/include/rsj_2017_pick_and_placer
 Created folder rsj_2017_pick_and_placer/src
-Successfully created files in /home/username/crane_plus_ws/src/rsj_2017_pick_and_placer.
+Successfully created files in /home/username/crane_plus_ws/src/
+rsj_2017_pick_and_placer.
     Please adjust the values in package.xml.
 ```
 
@@ -469,7 +477,8 @@ Build space: /home/username/crane_plus_ws/build
 Devel space: /home/username/crane_plus_ws/devel
 Install space: /home/username/crane_plus_ws/install
 （省略）
-[ 85%] Linking CXX executable /home/username/crane_plus_ws/devel/lib/rsj_2017_pick_and_placer/pick_and_placer
+[ 85%] Linking CXX executable /home/username/crane_plus_ws/devel/lib/
+rsj_2017_pick_and_placer/pick_and_placer
 [ 85%] Built target pick_and_placer_pick_and_placer
 [100%] Linking CXX executable /home/username/crane_plus_ws/devel/lib/
          crane_plus_camera_calibration/calibrate_camera_checkerboard
@@ -481,7 +490,8 @@ Install space: /home/username/crane_plus_ws/install
 ```shell
 $ source devel/setup.bash
 $ roslaunch crane_plus_hardware start_arm_standalone.launch
-... logging to /home/username/.ros/log/4de82534-3e85-11e7-a03f-d8cb8ae35bff/roslaunch-alnilam-27138.log
+... logging to /home/username/.ros/log/4de82534-3e85-11e7-a03f-d8cb8ae35bff/
+roslaunch-alnilam-27138.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
@@ -499,14 +509,16 @@ started roslaunch server http://alnilam:37805/
 $ cd ~/crane_plus_ws/
 $ source devel/setup.bash
 $ roslaunch crane_plus_moveit_config move_group.launch
-... logging to /home/username/.ros/log/4de82534-3e85-11e7-a03f-d8cb8ae35bff/roslaunch-alnilam-28429.log
+... logging to /home/username/.ros/log/4de82534-3e85-11e7-a03f-d8cb8ae35bff/
+roslaunch-alnilam-28429.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
 
 started roslaunch server http://alnilam:33774/
 （省略）
-[ INFO] [1495412987.240640847]: MoveGroup context using planning plugin ompl_interface/OMPLPlanner
+[ INFO] [1495412987.240640847]: MoveGroup context using planning plugin
+ompl_interface/OMPLPlanner
 [ INFO] [1495412987.240652629]: MoveGroup context initialization complete
 
 You can start planning now!
@@ -520,7 +532,8 @@ $ cd ~/crane_plus_ws/
 $ source devel/setup.bash
 $ rosrun rsj_2017_pick_and_placer pick_and_placer
 [ INFO] [1495413039.031396268]: Loading robot model 'crane_plus'...
-[ INFO] [1495413039.031446316]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[ INFO] [1495413039.031446316]: No root/virtual joint specified in SRDF.
+Assuming fixed joint
 [ INFO] [1495413040.033491742]: Ready to take commands for planning group arm.
 ```
 
@@ -662,14 +675,16 @@ Build space: /home/username/crane_plus_ws/build
 Devel space: /home/username/crane_plus_ws/devel
 Install space: /home/username/crane_plus_ws/install
 （省略）
-[ 85%] Linking CXX executable /home/username/crane_plus_ws/devel/lib/rsj_2017_pick_and_placer/pick_and_placer
+[ 85%] Linking CXX executable /home/username/crane_plus_ws/devel/lib/
+rsj_2017_pick_and_placer/pick_and_placer
 [ 85%] Built target pick_and_placer_pick_and_placer
 [100%] Linking CXX executable /home/username/crane_plus_ws/devel/lib/
          crane_plus_camera_calibration/calibrate_camera_checkerboard
 [100%] Built target calibrate_camera_checkerboard
 $ rosrun rsj_2017_pick_and_placer pick_and_placer
 [ INFO] [1495423076.668768146]: Loading robot model 'crane_plus'...
-[ INFO] [1495423076.668847786]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[ INFO] [1495423076.668847786]: No root/virtual joint specified in SRDF.
+Assuming fixed joint
 [ INFO] [1495423077.846839325]: Ready to take commands for planning group arm.
 ```
 
@@ -1557,7 +1572,8 @@ _パラメータ名の頭にアンダーバーを付けている理由は、パ�
 下記のように、パラメータをlaunchファイルに指定することも可能です。`<node>`タグ内のでノードのネームスペース内になります。
 
 ```xml
-  <node name="pickandplace" pkg="rsj_2017_pick_and_placer" type="pick_and_placer" output="screen">
+  <node name="pickandplace" pkg="rsj_2017_pick_and_placer"
+    type="pick_and_placer" output="screen">
     <param name="place_x" value="0.1"/>
     <param name="place_y" value="-0.2"/>
   </node>

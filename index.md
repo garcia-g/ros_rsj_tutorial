@@ -24,6 +24,10 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
     1. `$ wget https://raw.githubusercontent.com/takahasi/ros_moveit_rsj_tutorial/gh-pages/download_contents.sh`
     1. `$ chmod +x download_contents.sh`
     1. `$ ./download_contents.sh`
+- セミナーテキストの事前ダウンロード
+  - 下記の URL にセミナーで使用するテキスト一式が PDF 形式で格納されています
+  - ネットワーク接続ができない場合に備えて、事前にダウンロードしておいてください（紙でも配布する予定です）
+    1. <https://github.com/takahasi/ros_moveit_rsj_tutorial/tree/gh-pages/pdf>
 
 下記は*必要な方のみ*{: style="color: red"}ご用意ください。マニピュレータに関しては、セミナー申込時にロボット購入希望としていただいた方に関しては主催者側で準備します。
 
@@ -39,7 +43,9 @@ title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した
 
 下記は*主催者側で準備*{: style="color: red"}しますので、事前準備は不要です。セミナー受講料に含まれますので、セミナー後は各自お持ち帰りしていただく予定です。
 
-- マニピュレータとPCをつなげる[USB延長ケーブル](https://www.amazon.co.jp/gp/product/B007STDLM0)
+- USB 延長ケーブル
+  - マニピュレータとPCをつなげる[USB延長ケーブル](https://www.amazon.co.jp/gp/product/B007STDLM0)
+  - マニピュレータに付属するケーブルが短いため必要となる場合があります
 - カメラ
   - 一般的な USB 接続の Web カメラをご用意ください
   - 接続して PC が認識できれば基本的に利用可能です

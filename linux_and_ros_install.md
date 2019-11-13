@@ -143,8 +143,11 @@ date: 2019-11-12
    詳細については上記ページを参照ください。
 
    ```shell
-   $ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-   $ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+   $ sudo sh -c \
+     'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" \
+     > /etc/apt/sources.list.d/ros-latest.list'
+   $ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 \
+     --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
    $ sudo apt-get update
    $ sudo apt-get install ros-kinetic-desktop-full
    $ sudo rosdep init
@@ -176,7 +179,11 @@ date: 2019-11-12
 最後に、本セミナーに必要なパッケージをインストールします。以下のコマンドの実行し、インストールを行ってください。
 
 ```shell
-sudo apt-get install ros-kinetic-moveit-* ros-kinetic-dynamixel-motor ros-kinetic-usb-cam ros-kinetic-joint-trajectory-controller ros-kinetic-effort-controllers
+sudo apt-get install ros-kinetic-moveit-* \
+                     ros-kinetic-dynamixel-motor \
+                     ros-kinetic-usb-cam \
+                     ros-kinetic-joint-trajectory-controller \
+                     ros-kinetic-effort-controllers
 ```
 
 以上で、開発環境の構築が完了しました。

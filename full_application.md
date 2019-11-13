@@ -236,9 +236,10 @@ Resulting transform (fixed frame -> camera frame):
 4.59121e-41 4.58323e-41 4.58323e-41           1
 
 Static transform publisher:
-rosrun tf static_transform_publisher x y z qx qy qz qw frame_id child_frame_id period_in_ms
-rosrun tf static_transform_publisher 0.253695 0.0777012 0.559156 0.703803 0.697261 -0.133715 \
-  -0.0246739 /base_link /camera_link 100
+rosrun tf static_transform_publisher x y z qx qy qz qw frame_id child_frame_id \
+period_in_ms
+rosrun tf static_transform_publisher 0.253695 0.0777012 0.559156 0.703803 0.697261 \
+-0.133715 -0.0246739 /base_link /camera_link 100
 
 URDF output:
 <?xml version="1.0"?>
@@ -253,7 +254,7 @@ URDF output:
 </robot>
 ```
 
-_必ずこの情報を保存してください。これからの手順に必要です。_{:style="color: red"}
+_必ずこの情報を保存してください。この後の手順に必要となります。_{:style="color: red"}
 
 全ターミナルで __Ctrl+c__{: style="border: 1px solid black" } を押して終了します。
 
@@ -261,7 +262,8 @@ _必ずこの情報を保存してください。これからの手順に必要�
 
 ### パッケージ作成
 
-本アプリケーションにはノード作成が必要ありませんが、アプリケーションのノード構造等を定義するlaunchファイルを作成することが必要です。launchファイルをパッケージに保存すると扱いやすいです。<br>
+本アプリケーションにはノード作成が必要ありませんが、アプリケーションのノード構造等を定義するlaunchファイルを作成することが必要です。<br>
+launchファイルをパッケージに保存すると扱いやすいです。<br>
 このためのパッケージを作成します。
 
 パッケージは`catkin_create_pkg`で作成します。<br>
@@ -271,11 +273,12 @@ _必ずこの情報を保存してください。これからの手順に必要�
 
 ```shell
 $ cd ~/rsj_2017_application_ws/src
-$ catkin_create_pkg rsj_2017_application rsj_2017_pick_and_placer rsj_2017_block_finder \
-    crane_plus_description crane_plus_hardware usb_cam
+$ catkin_create_pkg rsj_2017_application rsj_2017_pick_and_placer \
+    rsj_2017_block_finder crane_plus_description crane_plus_hardware usb_cam
 Created file rsj_2017_application/package.xml
 Created file rsj_2017_application/CMakeLists.txt
-Successfully created files in /home/rsj/rsj_2017_application_ws/src/rsj_2017_application.
+Successfully created files in /home/rsj/rsj_2017_application_ws/src/
+rsj_2017_application.
   Please adjust the values in package.xml.
 ```
 
@@ -389,7 +392,8 @@ $ mkdir launch
 ```xml
 <launch>
   <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find rsj_2017_application)/urdf/work_cell.urdf.xacro'"/>
+    command="$(find xacro)/xacro \
+    --inorder '$(find rsj_2017_application)/urdf/work_cell.urdf.xacro'"/>
 </launch>
 ```
 
@@ -414,7 +418,8 @@ MoveIt!も起動することが必要です。上記と同様にインクルー�
 カメラハードウェア用のノードを起動するために下記を`start_app.launch`に追加します。
 
 ```xml
-  <node name="camera" pkg="usb_cam" type="usb_cam_node" output="screen">
+  <node name="camera" pkg="usb_cam" 
+   type="usb_cam_node" output="screen">
     <param name="camera_name" value="elecom_ucam"/>
     <param name="camera_frame_id" value="camera_link"/>
     <param name="video_device" value="/dev/video0"/>
@@ -431,7 +436,8 @@ __注意：上記の中の`/dev/video0`を必要に応じて自分のハード�
 下記を launch ファイルに追加します。
 
 ```xml
-  <node name="pickandplace" pkg="rsj_2017_pick_and_placer" type="pick_and_placer" output="screen">
+  <node name="pickandplace" pkg="rsj_2017_pick_and_placer" \
+  type="pick_and_placer" output="screen">
     <remap from="/block" to="/block_finder/pose"/>
   </node>
 ```
@@ -453,7 +459,8 @@ launchファイルでこの機能を利用するために、`<node>`タグ内に
 最後に、`block_finder`を起動します。こちらにもトピック名をtopic remappingで変更します。
 
 ```xml
-  <node name="block_finder" pkg="rsj_2017_block_finder" type="block_finder" output="screen">
+  <node name="block_finder" pkg="rsj_2017_block_finder" \
+    type="block_finder" output="screen">
     <remap from="/usb_cam_node/camera_info" to="/camera/camera_info"/>
     <remap from="/usb_cam_node/image_raw" to="/camera/image_raw"/>
   </node>
@@ -528,5 +535,6 @@ $ rviz
 <video width="712" height="400" controls poster="files/pick_and_place.png" markdown="0">
   <source src="files/pick_and_place.webm" type="video/webm;codecs=vp9,vorbis" markdown="0">
   <source src="files/pick_and_place.mp4" type="video/mp4" markdown="0">
-  <img src="files/pick_and_place.png" alt="Your browser does not support video" height="400" width="712" markdown="0"/>
+  <img src="files/pick_and_place.png" alt="Your browser does not support video"
+   height="400" width="712" markdown="0"/>
 </video markdown="0">

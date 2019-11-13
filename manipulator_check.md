@@ -32,17 +32,20 @@ date: 2019-11-12
    gcc -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall -c -I../../include -m64 -fPIC -g -c
        ../../src/dynamixel_sdk/port_handler.c -o .objects/port_handler.o
    gcc -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall -c -I../../include -m64 -fPIC -g -c
-       ../../src/dynamixel_sdk/protocol1_packet_handler.c -o .objects/protocol1_packet_handler.o
+       ../../src/dynamixel_sdk/protocol1_packet_handler.c -o .objects/protocol1
+   _packet_handler.o
    gcc -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall -c -I../../include -m64 -fPIC -g -c
-       ../../src/dynamixel_sdk/protocol2_packet_handler.c -o .objects/protocol2_packet_handler.o
+       ../../src/dynamixel_sdk/protocol2_packet_handler.c -o .objects/protocol2
+   _packet_handler.o
    gcc -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall -c -I../../include -m64 -fPIC -g -c
-       ../../src/dynamixel_sdk_linux/port_handler_linux.c -o .objects/port_handler_linux.o
+       ../../src/dynamixel_sdk_linux/port_handler_linux.c -o .objects/port_han
+   dler_linux.o
    g++ -shared -fPIC -m64 -o ./libdxl_x64_c.so ./.objects/group_bulk_read.o
-       ./.objects/group_bulk_write.o ./.objects/group_sync_read.o ./.objects/group_sync_write.o
+       ./.objects/group_bulk_write.o ./.objects/group_sync_read.o ./.objects/gr
+   oup_sync_write.o
        ./.objects/packet_handler.o ./.objects/port_handler.o
        ./.objects/protocol1_packet_handler.o ./.objects/protocol2_packet_handler.o
        ./.objects/port_handler_linux.o -lrt
-   $
    ```
 
 1. サーボモータ確認用プログラムをダウンロードします。
@@ -59,7 +62,8 @@ date: 2019-11-12
    $ cp -r ~/Downloads/DynamixelSDK/c/include/dynamixel_sdk/ .
    $ cp ~/Downloads/DynamixelSDK/c/build/linux64/libdxl_x64_c.so .
    $ ls
-   CMakeLists.txt  dynamixel_sdk  libdxl_x64_c.so  LICENSE  README.md  servo_check.c
+   CMakeLists.txt  dynamixel_sdk  libdxl_x64_c.so  LICENSE  README.md
+   servo_check.c
    ```
 
 1. サーボモータ確認用プログラムをコンパイルします。
@@ -84,7 +88,8 @@ date: 2019-11-12
    -- Detecting CXX compile features - done
    -- Configuring done
    -- Generating done
-   -- Build files have been written to: /home/geoff/Downloads/dynamixel_servo_check/build
+   -- Build files have been written to: /home/geoff/Downloads/dynamixel
+   _servo_check/build
    $ make
    [ 50%] Building C object CMakeFiles/servo_check.dir/servo_check.c.o
    [100%] Linking C executable servo_check

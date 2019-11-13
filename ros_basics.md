@@ -32,7 +32,8 @@ date: 2019-11-12
 ## ソースコードを格納するワークスペース
 
 ROSでは、プログラムをビルドする際にcatkinというソフトウェアパッケージを使用しています。<br>
-また、catkin は、 cmake というソフトウェアを使っており、ROS用のプログラムのパッケージ毎にcmakeの設定ファイルを作成することで、ビルドに必要な設定を行います。
+また、catkin は、 cmake というソフトウェアを使っており、ROS用のプログラムのパッケージ毎にcmakeの設定ファイルを作成することで、
+ビルドに必要な設定を行います。
 
 以下の手順で本作業用の新しいワークスペースを作ります。
 
@@ -50,8 +51,10 @@ src
 $
 ```
 
-`catkin_ws`ディレクトリ内にある、`build`、`devel`は、catkinシステムがプログラムをビルドする際に使用するものなので、ユーザが触る必要はありません。<br>
-`catkin_ws/src`ディレクトリは、ROSパッケージのソースコードを置く場所で、中にある`CMakeLists.txt` は、ワークスペース全体をビルドするためのルールが書かれているファイルです。
+`catkin_ws`ディレクトリ内にある、`build`、`devel`は、catkinシステムがプログラムをビルドする際に使用するものなので、
+ユーザが触る必要はありません。<br>
+`catkin_ws/src`ディレクトリは、ROSパッケージのソースコードを置く場所で、中にある`CMakeLists.txt` は、
+ワークスペース全体をビルドするためのルールが書かれているファイルです。
 
 このディレクトリに、本作業用のパッケージをダウンロードします。
 
@@ -87,7 +90,8 @@ displayer.cpp  greeter.cpp
 $
 ```
 
-`CMakeLists.txt`と`package.xml`には、使っているライブラリの一覧や、生成する実行ファイルとC++のソースコードの対応など、このパッケージをビルドするために必要な情報が書かれています。<br>
+`CMakeLists.txt`と`package.xml`には、使っているライブラリの一覧や生成する実行ファイルとC++のソースコードの対応など、
+このパッケージをビルドするために必要な情報が書かれています。<br>
 `launch`ディレクトリには、複数のノードでできたシステムの定義が、`msg`ディレクトリには、このパッケージ独自のデータ形式の定義が、`src`ディレクトリには、このパッケージに含まれるプログラム(ノード)のソースコードが含まれています。
 
 `catkin_make`コマンドで、ダウンとロードした`rsj_tutorial_2017_ros_intro`パッケージを含む、ワークスペース全体をビルドします。`catkin_make`は、ワークスペースの最上位ディレクトリ(`~/catkin_ws/`)で行います。
@@ -148,7 +152,8 @@ int main(int argc, char **argv) {
   ros::param::param<std::string>("~hello_text", hello_text, "hello");
   ros::param::param<std::string>("~world_name", world_name, "world");
 
-  ros::Publisher pub = node.advertise<rsj_tutorial_2017_ros_basics::Greeting>("greeting", 1);
+  ros::Publisher pub = 
+    node.advertise<rsj_tutorial_2017_ros_basics::Greeting>("greeting", 1);
 
   ros::Rate rate(1);
 
@@ -188,7 +193,7 @@ int main(int argc, char **argv) {
 `1`
 : メッセージのバッファリング量を指定 (大きくすると、処理が一時的に重くなったときなどに受け取り側の読み飛ばしを減らせる)
 
-advertise関数についている、`<rsj_tutorial_2017_ros_basics::Greeting>`の部分は、メッセージの型を指定しています。<br>
+advertise関数についている`<rsj_tutorial_2017_ros_basics::Greeting>`の部分はメッセージの型を指定しています。<br>
 これは、幾何的・運動学的な値を扱うメッセージを定義している`rsj_tutorial_2017_ros_basics`パッケージの、並進・回転速度を表す`Greeting`型です。<br>
 (この指定方法は、C++のテンプレートという機能を利用していますが、ここでは「`advertise`のときはメッセージの型指定を`<>`の中に書く」とだけ覚えておけば問題ありません)
 
@@ -259,7 +264,8 @@ $ rosrun rsj_tutorial_2017_ros_basics greeter
 そして以下を実行してください。
 
 ```shell
-$ rosrun rsj_tutorial_2017_ros_basics greeter _hello_text:=gidday _world_name:=planet
+$ rosrun rsj_tutorial_2017_ros_basics greeter \
+  _hello_text:=gidday _world_name:=planet
 [ INFO] [1494840247.644756809]: Publishing greeting 'gidday planet'
 ```
 
@@ -380,7 +386,9 @@ launchファイルは、ノードやパラメータの組み合わせを定義�
     <param name="world_name" value="earth"/>
   </node>
 
-  <node name="displayer" pkg="rsj_tutorial_2017_ros_basics" type="displayer" output="screen"/>
+  <node name="displayer"
+        pkg="rsj_tutorial_2017_ros_basics" 
+        type="displayer" output="screen"/>
 </launch>
 ```
 
@@ -415,7 +423,8 @@ launchファイルは、ノードやパラメータの組み合わせを定義�
 $ cd ~/catkin_ws
 $ source devel/setup.bash
 $ roslaunch rsj_tutorial_2017_ros_basics say_hello.launch
-... logging to /home/geoff/.ros/log/40887b56-395c-11e7-b868-d8cb8ae35bff/roslaunch-alnilam-11087.log
+... logging to /home/geoff/.ros/log/40887b56-395c-11e7-b8
+68-d8cb8ae35bff/roslaunch-alnilam-11087.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
@@ -483,12 +492,14 @@ $
 
 ```shell
 $ cd ~/catkin_ws/src
-$ catkin_create_pkg rsj_2017_servo_control roscpp dynamixel_controllers dynamixel_msgs
+$ catkin_create_pkg rsj_2017_servo_control roscpp dynamixel_controllers \
+  dynamixel_msgs
 Created file rsj_2017_servo_control/CMakeLists.txt
 Created file rsj_2017_servo_control/package.xml
 Created folder rsj_2017_servo_control/include/rsj_2017_servo_control
 Created folder rsj_2017_servo_control/src
-Successfully created files in /home/geoff/catkin_ws/src/rsj_2017_servo_control. Please adjust the values in package.xml.
+Successfully created files in /home/geoff/catkin_ws/src/rsj_2017_servo_control.
+Please adjust the values in package.xml.
 ```
 
 引数の１番目はパッケージ名です。<br>
@@ -554,12 +565,16 @@ add_executable(${PROJECT_NAME}_set_servo_pos src/set_servo_pos.cpp)
 ## target back to the shorter version for ease of user use
 ## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
 # set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
-set_target_properties(${PROJECT_NAME}_set_servo_pos PROPERTIES OUTPUT_NAME set_servo_pos PREFIX "")
+set_target_properties(${PROJECT_NAME}_set_servo_pos
+                      PROPERTIES OUTPUT_NAME set_servo_pos PREFIX "")
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(${PROJECT_NAME}_set_servo_pos ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(${PROJECT_NAME}_node
+#                  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME}_set_servo_pos
+                 ${${PROJECT_NAME}_EXPORTED_TARGETS}
+                 ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_set_servo_pos ${catkin_LIBRARIES})
@@ -686,8 +701,11 @@ finger_servo_controller:
                     update_rate: 10
         </rosparam>
     </node>
-    <rosparam file="$(find rsj_2017_servo_control)/config/dynamixel_test.yaml" command="load"/>
-    <node name="finger_servo_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+    <rosparam file="$(find rsj_2017_servo_control)/config/dynamixel_test.yaml"
+          command="load"/>
+    <node name="finger_servo_spawner"
+          pkg="dynamixel_controllers"
+          type="controller_spawner.py"
           args="--manager=dynamixel_controller_manager
                 --port dxl_tty1
                 finger_servo_controller"
@@ -699,7 +717,8 @@ finger_servo_controller:
 
 ```shell
 $ roslaunch rsj_2017_servo_control dynamixel_test.launch
-... logging to /home/geoff/.ros/log/619c447c-396a-11e7-b868-d8cb8ae35bff/roslaunch-alnilam-1790.log
+... logging to /home/geoff/.ros/log/619c447c-396a-11e7-b868-d8cb8ae35bff/
+roslaunch-alnilam-1790.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
@@ -754,14 +773,19 @@ add_executable(${PROJECT_NAME}_servo_status src/servo_status.cpp)
 ## target back to the shorter version for ease of user use
 ## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
 # set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
-set_target_properties(${PROJECT_NAME}_set_servo_pos PROPERTIES OUTPUT_NAME set_servo_pos PREFIX "")
-set_target_properties(${PROJECT_NAME}_servo_status PROPERTIES OUTPUT_NAME servo_status PREFIX "")
+set_target_properties(${PROJECT_NAME}_set_servo_pos
+                      PROPERTIES OUTPUT_NAME set_servo_pos PREFIX "")
+set_target_properties(${PROJECT_NAME}_servo_status
+                      PROPERTIES OUTPUT_NAME servo_status PREFIX "")
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(${PROJECT_NAME}_set_servo_pos ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(${PROJECT_NAME}_servo_status ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(${PROJECT_NAME}_node
+                   ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME}_set_servo_pos
+                 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME}_servo_status
+                 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_set_servo_pos ${catkin_LIBRARIES})
@@ -849,7 +873,8 @@ $ catkin_make
 ```shell
 $ source devel/setup.bash
 $ roslaunch rsj_2017_servo_control dynamixel_test.launch
-... logging to /home/geoff/.ros/log/619c447c-396a-11e7-b868-d8cb8ae35bff/roslaunch-alnilam-1790.log
+... logging to /home/geoff/.ros/log/619c447c-396a-11e7-b868-d8cb8ae35bff/
+roslaunch-alnilam-1790.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
