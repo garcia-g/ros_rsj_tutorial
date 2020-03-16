@@ -1,8 +1,10 @@
-# ros_moveit_rsj_tutorial
+# ros_rsj_tutorial
 
-Tutorial text for using a manipulator with ROS, including some basic image recognition.
+Tutorial text for using the TurtleBot 3 mobile robot with ROS.
 
-https://takahasi.github.io/ros_moveit_rsj_tutorial/
+https://igra9.github.io/ros_rsj_tutorial/
+
+Based on https://takahasi.github.io/ros_moveit_rsj_tutorial/
 
 The following parts were forked from https://github.com/at-wat/ROS-quick-start-up:
 
