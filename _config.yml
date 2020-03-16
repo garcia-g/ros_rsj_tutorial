@@ -1,8 +1,8 @@
-title: ROSを使用した画像処理とマニピュレータ制御
-description: 日本ロボット学会　第121回 ロボットの作り方セミナー
+title: ROSを使用した移動ロボットのナビゲーション
+description: 日本ロボット学会　第127回 ロボットの作り方セミナー
 theme: jekyll-theme-slate
 
-repo: "https://github.com/takahasi/ros_moveit_rsj_tutorial"
+repo: "https://github.com/igra9/ros_rsj_tutorial"
 
 markdown: kramdown
 highlighter: rouge

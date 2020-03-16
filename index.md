@@ -1,10 +1,10 @@
 ---
-title: 日本ロボット学会　ロボットの作り方 ～ROSを使用した画像処理とマニピュレータ制御～
+title: 日本ロボット学会　ロボットの作り方 ～移動ロボットの基本とROSによるナビゲーション実習～
 ---
 
-# ロボットの作り方 ～ROSを使用した画像処理とマニピュレータ制御～
+# ロボットの作り方 ～移動ロボットの基本とROSによるナビゲーション実習～
 
-[日本ロボット学会 セミナー申し込みページ](https://www.rsj.or.jp/event/seminar/news/2019/s121.html)
+[日本ロボット学会 セミナー申し込みページ](https://www.rsj.or.jp/event/seminar/news/2020/s121.html)
 
 - Table of contents
 {:toc}
