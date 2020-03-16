@@ -23,12 +23,18 @@
 
       </header>
     </div>
+    
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        {{ content }}
+      </section>
+    </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
         <p><strong>問い合わせ先：</strong></p>
-        <p><a href="https://github.com/igra9/">ラミレス イクシェル（産業技術総合研究所）</a> (ixchel-ramirezalpizar at asit dot go dot jp)</p>
+        <p><a href="https://github.com/igra9/">ラミレス イクシェル（産業技術総合研究所）</a> (ixchel-ramirezalpizar at aist dot go dot jp)</p>
         <!--p><a href="">長谷川 孔明（豊橋技術科学大学）</a></p -->
           {% if site.github.is_project_page %}
           <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
