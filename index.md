@@ -17,18 +17,6 @@ title: 日本ロボット学会　ロボットの作り方 ～移動ロボット
   - Ubuntu Linux と ROS を事前にインストールしてください
   - インストール方法は以下を参考にしてください
     - [Ubuntu LinuxとROSのインストール](linux_and_ros_install.html)
-<!---   - ノート PC は USB type A ポートが2ポート以上あるもの、もしくは USB ハブをご用意ください
-- プログラムの事前ダウンロード
-  - 下記のスクリプトをお使いいただければ、お使いの PC 環境にセミナーで作成するプログラム一式がダウンロードされます
-  - ネットワーク接続ができない場合に備えて、下記手順で事前にダウンロードしておいてください
-    1. `$ wget https://raw.githubusercontent.com/takahasi/ros_moveit_rsj_tutorial/gh-pages/download_contents.sh`
-    1. `$ chmod +x download_contents.sh`
-    1. `$ ./download_contents.sh`
-- セミナーテキストの事前ダウンロード
-  - 下記の URL にセミナーで使用するテキスト一式が PDF 形式で格納されています
-  - ネットワーク接続ができない場合に備えて、事前にダウンロードしておいてください（紙でも配布する予定です）
-    1. <https://github.com/takahasi/ros_moveit_rsj_tutorial/tree/gh-pages/pdf> 
---->
 
 下記は<span style="color:red">*必要な方のみ*</span>ご用意ください。
 
@@ -43,9 +31,6 @@ title: 日本ロボット学会　ロボットの作り方 ～移動ロボット
 
 ### １日目（1/23(土) 10:00-16:30）
 
-<!--- |09:45-|受付開始| --->
-||実習内容|
-|---|---|
 |10:00-11:00|[講習環境の確認とROSの基本操作](ros_basics.html)|
 |11:00-12:00|移動ロボットの動作確認|
 |12:00-13:00|昼休み|
@@ -55,9 +40,6 @@ title: 日本ロボット学会　ロボットの作り方 ～移動ロボット
 
 ### ２日目（1/24(日) 10:00-15:00）
 
-<!--- |09:00-|受付開始| --->
-||実習内容|
-|---|---|
 |10:00-11:00|講義2 「移動ロボットナビゲーション概論」<br>講師：上田　隆一 (千葉工業大学)|
 |11:00-12:00|マップを利用したナビゲージョン操作|
 |12:00-13:00|昼休み|
@@ -77,21 +59,7 @@ title: 日本ロボット学会　ロボットの作り方 ～移動ロボット
 1. [Ubuntu LinuxとROSのインストール](linux_and_ros_install.html)|
 
 1. [Linux の基本操作](linux_basics.html)|
-<!---
-1. [移動ロボットの基本動作](manipulator_check.html)|
-<!---
-1. [ROS の基本操作](ros_basics.html)|  
-<!---
-1. [マニピュレータ制御](manipulators_and_moveit.html)|
-<!---
-1. [カメラの動作確認](camera_check.html)|
-<!---
-1. [画像処理](image_processing_and_opencv.html)|
-<!---
-1. [ROS の便利機能](ros_useful_stuff.html)|
-<!---
-1. [画像処理とマニピュレーションの組み合わせ](full_application.html)|
---->
+
 
 ## 参考情報
 
