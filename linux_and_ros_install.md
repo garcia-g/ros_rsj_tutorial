@@ -140,7 +140,7 @@ date: 2021-01-12
 下記のスクリプトを使用すると、ROS1のインストール手順を簡略化できます。
 ターミナルウィンドウでこのスクリプトを実行します。ターミナルアプリケーションは、画面の左上隅にあるUbuntu検索アイコンから起動できます。もしくは、ターミナルのショートカットキー(`Ctrl`-`Alt`-`t`)を使用して起動できます。 ROS1をインストールした後、リモートPCを再起動してください。
 
-```
+```shell
 $ sudo apt-get update
 $ sudo apt-get upgrade
 $ wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros_kinetic.sh
@@ -162,7 +162,7 @@ $ bash ./install_ros_kinetic.sh
 
 リモートPCにROS1依存パッケージをインストールする手順です。
 
-```
+```shell
 $ sudo apt-get install ros-kinetic-joy ros-kinetic-teleop-twist-joy \
   ros-kinetic-teleop-twist-keyboard ros-kinetic-laser-proc ros-kinetic-rgbd-launch \
   ros-kinetic-depthimage-to-laserscan ros-kinetic-rosserial-arduino ros-kinetic-rosserial-python \
@@ -174,7 +174,7 @@ $ sudo apt-get install ros-kinetic-joy ros-kinetic-teleop-twist-joy \
 
 リモートPCにTurtleBot3を制御するための依存パッケージをインストールする手順です。
 
-```
+```shell
 $ cd ~/catkin_ws/src/
 $ git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
 $ git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
@@ -191,7 +191,7 @@ ROS1では、TurtleBot PCとリモートPCの間で通信をするためにIPア
 
 リモートPCのターミナルウィンドウで次のコマンドを入力し、リモートPCのIPアドレスを確認します。
 
-```
+```shell
 $ ifconfig
 ```
 
@@ -201,7 +201,7 @@ $ ifconfig
 
 以下のコマンドを入力します。
 
-```
+```shell
 $ nano ~/.bashrc
 ```
 
@@ -214,7 +214,7 @@ $ nano ~/.bashrc
 
 次に、以下のコマンドでbashrcを実行します。
 
-```
+```shell
 $ source ~/.bashrc
 ```
 
