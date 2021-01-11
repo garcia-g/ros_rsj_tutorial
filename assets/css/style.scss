@@ -1,19 +1,9 @@
 ---
 ---
 
-@import "{{ site.theme }}";
-
+@import "";
 .inner {
   max-width: 75%;
-}
-
-.wrapper {
-  width: 100%;
-  max-width: 1500px;
-}
-
-section {
-  width: calc(100% - 300px);
 }
 
 .highlight .gutter {
