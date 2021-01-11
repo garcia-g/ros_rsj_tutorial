@@ -1,6 +1,6 @@
 ---
 title: Ubuntu LinuxとROSのインストール
-date: 2019-11-13
+date: 2021-01-12
 ---
 
 - Table of contents
@@ -132,58 +132,90 @@ date: 2019-11-13
 
 ### ROS ベースパッケージのインストール
 
-1. *ROS Kinetic Kame*{: style="color: blue"}をインストールします。
+![](/images/turtlebot3/remote_pc_and_turtlebot.png)
 
-   以下の URL に記載された手順に従って ROS のベースパッケージをインストールしてください。<br>
-   インストールパッケージの種別については「すべてのデスクトップ環境（推奨）」に従ってください。
+**警告**: この章の内容は、TurtleBot3を制御する`リモートPC`(デスクトップまたは、ラップトップPC)に対応しています。 この手順は、TurtleBot3で実施しないでください。
+{: .notice--warning}
 
-   [ROS KineticのUbuntuへのインストール](http://wiki.ros.org/ja/kinetic/Installation/Ubuntu)
+下記のスクリプトを使用すると、ROS1のインストール手順を簡略化できます。
+ターミナルウィンドウでこのスクリプトを実行します。ターミナルアプリケーションは、画面の左上隅にあるUbuntu検索アイコンから起動できます。もしくは、ターミナルのショートカットキー(`Ctrl`-`Alt`-`t`)を使用して起動できます。 ROS1をインストールした後、リモートPCを再起動してください。
 
-   以下はインストールするためのコマンドを抜き出したものです。<br>
-   詳細については上記ページを参照ください。
+``` bash
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros_kinetic.sh
+$ chmod 755 ./install_ros_kinetic.sh 
+$ bash ./install_ros_kinetic.sh
+```
 
-   ```shell
-   $ sudo sh -c \
-     'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" \
-     > /etc/apt/sources.list.d/ros-latest.list'
-   $ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 \
-     --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-   $ sudo apt-get update
-   $ sudo apt-get install ros-kinetic-desktop-full
-   $ sudo rosdep init
-   $ rosdep update
-   $ echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-   $ source ~/.bashrc
-   $ sudo apt-get install python-rosinstall
-   ```
+**注釈**: インストールされるパッケージを確認するには、このリンクを確認してください。[install_ros_kinetic.sh](https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros_kinetic.sh)
+{: .notice--info}
 
-1. インストールの確認のため、新しい端末（ターミナル）を起動して、下記を実行してください。
+{% capture info_01 %}
+**注釈**:  
+ - ROBOTISのROSパッケージはMelodic Moreniaをサポートしていますが、TurtleBot3にはROS Kinetic Kameを使用することを推奨します。
+ - ROSをMelodic Moreniaにアップグレードする場合は、サードパーティのROSパッケージが完全にサポートされていることを確認してください。
+{% endcapture %}
+<div class ="notice--info">{{info_01 | markdownify}}</div>
 
-   ```shell
-   $ printenv | grep ROS
-   ```
+### [ROS1 依存パッケージのインストール](#ROS1依存パッケージのインストール)
 
-   下記が出力されたら、ROSのインストールが完了しています。
+リモートPCにROS1依存パッケージをインストールする手順です。
 
-   ```shell
-   ROS_ROOT=/opt/ros/kinetic/share/ros
-   ROS_PACKAGE_PATH=/opt/ros/kinetic/share
-   ROS_MASTER_URI=http://localhost:11311
-   ROSLISP_PACKAGE_DIRECTORIES=
-   ROS_DISTRO=kinetic
-   ROS_ETC_DIR=/opt/ros/kinetic/etc/ros
-   ```
+``` bash
+$ sudo apt-get install ros-kinetic-joy ros-kinetic-teleop-twist-joy \
+$ ros-kinetic-teleop-twist-keyboard ros-kinetic-laser-proc ros-kinetic-rgbd-launch \
+$ ros-kinetic-depthimage-to-laserscan ros-kinetic-rosserial-arduino ros-kinetic-rosserial-python \
+$ ros-kinetic-rosserial-server ros-kinetic-rosserial-client ros-kinetic-rosserial-msgs \
+$ ros-kinetic-amcl ros-kinetic-map-server ros-kinetic-move-base ros-kinetic-urdf ros-kinetic-xacro \
+$ ros-kinetic-compressed-image-transport ros-kinetic-rqt-image-view ros-kinetic-gmapping 
+$ ros-kinetic-navigation ros-kinetic-interactive-markers
+```
 
-### 本セミナーに必要なパッケージのインストール
+リモートPCにTurtleBot3を制御するための依存パッケージをインストールする手順です。
 
-最後に、本セミナーに必要なパッケージをインストールします。以下のコマンドの実行し、インストールを行ってください。
+``` bash
+$ cd ~/catkin_ws/src/
+$ git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+$ git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
+$ cd ~/catkin_ws && catkin_make
+```
 
-```shell
-sudo apt-get install ros-kinetic-moveit-* \
-                     ros-kinetic-dynamixel-motor \
-                     ros-kinetic-usb-cam \
-                     ros-kinetic-joint-trajectory-controller \
-                     ros-kinetic-effort-controllers
+`catkin_make`コマンドがエラー無しで完了した場合、TurtleBot3の準備は完了です。
+
+### [ネットワーク構成](#network-configuration)
+
+![](/images/turtlebot3/network_configuration.png)
+
+ROS1では、TurtleBot PCとリモートPCの間で通信をするためにIPアドレスが必要です。 リモートPCとTurtleBot PCは、同じwifiルーターに接続する必要があります。
+
+リモートPCのターミナルウィンドウで次のコマンドを入力し、リモートPCのIPアドレスを確認します。
+
+``` bash
+$ ifconfig
+```
+
+長方形の赤い枠で囲っている文字列が、`リモートPC`のIPアドレスです。
+
+![](/images/turtlebot3/network_configuration2.png)
+
+以下のコマンドを入力します。
+
+``` bash
+$ nano ~/.bashrc
+```
+
+`Alt + /`を入力するとファイルの最終行へ移動します。
+
+`ROS_MASTER_URI`と`ROS_HOSTNAME`の`localhost`のIPアドレスを、上記のターミナルウィンドウから取得したIPアドレスに変更します。
+
+
+![](/images/turtlebot3/network_configuration3.png)
+
+次に、以下のコマンドでbashrcを実行します。
+
+``` bash
+$ source ~/.bashrc
 ```
 
 以上で、開発環境の構築が完了しました。
