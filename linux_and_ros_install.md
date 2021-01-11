@@ -140,7 +140,7 @@ date: 2021-01-12
 下記のスクリプトを使用すると、ROS1のインストール手順を簡略化できます。
 ターミナルウィンドウでこのスクリプトを実行します。ターミナルアプリケーションは、画面の左上隅にあるUbuntu検索アイコンから起動できます。もしくは、ターミナルのショートカットキー(`Ctrl`-`Alt`-`t`)を使用して起動できます。 ROS1をインストールした後、リモートPCを再起動してください。
 
-``` bash
+```
 $ sudo apt-get update
 $ sudo apt-get upgrade
 $ wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros_kinetic.sh
@@ -158,23 +158,23 @@ $ bash ./install_ros_kinetic.sh
 {% endcapture %}
 <div class ="notice--info">{{info_01 | markdownify}}</div>
 
-### [ROS1 依存パッケージのインストール](#ROS1依存パッケージのインストール)
+### ROS1 依存パッケージのインストール
 
 リモートPCにROS1依存パッケージをインストールする手順です。
 
-``` bash
+```
 $ sudo apt-get install ros-kinetic-joy ros-kinetic-teleop-twist-joy \
-$ ros-kinetic-teleop-twist-keyboard ros-kinetic-laser-proc ros-kinetic-rgbd-launch \
-$ ros-kinetic-depthimage-to-laserscan ros-kinetic-rosserial-arduino ros-kinetic-rosserial-python \
-$ ros-kinetic-rosserial-server ros-kinetic-rosserial-client ros-kinetic-rosserial-msgs \
-$ ros-kinetic-amcl ros-kinetic-map-server ros-kinetic-move-base ros-kinetic-urdf ros-kinetic-xacro \
-$ ros-kinetic-compressed-image-transport ros-kinetic-rqt-image-view ros-kinetic-gmapping 
-$ ros-kinetic-navigation ros-kinetic-interactive-markers
+  ros-kinetic-teleop-twist-keyboard ros-kinetic-laser-proc ros-kinetic-rgbd-launch \
+  ros-kinetic-depthimage-to-laserscan ros-kinetic-rosserial-arduino ros-kinetic-rosserial-python \
+  ros-kinetic-rosserial-server ros-kinetic-rosserial-client ros-kinetic-rosserial-msgs \
+  ros-kinetic-amcl ros-kinetic-map-server ros-kinetic-move-base ros-kinetic-urdf ros-kinetic-xacro \
+  ros-kinetic-compressed-image-transport ros-kinetic-rqt-image-view ros-kinetic-gmapping 
+  ros-kinetic-navigation ros-kinetic-interactive-markers
 ```
 
 リモートPCにTurtleBot3を制御するための依存パッケージをインストールする手順です。
 
-``` bash
+```
 $ cd ~/catkin_ws/src/
 $ git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
 $ git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
@@ -183,7 +183,7 @@ $ cd ~/catkin_ws && catkin_make
 
 `catkin_make`コマンドがエラー無しで完了した場合、TurtleBot3の準備は完了です。
 
-### [ネットワーク構成](#network-configuration)
+### ネットワーク構成
 
 ![](/images/turtlebot3/network_configuration.png)
 
@@ -191,7 +191,7 @@ ROS1では、TurtleBot PCとリモートPCの間で通信をするためにIPア
 
 リモートPCのターミナルウィンドウで次のコマンドを入力し、リモートPCのIPアドレスを確認します。
 
-``` bash
+```
 $ ifconfig
 ```
 
@@ -201,7 +201,7 @@ $ ifconfig
 
 以下のコマンドを入力します。
 
-``` bash
+```
 $ nano ~/.bashrc
 ```
 
@@ -214,7 +214,7 @@ $ nano ~/.bashrc
 
 次に、以下のコマンドでbashrcを実行します。
 
-``` bash
+```
 $ source ~/.bashrc
 ```
 
