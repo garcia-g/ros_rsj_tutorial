@@ -69,3 +69,4 @@ title: 日本ロボット学会　ロボットの作り方 ～移動ロボット
 - [ROS Answers](http://answers.ros.org/)（日本語でも大丈夫です）
 - [Programming Robots with ROS](http://shop.oreilly.com/product/0636920024736.do)
 - [TurtleBot Manual](https://emanual.robotis.com/docs/en/platform/turtlebot3/overview/)
+- [Test](test-before-pub.html)
