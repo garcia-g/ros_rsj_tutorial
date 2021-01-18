@@ -319,7 +319,7 @@ RaspbianベースのLinuxディストリビューションイメージを提供�
    sudo ufw allow ssh
    ```
  
-  リモートPCでRasberry Piと接続する。
+  リモートPCでRasberry Piと接続する（セミナー当日で行う）。
 
   ```shell
   ssh pi@192.168.xxx.xxx (The IP 192.168.xxx.xxx is your Raspberry Pi’s IP or hostname)
