@@ -1,12 +1,15 @@
 ---
 title: ROSの基本操作
-date: 2019-11-13
+date: 2020-01-23
 ---
 
 - Table of contents
 {:toc}
 
 基本的なROS上で動くプログラムの書き方とコンパイル方法を学習します。
+
+下記の実習を行うために、まず`ROS_MASTER_URI`と`ROS_HOSTNAME`を`localhost`に戻します（[参照](./linux_and_ros_install.md#ネットワーク構成)）。
+
 
 ## 基本的な用語
 
@@ -36,7 +39,6 @@ ROSでは、プログラムをビルドする際にcatkinというソフトウ�
 ビルドに必要な設定を行います。
 
 以下の手順で本作業用の新しいワークスペースを作ります。
-
 ```shell
 $ mkdir -p ~/catkin_ws/src
 $ cd ~/catkin_ws/src
@@ -51,6 +53,11 @@ src
 $
 ```
 
+*今回はROSをインストールするために`install_ros_kinetic.sh`を利用しましたのでワークスペースが自動的に作成されました。*{: style="color: red"}
+```shell
+cd ~/catkin_ws/src
+```
+
 `catkin_ws`ディレクトリ内にある、`build`、`devel`は、catkinシステムがプログラムをビルドする際に使用するものなので、
 ユーザが触る必要はありません。<br>
 `catkin_ws/src`ディレクトリは、ROSパッケージのソースコードを置く場所で、中にある`CMakeLists.txt` は、
@@ -60,9 +67,9 @@ $
 
 ```shell
 $ cd ~/catkin_ws/src
-$ git clone https://github.com/gbiggs/rsj_tutorial_2017_ros_intro.git
+$ git clone https://github.com/igra9/rsj_seminar_2021_ros_basics.git
 $ ls
-CMakeLists.txt  rsj_tutorial_2017_ros_intro
+CMakeLists.txt  rsj_seminar_2021_ros_basics
 $
 ```
 
@@ -78,15 +85,15 @@ URLが分かれば上の手順だけで簡単にROSのパッケージが自分�
 ダウンロードしているパッケージがバージョンアップされている場合などには、下記の実行例とファイル名が異なったり、ファイルが追加・削除されている場合があります。
 
 ```shell
-$ cd ~/catkin_ws/src/rsj_tutorial_2017_ros_intro/
+$ cd ~/catkin_ws/src/rsj_seminar_2021_ros_basics/
 $ ls
 CMakeLists.txt  launch  msg  package.xml  src
 $ ls launch/
-say_hello.launch
+test.launch
 $ ls msg/
-Greeting.msg
+Text.msg
 $ ls src/
-displayer.cpp  greeter.cpp
+Publish.cpp  Show.cpp
 $
 ```
 
@@ -94,27 +101,28 @@ $
 このパッケージをビルドするために必要な情報が書かれています。<br>
 `launch`ディレクトリには、複数のノードでできたシステムの定義が、`msg`ディレクトリには、このパッケージ独自のデータ形式の定義が、`src`ディレクトリには、このパッケージに含まれるプログラム(ノード)のソースコードが含まれています。
 
-`catkin_make`コマンドで、ダウンとロードした`rsj_tutorial_2017_ros_intro`パッケージを含む、ワークスペース全体をビルドします。`catkin_make`は、ワークスペースの最上位ディレクトリ(`~/catkin_ws/`)で行います。
+`catkin_make`コマンドで、ダウンとロードした`rsj_seminar_2021_ros_basics`パッケージを含む、ワークスペース全体をビルドします。`catkin_make`は、ワークスペースの最上位ディレクトリ(`~/catkin_ws/`)で行います。
 
 ## ROSノードの理解とビルド・実行
 
 先作成したワークスペースを利用します。<br>
-ターミナルを開き、パッケージが正しく存在しているか確認します。
+端末を開き、パッケージが正しく存在しているか確認します。
 
 ```shell
 $ cd ~/catkin_ws/src/
 $ ls
-CMakeLists.txt  rsj_tutorial_2017_ros_intro
+CMakeLists.txt  rsj_seminar_2021_ros_basics
 $ cd ..
 $
 ```
 
 ソースファイルの編集にはお好みのテキストエディタが利用可能です。<br>
 Linuxでのプログラム開発がはじめての方には、Ubuntuにデフォルトでインストールされている`gedit`がおすすめです。
+プログラミング作業が多い方には`Visual Code`がおすすめです。
 
-お好みのテキストエディタで`~/catkin_ws/src/rsj_tutorial_2017_ros_intro/src/greeter.cpp`を開きます。
+お好みのテキストエディタで`~/catkin_ws/src/rsj_seminar_2021_ros_basics/src/Publish.cpp`を開きます。
 
-![greeter.cpp](images/greeter_cpp_in_editor.png)
+![Publish.cpp](images/seminar2021/publish_cpp_in_editor.png)
 
 ### 送信ノードの作成 （基本的なコードを読み解く）
 
@@ -129,7 +137,7 @@ Linuxでのプログラム開発がはじめての方には、Ubuntuにデフォ
 続いて、本ノードが利用するメッセージのヘッダファイルをインクルードしています。
 
 ```c++
-#include <rsj_tutorial_2017_ros_basics/Greeting.h>
+#include <rsj_seminar_2021_ros_basics/Text.h>
 ```
 
 `std::string`が利用されるので、ヘッダファイルをインクルードします。
@@ -144,27 +152,26 @@ Linuxでのプログラム開発がはじめての方には、Ubuntuにデフォ
 
 ```c++
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "Greeter");
+  ros::init(argc, argv, "Publish");
   ros::NodeHandle node;
 
-  std::string hello_text;
-  std::string world_name;
-  ros::param::param<std::string>("~hello_text", hello_text, "hello");
-  ros::param::param<std::string>("~world_name", world_name, "world");
+  std::string message;
+  std::string date;
+  ros::param::param<std::string>("~message", message, "test seminar 2021");
+  ros::param::param<std::string>("~date", date, "January 22");
 
-  ros::Publisher pub = 
-    node.advertise<rsj_tutorial_2017_ros_basics::Greeting>("greeting", 1);
+  ros::Publisher pub = node.advertise<rsj_seminar_2021_ros_basics::Text>("Publish", 1);
 
   ros::Rate rate(1);
 
   while (ros::ok()) {
     ros::spinOnce();
 
-    ROS_INFO("Publishing greeting '%s %s'", hello_text, world_name);
-    rsj_tutorial_2017_ros_basics::Greeting greeting;
-    greeting.hello_text = hello_text;
-    greeting.world_name = world_name;
-    pub.publish(greeting);
+    ROS_INFO("Publishing message '%s %s'", message.c_str(), date.c_str());
+    rsj_seminar_2021_ros_basics::Text sample;
+    sample.message = message;
+    sample.date = date;
+    pub.publish(sample);
 
     rate.sleep();
   }
@@ -187,14 +194,13 @@ int main(int argc, char **argv) {
 この変数の作成によりトピックが作成され、__このノードからデータの送信が可能になります。__{: style="color: red" } <br>
 以下の引数を与えています。
 
-`"greeting"`
+`"Publish"`
 : トピック名：データをこのトピックに送信する
 
 `1`
 : メッセージのバッファリング量を指定 (大きくすると、処理が一時的に重くなったときなどに受け取り側の読み飛ばしを減らせる)
 
-advertise関数についている`<rsj_tutorial_2017_ros_basics::Greeting>`の部分はメッセージの型を指定しています。<br>
-これは、幾何的・運動学的な値を扱うメッセージを定義している`rsj_tutorial_2017_ros_basics`パッケージの、並進・回転速度を表す`Greeting`型です。<br>
+advertise関数についている`<rsj_seminar_2021_ros_basics::Text>`の部分はメッセージの型を指定しています。<br>
 (この指定方法は、C++のテンプレートという機能を利用していますが、ここでは「`advertise`のときはメッセージの型指定を`<>`の中に書く」とだけ覚えておけば問題ありません)
 
 セットアップの最後として、`ros::Rate rate(1)`で周期実行のためのクラスを初期化しています。<br>
@@ -213,11 +219,11 @@ advertise関数についている`<rsj_tutorial_2017_ros_basics::Greeting>`の�
 他にも、ROS_DEBUG()、ROS_WARN()、ROS_ERROR()、ROS_FATAL()などのデバッグログ関数が用意されています。
 
 その後、データを送信します。<br>
-まずは送信するデータ型（`rsj_tutorial_2017_ros_basics::Greeting`）を初期化し、値を設定します。<br>
+まずは送信するデータ型（`rsj_seminar_2021_ros_basics::Text`）を初期化し、値を設定します。<br>
 さきほどセットアップで作成したパラメータの値を利用します。<br>
 こうすることで、送信されるデータの内容は実行するときに自由に変更できます。
 
-そして、`pub.publish(greeting)`によってデータを送信します。<br>
+そして、`pub.publish(sample)`によってデータを送信します。<br>
 この行でデータはバッファーに入れられ、別のスレッドが自動的にサブスクライバに送信します(ROSのデフォルトでは非同期送信となります）。
 
 main ループが終了すると作成した変数は自動的にクリーンアップを実行し、ノードのシャットダウンを行います。
@@ -226,7 +232,7 @@ main ループが終了すると作成した変数は自動的にクリーンア
 
 ROS パッケージをビルドするためには、`catkin_make`コマンドを用います。
 
-下記コマンドをターミナルで実行してみましょう。
+下記コマンドを端末で実行してみましょう。
 
 ```shell
 $ cd ~/catkin_ws/
@@ -234,66 +240,68 @@ $ catkin_make
 ```
 
 ROSシステムの実行の際、ROSを通してノード同士がデータをやりとりするために用いる「roscore」を起動しておく必要があります。<br>
-2つ目のターミナルを開き、それぞれで以下を実行して下さい。
+2つ目の端末を開き、それぞれで以下を実行して下さい。
 
-1つ目のターミナルで下記を実行します。
+1つ目の端末で下記を実行します。
 
 ```shell
 $ roscore
 ```
 
-ROSでワークスペースを利用するとき、ターミナルでそのワークスペースに環境変数などを設定することが必要です。<br>
+ROSでワークスペースを利用するとき、端末でそのワークスペースに環境変数などを設定することが必要です。<br>
 このためにワークスペースの最上位のディレクトリで`source devel/setup.bash`を実行します。<br>
-このコマンドはワークスペースの環境編情報などを利用中のターミナルに読み込みます。<br>
-しかし、 ターミナルごとに環境変数はリセットされますので、新しいターミナルでワークスペースを利用しはじめるときには、まず`source devel/setup.bash`を実行しなければなりません。<br>
-一つのターミナルで一回だけ実行すれば十分です。そのターミナルを閉じるまで有効となります。
+このコマンドはワークスペースの環境編情報などを利用中の端末に読み込みます。<br>
+しかし、 端末ごとに環境変数はリセットされますので、新しい端末でワークスペースを利用しはじめるときには、まず`source devel/setup.bash`を実行しなければなりません。<br>
+一つの端末で一回だけ実行すれば十分です。その端末を閉じるまで有効となります。<br>
+この作業を省略するため、`.bashrc`に`source devel/setup.bash`を追加することをおすすめします。
+*`install_ros_kinetic.sh`を利用した場合は`.bashrc`に`source devel/setup.bash`が既に追加されました。*{: style="color: red"}
 
-2つ目のターミナルで下記を実行します。
+2つ目の端末で下記を実行します。
 
 ```shell
 $ cd ~/catkin_ws/
-$ source devel/setup.bash
-$ rosrun rsj_tutorial_2017_ros_basics greeter
-[ INFO] [1494840089.900580884]: Publishing greeting 'hello world'
+$ rosrun rsj_seminar_2021_ros_basics publish
+[ INFO] [1494840089.900580884]: Publishing message 'test seminar 2021 January 22'
 ```
 
 上記のようなログが表示されれば成功です。
 
 ソースコードにパラメータを利用したので、コマンドラインからパラメータ設定を試してみましょう。<br>
-ノードを実行した2つ目のターミナル（__注意：`roscore`のターミナルではなくて__{: style="color: red" } ）に __Ctrl+c__{: style="border: 1px solid black" } を入力してノードを終了します。<br>
+ノードを実行した2つ目の端末（__注意：`roscore`の端末ではなくて__{: style="color: red" } ）に __Ctrl+c__{: style="border: 1px solid black" } を入力してノードを終了します。<br>
 そして以下を実行してください。
 
 ```shell
-$ rosrun rsj_tutorial_2017_ros_basics greeter \
-  _hello_text:=gidday _world_name:=planet
-[ INFO] [1494840247.644756809]: Publishing greeting 'gidday planet'
+$ rosrun rsj_seminar_2021_ros_basics publish \
+  _message:=test-2 _date:=today
+[ INFO] [1494840247.644756809]: Publishing message 'test-2 today'
 ```
 
 上記のようなログが表示されれば成功です。
 
-実行後は両方のターミナルで __Ctrl+c__{: style="border: 1px solid black" } でノードと`roscore`を終了します。
+実行後は両方の端末で __Ctrl+c__{: style="border: 1px solid black" } でノードと`roscore`を終了します。
 
 ### 受信ノードの作成
 
 前節で作成したノードはメッセージを送信するノードでした。<br>
 次にメッセージを受信するノードを作成してみましょう。
 
-以下のソースは`rsj_tutorial_2017_ros_basics/src/displayer.cpp`ファイルにあります。
+以下のソースは`rsj_seminar_2021_ros_basics/src/Show.cpp`ファイルにあります。
 
 ```c++
 #include <ros/ros.h>
-#include <rsj_tutorial_2017_ros_basics/Greeting.h>
+#include <rsj_seminar_2021_ros_basics/Text.h>
 
 #include <iostream>
 
-void callback(const rsj_tutorial_2017_ros_basics::Greeting::ConstPtr &msg) {
-  std::cout << msg->hello_text << " " << msg->world_name << '\n';
+void callback(const rsj_seminar_2021_ros_basics::Text::ConstPtr &msg) {
+  std::cout << msg->message << " " << msg->date << '\n';
 }
+
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "Displayer");
+  ros::init(argc, argv, "Show");
   ros::NodeHandle node;
 
-  ros::Subscriber sub = node.subscribe("greeting", 10, callback);
+  ros::Subscriber sub = node.subscribe("Publish", 10, callback);
 
   ros::spin();
 
@@ -301,15 +309,15 @@ int main(int argc, char **argv) {
 }
 ```
 
-本ノードは`greeting`というトピックから取得したデータをターミナルに表示します。<br>
-`greeter`からの差は以下のようです。
+本ノードは`Publish`というトピックから取得したデータを端末に表示します。<br>
+`Publish`からの差は以下のようです。
 
 まずは`callback`関数です。<br>
 この関数はトピックのデータ型に合っているポインタを引数としてもらいます。<br>
 トピックからデータを受け取ったら、`callback`関数は呼ばれます。<br>
 そのデータを`std::cout`に出力し終了します。
 
-`const rsj_tutorial_2017_ros_basics::Greeting::ConstPtr` は、const型(内容を書き換えられない)、`rsj_tutorial_2017_ros_basics`パッケージに含まれる、`Greeting`型のメッセージの、const型ポインタを表しています。<br>
+`const rsj_seminar_2021_ros_basics::Text::ConstPtr` は、const型(内容を書き換えられない)、`rsj_seminar_2021_ros_basics`パッケージに含まれる、`Text`型のメッセージの、const型ポインタを表しています。<br>
 `&msg`の`&`は、参照型(内容を書き換えられるように変数を渡すことができる)という意味ですが、(const型なので)ここでは特に気にする必要はありません。<br>
 msgはクラスへのポインタなので「-&gt;」を用い、以降はクラスのメンバ変数へのアクセスなので「.」を用いてアクセスしています。
 
@@ -319,7 +327,7 @@ msgはクラスへのポインタなので「-&gt;」を用い、以降はクラ
 この行はトピックへのアクセスを初期化し、データが取得したらの対応を示します。<br>
 引数は以下です。
 
-`"greeting"`
+`"Publish"`
 : トピック名
 
 `10`
@@ -330,35 +338,33 @@ msgはクラスへのポインタなので「-&gt;」を用い、以降はクラ
 
 最後に、main ループでの処理は不要となります。<br>
 本ノードはデータが届くとき以外何もしないので、無限ループになる`ros::spin()`を呼びます。<br>
-`ros::spin()`は`greeter`の`while(...)`と`ros::spinOnce()`と類似の機能を中で持つので、ノードがシャットダウンされるまでに戻りません。
+`ros::spin()`は`Publish`の`while(...)`と`ros::spinOnce()`と類似の機能を中で持つので、ノードがシャットダウンされるまでに戻りません。
 
-### ビルド＆実行
+### 実行
 
 作成したノードを実行してみましょう。<br>
-1つ目のターミナルで以下を実行します。
+1つ目の端末で以下を実行します。
 
 ```shell
 $ roscore
 ```
 
-そして2つ目のターミナルで以下を実行します。
+そして2つ目の端末で以下を実行します。
 
 ```shell
 $ cd ~/catkin_ws/
-$ source devel/setup.bash
-$ rosrun rsj_tutorial_2017_ros_basics greeter
-[ INFO] [1494840089.900580884]: Publishing greeting 'hello world'
+$ rosrun rsj_seminar_2021_ros_basics publish
+[ INFO] [1494840089.900580884]: Publishing message 'test seminar 2021 January 22'
 ```
 
-最後に、3番目のターミナルを開いて、下記を実行します。
+最後に、3番目の端末を開いて、下記を実行します。
 
 ```shell
 $ cd ~/catkin_ws/
-$ source devel/setup.bash
-$ rosrun rsj_tutorial_2017_ros_basics displayer
+$ rosrun rsj_seminar_2021_ros_basics show
 ```
 
-「hello world」と表示されれば成功です。
+「test seminar 2021 January 22」と表示されれば成功です。
 
 以上の手順で、ROSパッケージに含まれるノードのソースコードを編集し、ビルドして、実行できるようになりました。
 
@@ -376,19 +382,17 @@ launchファイルは、ノードやパラメータの組み合わせを定義�
 フォーマットはXMLです。<br>
 システムに含まれるノードとそのノードの起動方法を一つずつ定義します。
 
-`rsj_tutorial_2017_ros_basics`パッケージに以下のファイルが`launch/say_hello.launch`として存在します。<br>
+`rsj_seminar_2021_ros_basics`パッケージに以下のファイルが`launch/test.launch`として存在します。<br>
 このファイルはさきほど手動で起動したシステムを定義します。
 
 ```xml
 <launch>
-  <node name="greeter" pkg="rsj_tutorial_2017_ros_basics" type="greeter">
-    <param name="hello_text" value="allo"/>
-    <param name="world_name" value="earth"/>
+  <node name="publisher" pkg="rsj_seminar_2021_ros_basics" type="publish">
+    <param name="message" value="Test seminar"/>
+    <param name="date" value="January 22"/>
   </node>
 
-  <node name="displayer"
-        pkg="rsj_tutorial_2017_ros_basics" 
-        type="displayer" output="screen"/>
+  <node name="show" pkg="rsj_seminar_2021_ros_basics" type="show" output="screen"/>
 </launch>
 ```
 
@@ -405,70 +409,69 @@ launchファイルは、ノードやパラメータの組み合わせを定義�
 : ノードの実行ファイル名
 
 `output`
-: `stdout`の先：定義しないと`stdout`（`ROS_INFO`や`std::cout`への出力等）はターミナルで表示されず、`~/.ros/log/`に保存されるログファイルだけに出力される。
+: `stdout`の先：定義しないと`stdout`（`ROS_INFO`や`std::cout`への出力等）は端末で表示されず、`~/.ros/log/`に保存されるログファイルだけに出力される。
 
-１番目の`<node>`は`greeter`ノードの定義です。<br>
+１番目の`<node>`は`publish`ノードの定義です。<br>
 本要素の中でパラメータの設定も行っています。<br>
 なお、パラメータの設定を行わない場合はノードのソースに定義したディフォルト値が利用されるので、記述は必須ではありません。
 
-２番目の`<node>`は`displayer`ノードの定義です。<br>
-パラメータはありませんが、出力されることをターミナルで表示するようにします。
+２番目の`<node>`は`show`ノードの定義です。<br>
+パラメータはありませんが、出力されることを端末で表示するようにします。
 
 ### roslaunchでシステムを起動
 
-開いているターミナルに`roscore`や起動中のノードをすべて __Ctrl+c__{: style="border: 1px solid black" } で停止します。<br>
-その後、いずれか１つのターミナルで以下を実行します。
+開いている端末に`roscore`や起動中のノードをすべて __Ctrl+c__{: style="border: 1px solid black" } で停止します。<br>
+その後、いずれか１つの端末で以下を実行します。
 
 ```shell
 $ cd ~/catkin_ws
-$ source devel/setup.bash
-$ roslaunch rsj_tutorial_2017_ros_basics say_hello.launch
-... logging to /home/geoff/.ros/log/40887b56-395c-11e7-b8
-68-d8cb8ae35bff/roslaunch-alnilam-11087.log
+$ roslaunch rsj_seminar_2021_ros_basics test.launch
+... logging to /home/user_name/.ros/log/40887b56-395c-11e7-b8
+68-d8cb8ae35bff/roslaunch-user_name-11087.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
 
-started roslaunch server http://alnilam:40672/
+started roslaunch server http://localhost:43427/
 
 SUMMARY
 ========
 
 PARAMETERS
- * /greeter/hello_text: allo
- * /greeter/world_name: earth
+ * /publisher/date: January 22
+ * /publisher/message: Test seminar
  * /rosdistro: kinetic
  * /rosversion: 1.12.7
 
 NODES
   /
-    displayer (rsj_tutorial_2017_ros_basics/displayer)
-    greeter (rsj_tutorial_2017_ros_basics/greeter)
+    publisher (rsj_seminar_2021_ros_basics/publish)
+    show (rsj_seminar_2021_ros_basics/show)
 
 auto-starting new master
-process[master]: started with pid [11098]
+process[master]: started with pid [13161]
 ROS_MASTER_URI=http://localhost:11311
 
 setting /run_id to 40887b56-395c-11e7-b868-d8cb8ae35bff
-process[rosout-1]: started with pid [11111]
+process[rosout-1]: started with pid [13161]
 started core service [/rosout]
-process[greeter-2]: started with pid [11118]
-process[displayer-3]: started with pid [11126]
-allo earth
-allo earth
+process[publisher-2]: started with pid [13166]
+process[show-3]: started with pid [13179]
+Test seminar January 22
+Test seminar January 22
 ```
 
-「allo earth」が繰り返して表示されたら成功です。
+「Test seminar January 22」が繰り返して表示されたら成功です。
 
 __Ctrl+c__{: style="border: 1px solid black" } でシステムを停止します。
 
 ```shell
-allo earth
-allo earth
-allo earth
+Test seminar January 22
+Test seminar January 22
+Test seminar January 22
 [Ctrl+c]
-^C[displayer-3] killing on exit
-[greeter-2] killing on exit
+^C[show-3] killing on exit
+[publisher-2] killing on exit
 [rosout-1] killing on exit
 [master] killing on exit
 shutting down processing monitor...
@@ -479,455 +482,5 @@ $
 
 これでシステムの起動、停止が簡単にできるようになりました。
 
-`roslaunch`を利用する場合は、別のターミナルでの`roscore`の実行は不要です。<br>
+`roslaunch`を利用する場合は、別の端末での`roscore`の実行は不要です。<br>
 `roslaunch`は中で`roscore`を起動したり停止したりします。
-
-## ROSノードの作成
-
-パッケージとノードを自分で作成しマニピュレータのサーボモータを操作します。
-
-### パッケージの作成
-
-ワークスペースに新しいパッケージを作成するために、以下を実行してください。
-
-```shell
-$ cd ~/catkin_ws/src
-$ catkin_create_pkg rsj_2017_servo_control roscpp dynamixel_controllers \
-  dynamixel_msgs
-Created file rsj_2017_servo_control/CMakeLists.txt
-Created file rsj_2017_servo_control/package.xml
-Created folder rsj_2017_servo_control/include/rsj_2017_servo_control
-Created folder rsj_2017_servo_control/src
-Successfully created files in /home/geoff/catkin_ws/src/rsj_2017_servo_control.
-Please adjust the values in package.xml.
-```
-
-引数の１番目はパッケージ名です。<br>
-２番目と３番目は依存パッケージの定義です。<br>
-今回はC++で記述するため、`roscpp`に依存します。<br>
-そしてDynamixelのサーボを利用するのでハードウェアとインターフェースする`dynamixel-controllers`に依存します。<br>
-また、サーボコントローラにコマンドを送るためにDynamixel用のメッセージタイプの利用が必要なので`dynamixel-msgs`にも依存します。
-
-生成されたパッケージの中身を確認します。
-
-```shell
-$ cd rsj_2017_servo_control/
-$ ls
-CMakeLists.txt  include  package.xml  src
-```
-
-以前と同様に、`package.xml`はパッケージの情報を定義し、CMakeLists.txtはパッケージのビルド方法を定義します。
-
-`package.xml`をエディターで開くと以下の行が含まれていると見えます。
-
-```xml
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>dynamixel_controllers</build_depend>
-  <build_depend>dynamixel_msgs</build_depend>
-  <build_depend>roscpp</build_depend>
-  <run_depend>dynamixel_controllers</run_depend>
-  <run_depend>dynamixel_msgs</run_depend>
-  <run_depend>roscpp</run_depend>
-```
-
-これらはパッケージの依存を定義します。ROSとcatkinはこれらの利用によってパッケージのビルド順番等を決めます。
-
-普段は`package.xml`のメール等（`<maintainer email>`タグ等）も編集するべきですが、今回は時間のために省略します。
-
-以上、パッケージの作成ができました。
-
-### ノードを作成
-
-作成したパッケージにノードを作成します。
-
-ノードを作成するために以下の手順を行います。
-
-1. `CMakeLists.txt`にノードのコンパイル方法を追加する
-
-1. ノードのソースファイルを作成する
-
-#### CMakeLists.txtにノードを追加
-
-`rsj_2017_servo_control`パッケージにある`CMakeLists.txt`（`~/catkin_ws/src/rsj_2017_servo_control/CMakeLists.txt`）をエディタで開き、以下のようにソースを編集します。<br>
-5行目、12行目、17行目および20行目を追加しました。<br>
-ファイル内の133行目ぐらいから始まります。<br>
-インストールされたcatkinのバージョンにより、編集する具体的な行番号が変化する可能性があります。
-
-```cmake
-## Declare a C++ executable
-## With catkin_make all packages are built within a single CMake context
-## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/rsj_2017_servo_control_node.cpp)
-add_executable(${PROJECT_NAME}_set_servo_pos src/set_servo_pos.cpp)
-
-## Rename C++ executable without prefix
-## The above recommended prefix causes long target names, the following renames the
-## target back to the shorter version for ease of user use
-## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
-# set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
-set_target_properties(${PROJECT_NAME}_set_servo_pos
-                      PROPERTIES OUTPUT_NAME set_servo_pos PREFIX "")
-
-## Add cmake target dependencies of the executable
-## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node
-#                  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(${PROJECT_NAME}_set_servo_pos
-                 ${${PROJECT_NAME}_EXPORTED_TARGETS}
-                 ${catkin_EXPORTED_TARGETS})
-
-## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}_set_servo_pos ${catkin_LIBRARIES})
-```
-
-なお、__必ず__{: style="color: red" } ファイルトップにある`add_compile_options(-std=c++11)`の行をコメントアウトしてください。
-
-これでcatkinに`set_servo_pos`というノードのコンパイルを指定できました。
-
-#### ノードのソースの作成
-
-`rsj_2017_servo_control`パッケージ内の`src/`ディレクトリに`set_servo_pos.cpp`というファイル（`~/catkin_ws/src/rsj_2017_servo_control/src/set_servo_pos.cpp`）を作成します。<br>
-そしてエディタで`set_servo_pos.cpp`を開き、以下のソースを入力します。
-
-```c++
-#include <ros/ros.h>
-#include <std_msgs/Float64.h>
-
-#include <string>
-#include <vector>
-
-int main(int argc, char **argv) {
-  ros::init(argc, argv, "set_servo_pos");
-  ros::NodeHandle node;
-
-  std::string servo_command_topic;
-  ros::param::param<std::string>(
-    "~servo_command_topic",
-    servo_command_topic,
-    "/finger_servo_controller/command");
-
-  ros::Publisher pub = node.advertise<std_msgs::Float64>(servo_command_topic, 1);
-
-  std::vector<std::string> my_args;
-  ros::removeROSArgs(argc, argv, my_args);
-  if (my_args.size() < 2) {
-    ROS_FATAL("Usage: rosrun set_servo_pos [position]");
-    ros::shutdown();
-    return 1;
-  }
-  std_msgs::Float64 servo_pos;
-  servo_pos.data = std::stof(my_args[1]);
-
-  ROS_INFO("Setting servo position to %f", servo_pos.data);
-  ros::Rate r(1);
-  while (ros::ok()) {
-    pub.publish(servo_pos);
-    ros::spinOnce();
-    r.sleep();
-  }
-
-  return 0;
-}
-```
-
-このソースはコマンドラインから指定のサーボモータの位置を読み、パラメータで指定されたトピック（デフォルトでは`/finger_servo_controller/command`）にパブリッシュします。<br>
-このトピックはサーボコントローラがサブスクライブしています。
-
-なぜサーボの位置はパラメータとしてノードに渡さなかったでしょうか。<br>
-パラメータはいわゆる「configuration」です。<br>
-ノードの振る舞いを制御するためのことです。<br>
-サーボのトピックはノードの振る舞いですが、サーボの位置はコマンドです。<br>
-このノードはコマンドラインで利用するべきなツールなので普通のコマンドラインパラメータを利用しました。<br>
-
-### ビルド＆実行
-
-パッケージ内のソースを変更・追加した後、必ず再ビルドが必要です。<br>
-ターミナルでcatkin_makeコマンドを実行して再ビルドします。
-
-1つ目のターミナル：
-
-```shell
-$ cd ~/catkin_ws/
-$ catkin_make
-```
-
-この際、_ビルドエラーが出力されていないかよく確認して下さい_{: style="color: red" }。<br>
-エラーが出ている場合は、ソースコードの該当箇所を確認・修正して下さい。
-
-実行する前にまずはマニピュレータが壊れないようにします。<br>
-マニピュレータのグリッパーが動くので、__電源を入れる前にマニピュレータのグリッパーは何にもぶつからないような姿勢にしましょう__{: style="color: red" } 。
-
-マニピュレータのサーボコントローラを起動することが必要です。
-
-`rsj_2017_servo_control`パッケージの中に以下のファイルを作成します。`~/catkin_ws/src/rsj_2017_servo_control/config`と`~/catkin_ws/src/rsj_2017_servo_control/launch`ディレクトリは作成した上でファイルを編集します。
-
-```shell
-$ cd ~/catkin_ws/src/rsj_2017_servo_control
-$ mkdir config
-$ mkdir launch
-```
-
-`~/catkin_ws/src/rsj_2017_servo_control/config/dynamixel_test.yaml`:
-
-```yaml
-finger_servo_controller:
-    controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
-    joint_name: finger_joint
-    joint_speed: 1.17
-    motor:
-        id: 5
-        init: 512
-        min: 0
-        max: 1023
-```
-
-`~/catkin_ws/src/rsj_2017_servo_control/launch/dynamixel_test.launch`:
-
-```xml
-<launch>
-    <node name="dynamixel_manager" pkg="dynamixel_controllers"
-      type="controller_manager.py" required="true" output="screen">
-        <rosparam>
-            namespace: dynamixel_controller_manager
-            serial_ports:
-                dxl_tty1:
-                    port_name: "/dev/ttyUSB0"
-                    baud_rate: 1000000
-                    min_motor_id: 1
-                    max_motor_id: 5
-                    update_rate: 10
-        </rosparam>
-    </node>
-    <rosparam file="$(find rsj_2017_servo_control)/config/dynamixel_test.yaml"
-          command="load"/>
-    <node name="finger_servo_spawner"
-          pkg="dynamixel_controllers"
-          type="controller_spawner.py"
-          args="--manager=dynamixel_controller_manager
-                --port dxl_tty1
-                finger_servo_controller"
-          output="screen"/>
-</launch>
-```
-
-1つ目のターミナルで以下を実行し、マニピュレータのグリッパーサーボコントローラを起動します。
-
-```shell
-$ roslaunch rsj_2017_servo_control dynamixel_test.launch
-... logging to /home/geoff/.ros/log/619c447c-396a-11e7-b868-d8cb8ae35bff/
-roslaunch-alnilam-1790.log
-Checking log directory for disk usage. This may take awhile.
-Press Ctrl-C to interrupt
-Done checking log file disk usage. Usage is <1GB.
-
-started roslaunch server http://alnilam:44912/
-
-SUMMARY
-========
-（省略）
-```
-
-2つ目のターミナルで以下のコマンドを実行します。
-
-```shell
-$ rosrun rsj_2017_servo_control set_servo_pos 0
-[ INFO] [1494851539.189274395]: Setting servo position to 0.000000
-[Ctrl+cで止める]
-$ rosrun rsj_2017_servo_control set_servo_pos -0.5
-[ INFO] [1494851548.085785357]: Setting servo position to -0.500000
-[Ctrl+cで止める]
-```
-
-サーボモータが動けば、サーボモータ制御は成功しています。
-
-_このソースは以下のURLでダウンロード可能です。_
-
-<https://github.com/gbiggs/rsj_2017_servo_control>
-
-## サーボの状態を確認
-
-もう一つのノードを作成し、サーボモータの現在状況をターミナルで表示します。<br>
-上記と同じ手順で`servo_status`というノードを`rsj_2017_servo_control`パッケージに追加します。
-
-### ノードを作成
-
-#### CMakeLists.txtにノードを追加
-
-`~/catkin_ws/src/rsj_2017_servo_control/CMakeLists.txt`を編集して、新しいノードのコンパイル方法を指定します。<br>
-ファイルをエディターで開き以下の通りになるように編集します。<br>
-（6行目、14行目、20行目および24行目を追加しました。）
-
-```cmake
-## Declare a C++ executable
-## With catkin_make all packages are built within a single CMake context
-## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/rsj_2017_servo_control_node.cpp)
-add_executable(${PROJECT_NAME}_set_servo_pos src/set_servo_pos.cpp)
-add_executable(${PROJECT_NAME}_servo_status src/servo_status.cpp)
-
-## Rename C++ executable without prefix
-## The above recommended prefix causes long target names, the following renames the
-## target back to the shorter version for ease of user use
-## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
-# set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
-set_target_properties(${PROJECT_NAME}_set_servo_pos
-                      PROPERTIES OUTPUT_NAME set_servo_pos PREFIX "")
-set_target_properties(${PROJECT_NAME}_servo_status
-                      PROPERTIES OUTPUT_NAME servo_status PREFIX "")
-
-## Add cmake target dependencies of the executable
-## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node
-                   ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(${PROJECT_NAME}_set_servo_pos
-                 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(${PROJECT_NAME}_servo_status
-                 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
-## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}_set_servo_pos ${catkin_LIBRARIES})
-target_link_libraries(${PROJECT_NAME}_servo_status ${catkin_LIBRARIES})
-```
-
-#### ノードのソースの作成
-
-`rsj_2017_servo_control`パッケージ内の`src/`ディレクトリに`servo_status.cpp`というファイルを作成します。<br>
-エディター`~/catkin_ws/src/rsj_2017_servo_control/src/servo_status.cpp`を新規作成し、以下のソースを入力します。
-
-```c++
-#include <ros/ros.h>
-#include <dynamixel_msgs/JointState.h>
-
-#include <string>
-
-void callback(const dynamixel_msgs::JointState::ConstPtr &msg) {
-  ROS_INFO("--- Servo status ---");
-  ROS_INFO("Name: %s", msg->name.c_str());
-  ROS_INFO("ID: %d", msg->motor_ids[0]);
-  ROS_INFO("Temperature: %d", msg->motor_temps[0]);
-  ROS_INFO("Goal position: %f", msg->goal_pos);
-  ROS_INFO("Current position: %f", msg->current_pos);
-  ROS_INFO("Position error: %f", msg->error);
-  ROS_INFO("Velocity: %f", msg->velocity);
-  ROS_INFO("Load: %f", msg->load);
-  ROS_INFO("Moving: %s", msg->is_moving ? "yes" : "no");
-  ROS_INFO(" ");
-}
-
-int main(int argc, char **argv) {
-  ros::init(argc, argv, "servo_status");
-  ros::NodeHandle node;
-
-  std::string servo_status_topic;
-  ros::param::param<std::string>(
-    "~servo_status_topic",
-    servo_status_topic,
-    "/finger_servo_controller/state");
-
-  ros::Subscriber pub = node.subscribe<dynamixel_msgs::JointState>(
-    servo_status_topic,
-    10,
-    callback);
-
-  ros::spin();
-
-  return 0;
-}
-```
-
-コールバックの中に`dynamixel_msgs::JointState`というメッセージタイプを利用します。<br>
-このメッセージタイプは`dynamixel_msgs`パッケージに定義され、内容は以下のようになっています。
-
-```
-std_msgs/Header header
-  uint32 seq
-  time stamp
-  string frame_id
-string name
-int32[] motor_ids
-int32[] motor_temps
-float64 goal_pos
-float64 current_pos
-float64 error
-float64 velocity
-float64 load
-bool is_moving
-```
-
-### ビルド＆実行
-
-コンパイルして実行します。<br>
-1つ目のターミナルで`catkin_make`を実行します。
-
-```shell
-$ cd ~/catkin_ws/
-$ catkin_make
-```
-
-実行する前にマニピュレータのサーボコントローラを起動することが必要です。<br>
-1つ目のターミナルで下記を実行してマニピュレータのグリッパーサーボコントローラを起動します。
-
-```shell
-$ source devel/setup.bash
-$ roslaunch rsj_2017_servo_control dynamixel_test.launch
-... logging to /home/geoff/.ros/log/619c447c-396a-11e7-b868-d8cb8ae35bff/
-roslaunch-alnilam-1790.log
-Checking log directory for disk usage. This may take awhile.
-Press Ctrl-C to interrupt
-Done checking log file disk usage. Usage is <1GB.
-
-started roslaunch server http://alnilam:44912/
-
-SUMMARY
-========
-（省略）
-```
-
-2つ目のターミナルで下記を実行します。
-
-```shell
-$ cd ~/catkin_ws/
-$ source devel/setup.bash
-$ rosrun rsj_2017_servo_control servo_status
-[ INFO] [1494855697.336794278]: --- Servo status ---
-[ INFO] [1494855697.336922059]: Name: finger_joint
-[ INFO] [1494855697.336968787]: ID: 5
-[ INFO] [1494855697.337016662]: Temperature: 37
-[ INFO] [1494855697.337069086]: Goal position: 0.000000
-[ INFO] [1494855697.337120585]: Current position: 0.000000
-[ INFO] [1494855697.337170811]: Position error: 0.000000
-[ INFO] [1494855697.337226948]: Velocity: 0.000000
-[ INFO] [1494855697.337278499]: Load: 0.000000
-[ INFO] [1494855697.337329531]: Moving: no
-[ INFO] [1494855697.337372008]:
-[ INFO] [1494855697.432684658]: --- Servo status ---
-（省略）
-```
-
-（サーボモータの動作状況により上記数値が変化することがあります。）
-
-3つ目のターミナルで下記を実行すると、`servo_status`のターミナルで数値の変更が確認できます。
-
-```shell
-$ cd ~/catkin_ws/
-$ source devel/setup.bash
-$ rosrun rsj_2017_servo_control set_servo_pos 0
-[ INFO] [1494851539.189274395]: Setting servo position to 0.000000
-[Ctrl+cで止める]
-$ rosrun rsj_2017_servo_control set_servo_pos -0.5
-[ INFO] [1494851548.085785357]: Setting servo position to -0.500000
-[Ctrl+cで止める]
-```
-
-_このソースは以下のURLでダウンロード可能です。_
-
-<https://github.com/gbiggs/rsj_2017_servo_control>
-
-## 課題
-
-1. サーボステータスに`error`と`load`と`is_moving`という値があります。<br>
-   これらの利用により、サーボモータがストール(外力が加わり期待通りの回転ができない状態など)したかどうか判断できます。<br>
-   サーボモータがストールした場合に警告をターミナルで表示するノードを作成してみましょう。

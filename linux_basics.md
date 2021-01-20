@@ -1,6 +1,6 @@
 ---
 title: Linuxの基本操作
-date: 2019-11-13
+date: 2021-01-23
 ---
 
 - Table of contents
