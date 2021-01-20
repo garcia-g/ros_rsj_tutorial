@@ -271,6 +271,6 @@ username@pcname:~/catkin_ws$
 ``` 
 
 <button type="button" class="bth btn-primary btn-lg">[
-    <span style="color:black">**メインページへ**</span>](/index.html)</button>
+    <span style="color:black">**メインページへ**</span>](index.html)</button>
 <button type="button"  class="bth btn-success btn-lg">
-    [<span style="color:black">**次の実習へ**</span>](/slam-basics.html)</button>
+    [<span style="color:black">**次の実習へ**</span>](slam-basics.html)</button>
