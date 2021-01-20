@@ -3,6 +3,8 @@ title: 移動ロボットの動作確認
 date: 2020-01-23
 ---
 
+# 移動ロボットの動作確認
+
 - Table of contents
 {:toc}
 
@@ -67,7 +69,7 @@ $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 
 シミュレータの画面を見ながらそれぞれのキーを押してロボットがどう動くか確認しましょう。
 
-シミュレータと`turtlebot3_teleop_key`を起動したターミナルで`Ctrl+C`を押すとプログラムが終了します。
+シミュレータと`turtlebot3_teleop_key`を起動したターミナルで`Ctrl+c`{: style="border: 1px solid black" }を押すとプログラムが終了します。
 
 
 ## 実際のTurtleBotを操作
@@ -91,7 +93,7 @@ $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 
 #### roscoreの実行
 
-**注釈**：ターミナルアプリは、画面左上のUbuntuの検索アイコンで見つけることが出来ます。ターミナルのショートカットキーは、`Ctrl`-`Alt`-`T`です。
+**注釈**：ターミナルアプリは、画面左上のUbuntuの検索アイコンで見つけることが出来ます。ターミナルのショートカットキーは、`Ctrl+Alt+t`{: style="border: 1px solid black" }です。
 {: .notice--info}
 
 **リモートPCで：** roscoreを実行します。
@@ -248,3 +250,27 @@ $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 ```
 
 ロボットを床においてrvizの画面とロボットを確認しながらキーボードでロボットを動かしてみましょう。
+
+動作確認が終わりましたら一旦全てのノードを終了させます。
+下記のコマンドで`roscore`以外のノードを終了させることができます。
+
+```shell
+rosnode kill -a
+```
+
+`roscore`を終了させるのに`roscore`を起動しているターミナルで`Ctrl+c`{: style="border: 1px solid black" }を押します。
+下記のような表示があれば`roscore`が終了したことが確認できます。
+
+```shell
+^C[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor ...
+... shutting down processing monitor complete
+done
+username@pcname:~/catkin_ws$
+``` 
+
+<button type="button" class="bth btn-primary btn-lg">[
+    <span style="color:black">**メインページへ**</span>](/index.html)</button>
+<button type="button"  class="bth btn-success btn-lg">
+    [<span style="color:black">**次の実習へ**</span>](/slam-basics.html)</button>
