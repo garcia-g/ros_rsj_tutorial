@@ -270,6 +270,13 @@ done
 username@pcname:~/catkin_ws$
 ``` 
 
+TurtleBot33のアプリケーションを起動するために開いたターミナルで`exit`を記入し、`Enter`{: style="border: 1px solid black" }キーを押すと接続を切断します。
+
+```shell
+turtlebot@turtlebot:~$ exit
+username@pc_name:~$
+```
+
 <button type="button" class="bth btn-primary btn-lg">[
     <span style="color:black">**メインページへ**</span>](index.html)</button>
 <button type="button"  class="bth btn-success btn-lg">
