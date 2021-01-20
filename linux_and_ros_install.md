@@ -143,7 +143,7 @@ date: 2021-01-12
 {: .notice--warning}
 
 下記のスクリプトを使用すると、ROS1のインストール手順を簡略化できます。
-ターミナルウィンドウでこのスクリプトを実行します。ターミナルアプリケーションは、画面の左上隅にあるUbuntu検索アイコンから起動できます。もしくは、ターミナルのショートカットキー(`Ctrl`-`Alt`-`t`)を使用して起動できます。 ROS1をインストールした後、リモートPCを再起動してください。
+ターミナルウィンドウでこのスクリプトを実行します。ターミナルアプリケーションは、画面の左上隅にあるUbuntu検索アイコンから起動できます。もしくは、ターミナルのショートカットキー`Ctrl+Alt+t`{: style="border: 1px solid black" }を使用して起動できます。 ROS1をインストールした後、リモートPCを再起動してください。
 
 ```shell
 $ sudo apt-get update
@@ -217,7 +217,7 @@ $ nano ~/.bashrc
 
 ![](/images/turtlebot3/network_configuration3.png)
 
-ファイルを保存して（`Ctrl + o`→`enterキー`)閉じる（`Ctrl+x`）。
+ファイルを保存して（`Ctrl + o`{: style="border: 1px solid black" }→`enter`{: style="border: 1px solid black" }キー)閉じる（`Ctrl+x`{: style="border: 1px solid black" }）。
 
 次に、以下のコマンドでbashrcを実行します。
 
@@ -298,7 +298,7 @@ RaspbianベースのLinuxディストリビューションイメージを提供�
 	export ROS_HOSTNAME=RASPBERRY_PI_3_IP_ADDRESS
 	```
 
-   ファイルを保存して（`Ctrl + o`→`enterキー`)閉じる（`Ctrl+x`）。
+   ファイルを保存して（`Ctrl + o`{: style="border: 1px solid black" }→`enter`{: style="border: 1px solid black" }キー)閉じる（`Ctrl+x`{: style="border: 1px solid black" }）。
 
 	```shell
 	source ~/.bashrc

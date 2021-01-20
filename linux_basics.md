@@ -3,6 +3,8 @@ title: Linuxの基本操作
 date: 2021-01-23
 ---
 
+# Linuxの基本操作
+
 - Table of contents
 {:toc}
 
@@ -101,7 +103,7 @@ $ ls
 
 ## タブ補完
 
-Linuxの端末でコマンドを入力する際、途中まで入力した後に __Tab__{: style="border: 1px solid black" } キーを押すと、可能な場合には、自動的に続きを入力してくれます。<br>
+Linuxの端末でコマンドを入力する際、途中まで入力した後に `Tab`{: style="border: 1px solid black" } キーを押すと、可能な場合には、自動的に続きを入力してくれます。<br>
 続きが出てこない場合は、もう少し先まで入力してから再度トライしましょう。
 
 ```shell
@@ -111,8 +113,8 @@ $ cd ~/Music/
 
 ## 実行中のプログラムの停止
 
-実行しているコマンドを途中で止めたい場合には、__Ctrl+c__{: style="border: 1px solid black" }を入力します。<br>
-下記の例は、`yes`コマンド(`y`と表示し続けるコマンド)を実行し、 __Ctrl+c__{: style="border: 1px solid black" }で停止します。
+実行しているコマンドを途中で止めたい場合には、`Ctrl+c`{: style="border: 1px solid black" }を入力します。<br>
+下記の例は、`yes`コマンド(`y`と表示し続けるコマンド)を実行し、 `Ctrl+c`{: style="border: 1px solid black" }で停止します。
 
 ```shell
 $ yes
@@ -128,7 +130,7 @@ $
 ## コピー＆ペースト
 
 端末の画面中でのコピー＆ペーストには、キー入力で行う方法と、マウスのみで行う方法があります。<br>
-キー入力で行う際は、コピーしたい文字列を選択して __Ctrl+Shift+c__{: style="border: 1px solid black" }でコピー、__Ctrl+Shift+v__{: style="border: 1px solid black" }でペーストします。
+キー入力で行う際は、コピーしたい文字列を選択して `Ctrl+Shift+c`{: style="border: 1px solid black" }でコピー、`Ctrl+Shift+v`{: style="border: 1px solid black" }でペーストします。
 
 ```shell
 $ cd
@@ -140,7 +142,7 @@ $ cd [Ctrl+Shift+v]
 $ cd Desktop
 ```
 
-なお、ブラウザなどターミナル以外のソフトでは、__Ctrl+c__{: style="border: 1px solid black" }でコピーができます。
+なお、ブラウザなどターミナル以外のソフトでは、`Ctrl+c`{: style="border: 1px solid black" }でコピーができます。
 
 マウスのみでコピー＆ペーストを行う際は、コピーしたい文字列を選択して、そのまま中ボタンをクリックすることで、ペーストします。
 
@@ -156,7 +158,7 @@ $ cd Desktop
 ## ターミナルを複数開く
 
 ロボットのプログラムを実行する際、複数のターミナルウインドウを使って操作する場合があります。<br>
-__Ctrl+Shift+n__{: style="border: 1px solid black" }で新しいウインドウを、__Ctrl+Shift+t__{: style="border: 1px solid black" }で新しいタブを開くことができます。
+`Ctrl+Shift+n`{: style="border: 1px solid black" }で新しいウインドウを、`Ctrl+Shift+t`{: style="border: 1px solid black" }で新しいタブを開くことができます。
 
 ## コマンドの履歴
 
@@ -165,3 +167,8 @@ __Ctrl+Shift+n__{: style="border: 1px solid black" }で新しいウインドウ�
 ```shell
 $ [上下キー]
 ```
+
+<button type="button" class="bth btn-primary btn-lg">[
+    <span style="color:black">**メインページへ**</span>](/index.html)</button>
+<button type="button"  class="bth btn-success btn-lg">
+    [<span style="color:black">**次の実習へ**</span>](/ros_basics.html)</button>

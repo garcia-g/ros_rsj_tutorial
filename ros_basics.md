@@ -3,6 +3,8 @@ title: ROSの基本操作
 date: 2020-01-23
 ---
 
+# ROSの基本操作
+
 - Table of contents
 {:toc}
 
@@ -106,7 +108,7 @@ $
 ## ROSノードの理解とビルド・実行
 
 先作成したワークスペースを利用します。<br>
-端末を開き、パッケージが正しく存在しているか確認します。
+ターミナルを開き、パッケージが正しく存在しているか確認します。
 
 ```shell
 $ cd ~/catkin_ws/src/
@@ -207,7 +209,7 @@ advertise関数についている`<rsj_seminar_2021_ros_basics::Text>`の部分�
 初期化時の引数で実行周波数(この例では1 Hz)を指定します。
 
 `while(ros::ok())`で、メインの無限ループを回します（すなわちこのノードのメーンプロセッシングループです）。<br>
-`ros::ok()`を`while`の条件にすることで、ノードの終了指示が与えられたとき(__Ctrl+c__{: style="border: 1px solid black" } が押された場合も含む)には、ループを抜けて終了処理などが行えるようになっています。
+`ros::ok()`を`while`の条件にすることで、ノードの終了指示が与えられたとき(`Ctrl+c`{: style="border: 1px solid black" } が押された場合も含む)には、ループを抜けて終了処理などが行えるようになっています。
 
 ループ中では、まず、_`ros::spinOnce()`を呼び出して、ROSのメッセージを受け取る_{: style="color: red" } といった処理を行います。<br>
 `spinOnce`は、その時点で届いているメッセージの受け取り処理を済ませた後、すぐに処理を返します。<br>
@@ -232,7 +234,7 @@ main ループが終了すると作成した変数は自動的にクリーンア
 
 ROS パッケージをビルドするためには、`catkin_make`コマンドを用います。
 
-下記コマンドを端末で実行してみましょう。
+下記コマンドをターミナルで実行してみましょう。
 
 ```shell
 $ cd ~/catkin_ws/
@@ -240,23 +242,23 @@ $ catkin_make
 ```
 
 ROSシステムの実行の際、ROSを通してノード同士がデータをやりとりするために用いる「roscore」を起動しておく必要があります。<br>
-2つ目の端末を開き、それぞれで以下を実行して下さい。
+2つ目のターミナルを開き、それぞれで以下を実行して下さい。
 
-1つ目の端末で下記を実行します。
+1つ目のターミナルで下記を実行します。
 
 ```shell
 $ roscore
 ```
 
-ROSでワークスペースを利用するとき、端末でそのワークスペースに環境変数などを設定することが必要です。<br>
+ROSでワークスペースを利用するとき、ターミナルでそのワークスペースに環境変数などを設定することが必要です。<br>
 このためにワークスペースの最上位のディレクトリで`source devel/setup.bash`を実行します。<br>
-このコマンドはワークスペースの環境編情報などを利用中の端末に読み込みます。<br>
-しかし、 端末ごとに環境変数はリセットされますので、新しい端末でワークスペースを利用しはじめるときには、まず`source devel/setup.bash`を実行しなければなりません。<br>
-一つの端末で一回だけ実行すれば十分です。その端末を閉じるまで有効となります。<br>
+このコマンドはワークスペースの環境編情報などを利用中のターミナルに読み込みます。<br>
+しかし、 ターミナルごとに環境変数はリセットされますので、新しいターミナルでワークスペースを利用しはじめるときには、まず`source devel/setup.bash`を実行しなければなりません。<br>
+一つのターミナルで一回だけ実行すれば十分です。そのターミナルを閉じるまで有効となります。<br>
 この作業を省略するため、`.bashrc`に`source devel/setup.bash`を追加することをおすすめします。
 *`install_ros_kinetic.sh`を利用した場合は`.bashrc`に`source devel/setup.bash`が既に追加されました。*{: style="color: red"}
 
-2つ目の端末で下記を実行します。
+2つ目のターミナルで下記を実行します。
 
 ```shell
 $ cd ~/catkin_ws/
@@ -267,7 +269,7 @@ $ rosrun rsj_seminar_2021_ros_basics publish
 上記のようなログが表示されれば成功です。
 
 ソースコードにパラメータを利用したので、コマンドラインからパラメータ設定を試してみましょう。<br>
-ノードを実行した2つ目の端末（__注意：`roscore`の端末ではなくて__{: style="color: red" } ）に __Ctrl+c__{: style="border: 1px solid black" } を入力してノードを終了します。<br>
+ノードを実行した2つ目のターミナル（__注意：`roscore`のターミナルではなくて__{: style="color: red" } ）に `Ctrl+c`{: style="border: 1px solid black" } を入力してノードを終了します。<br>
 そして以下を実行してください。
 
 ```shell
@@ -278,7 +280,7 @@ $ rosrun rsj_seminar_2021_ros_basics publish \
 
 上記のようなログが表示されれば成功です。
 
-実行後は両方の端末で __Ctrl+c__{: style="border: 1px solid black" } でノードと`roscore`を終了します。
+実行後は両方のターミナルで `Ctrl+c`{: style="border: 1px solid black" } でノードと`roscore`を終了します。
 
 ### 受信ノードの作成
 
@@ -309,7 +311,7 @@ int main(int argc, char **argv) {
 }
 ```
 
-本ノードは`Publish`というトピックから取得したデータを端末に表示します。<br>
+本ノードは`Publish`というトピックから取得したデータをターミナルに表示します。<br>
 `Publish`からの差は以下のようです。
 
 まずは`callback`関数です。<br>
@@ -343,13 +345,13 @@ msgはクラスへのポインタなので「-&gt;」を用い、以降はクラ
 ### 実行
 
 作成したノードを実行してみましょう。<br>
-1つ目の端末で以下を実行します。
+1つ目のターミナルで以下を実行します。
 
 ```shell
 $ roscore
 ```
 
-そして2つ目の端末で以下を実行します。
+そして2つ目のターミナルで以下を実行します。
 
 ```shell
 $ cd ~/catkin_ws/
@@ -357,7 +359,7 @@ $ rosrun rsj_seminar_2021_ros_basics publish
 [ INFO] [1494840089.900580884]: Publishing message 'test seminar 2021 January 22'
 ```
 
-最後に、3番目の端末を開いて、下記を実行します。
+最後に、3番目のターミナルを開いて、下記を実行します。
 
 ```shell
 $ cd ~/catkin_ws/
@@ -409,19 +411,19 @@ launchファイルは、ノードやパラメータの組み合わせを定義�
 : ノードの実行ファイル名
 
 `output`
-: `stdout`の先：定義しないと`stdout`（`ROS_INFO`や`std::cout`への出力等）は端末で表示されず、`~/.ros/log/`に保存されるログファイルだけに出力される。
+: `stdout`の先：定義しないと`stdout`（`ROS_INFO`や`std::cout`への出力等）はターミナルで表示されず、`~/.ros/log/`に保存されるログファイルだけに出力される。
 
 １番目の`<node>`は`publish`ノードの定義です。<br>
 本要素の中でパラメータの設定も行っています。<br>
 なお、パラメータの設定を行わない場合はノードのソースに定義したディフォルト値が利用されるので、記述は必須ではありません。
 
 ２番目の`<node>`は`show`ノードの定義です。<br>
-パラメータはありませんが、出力されることを端末で表示するようにします。
+パラメータはありませんが、出力されることをターミナルで表示するようにします。
 
 ### roslaunchでシステムを起動
 
-開いている端末に`roscore`や起動中のノードをすべて __Ctrl+c__{: style="border: 1px solid black" } で停止します。<br>
-その後、いずれか１つの端末で以下を実行します。
+開いているターミナルに`roscore`や起動中のノードをすべて `Ctrl+c`{: style="border: 1px solid black" } で停止します。<br>
+その後、いずれか１つのターミナルで以下を実行します。
 
 ```shell
 $ cd ~/catkin_ws
@@ -463,7 +465,7 @@ Test seminar January 22
 
 「Test seminar January 22」が繰り返して表示されたら成功です。
 
-__Ctrl+c__{: style="border: 1px solid black" } でシステムを停止します。
+`Ctrl+c`{: style="border: 1px solid black" } でシステムを停止します。
 
 ```shell
 Test seminar January 22
@@ -482,5 +484,10 @@ $
 
 これでシステムの起動、停止が簡単にできるようになりました。
 
-`roslaunch`を利用する場合は、別の端末での`roscore`の実行は不要です。<br>
+`roslaunch`を利用する場合は、別のターミナルでの`roscore`の実行は不要です。<br>
 `roslaunch`は中で`roscore`を起動したり停止したりします。
+
+<button type="button" class="bth btn-primary btn-lg">[
+    <span style="color:black">**メインページへ**</span>](/index.html)</button>
+<button type="button"  class="bth btn-success btn-lg">
+    [<span style="color:black">**次の実習へ**</span>](/turtlebot-basics.html)</button>
