@@ -212,6 +212,34 @@ ROSコミュニティでよく使用されている2次元の `Occupancy Grid Ma
 
 自分で作成したマップ（map.pgm）をダブルクリックで開けます。
 
+## 全てのプログラムを終了
+
+<!--`Slam`と`Teleop`のノードを終了させます。<br>
+それぞれのターミナルで`Ctrl+c`{: style="border: 1px solid black" }を押します。-->
+
+```shell
+rosnode kill -a
+```
+
+`roscore`を終了させるのに`roscore`を起動しているターミナルで`Ctrl+c`{: style="border: 1px solid black" }を押します。
+下記のような表示があれば`roscore`が終了したことが確認できます。
+
+```shell
+^C[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor ...
+... shutting down processing monitor complete
+done
+username@pcname:~/catkin_ws$
+``` 
+
+TurtleBot33のアプリケーションを起動するために開いたターミナルで`exit`を記入し、`Enter`{: style="border: 1px solid black" }キーを押すと接続を切断します。
+
+```shell
+turtlebot@turtlebot:~$ exit
+username@pc_name:~$
+```
+
 ## 参考文献
 
 - gmapping
@@ -232,5 +260,5 @@ ROSコミュニティでよく使用されている2次元の `Occupancy Grid Ma
 
 <button type="button" class="bth btn-primary btn-lg">[
     <span style="color:black">**メインページへ**</span>](index.html)</button>
-<button type="button"  class="bth btn-success btn-lg">
-    [<span style="color:black">**次の実習へ**</span>](ros-navigation.html)</button>
+<!--button type="button"  class="bth btn-success btn-lg">
+    [<span style="color:black">**次の実習へ**</span>](ros-navigation.html)</button-->
