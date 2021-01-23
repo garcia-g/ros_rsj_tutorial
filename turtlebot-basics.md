@@ -74,7 +74,7 @@ $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 
 ## 実際のTurtleBotを操作
 
-下記の実習を行うために、まず`ROS_MASTER_URI`と`ROS_HOSTNAME`の`localhost`をリモートPCのIPアドレスに変更します。（[参照](./linux_and_ros_install.md#ネットワーク構成)）。
+<span style="color:red">下記の実習を行うために、まず`ROS_MASTER_URI`と`ROS_HOSTNAME`の`localhost`をリモートPCのIPアドレスに変更します。（[参照](./linux_and_ros_install.md#ネットワーク構成)）。</span>
 
 
 ### TurtleBotをリモートPCで表示

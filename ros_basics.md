@@ -10,7 +10,7 @@ date: 2020-01-23
 
 基本的なROS上で動くプログラムの書き方とコンパイル方法を学習します。
 
-下記の実習を行うために、まず`ROS_MASTER_URI`と`ROS_HOSTNAME`を`localhost`に戻します（[参照](./linux_and_ros_install.md#ネットワーク構成)）。
+<span style="color:red">**下記の実習を行うために、まず`ROS_MASTER_URI`と`ROS_HOSTNAME`を`localhost`に戻します（[参照](./linux_and_ros_install.md#ネットワーク構成)）。**</span>
 
 
 ## 基本的な用語
